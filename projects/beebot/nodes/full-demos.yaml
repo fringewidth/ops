@@ -9,7 +9,9 @@ depends:
 - free-cube-rules
 - magnet-choice
 - task-coverage
+- build-objects
+- rich-world
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Use --cube --compact --counts log --rule switch_cube --coverage F (user chose electromagnets 2026-11-10, magnet-choice). Measured 2026-11-10: 111 kept of 161 tried in 21 s on one Mac core (48 scenes, coverage 0.3), about 19k kept episodes per core-hour; one episode is about 12k tokens (72 steps x ~170). Data volume is free; the limits are near-duplicate steps within an episode and Haiku-written text. Consider generating fresh episodes on the rented machine's 72 CPU cores during training."
-updated: "2026-11-10 15:30 +0530"
+updated: "2026-11-10 15:55 +0530"
