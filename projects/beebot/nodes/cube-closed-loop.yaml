@@ -7,5 +7,7 @@ est_h: 6.0
 depends:
 - cube-swarm-scene
 - cube-demos
-created: 2026-11-10 12:01 +0530
+- free-cube-rules
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+updated: "2026-11-10 12:31 +0530"
