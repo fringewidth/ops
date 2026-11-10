@@ -5,7 +5,7 @@ status: running
 parent: trk-language
 needs: mac-gpu
 est_h: 1.0
-notes: "Started 2026-11-10 ~21:00 on the free Mac GPU (agent, inference only, about 75 min): base Qwen3.5-4B, two scene renders + held-out test instruction, few-shot thought then the task as JSON, scored with haiku.same_task; text arm with the scene summary for comparison. Pass: about 0.8 or better on the image arm."
+notes: "Started 2026-11-10 ~21:00 on the free Mac GPU (agent, inference only): base Qwen3.5-4B, two scene renders + held-out test instruction, few-shot thought then the task as JSON, scored with haiku.same_task; text arm with the scene summary. Pass: about 0.8 or better on the image arm. Interim at 21:40, 83 pairs per arm: image 0.60, text 0.53 (below pass so far)."
 depends:
 - haiku-rewrites
 metric:
@@ -15,7 +15,7 @@ created: "2026-11-10 15:50 +0530"
 by: beebot-f7 3d push
 links:
 - logs/gate-4b-restates.out
-updated: "2026-11-10 21:01 +0530"
+updated: "2026-11-10 21:39 +0530"
 claim:
   session: beebot-f7 3d push
   host: GB-497
