@@ -1,7 +1,7 @@
 title: Build any object by name
 summary: Procedural library of named voxel objects (chair, arch, house, ...), a support rule for gravity with switchable bonds, a build-order expert with part sub-goals, a build family with held-out object names.
 why: Open-vocabulary construction uses the LM's knowledge of objects and is a headline a single-arm VLA does not have.
-status: todo
+status: running
 parent: trk-data
 est_h: 6.0
 notes: "Agent in a worktree; no downloads (an external mesh dataset needs the user's yes: the agent writes a proposal with size and license)."
@@ -9,4 +9,4 @@ depends:
 - task-coverage
 created: "2026-11-10 15:55 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 16:44 +0530"
+updated: "2026-11-10 16:52 +0530"
