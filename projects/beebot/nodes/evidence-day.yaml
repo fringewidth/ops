@@ -1,7 +1,7 @@
 title: Local evidence before buying compute
 summary: Run attention-blocking and model-size probes, then a slot-word SFT with rollout tests before and after.
 why: We should not spend rented credits until local runs show the setup works. A single big run that changes everything at once cannot be diagnosed.
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 needs: mac-gpu
@@ -19,8 +19,10 @@ claim:
   cmd: evidence_chain2.sh (slot-eval before, lm-slotwords 210 min, slot-eval after)
   started: "2026-11-10 12:28 +0530"
   ends: "2026-11-10 17:30"
-updated: "2026-11-10 17:11 +0530"
+  finished: "2026-11-10 18:25 +0530"
+updated: "2026-11-10 18:25 +0530"
 metric:
   series: demo_loss{run="lm-slotwords"}
   direction: down
 notes: Intermediate-checkpoint slot evals cancelled 2026-11-10 ~17:15 (Mac going on battery; the final result is negative and the intermediate ones would not change the decision). slot-eval-after finishing alone (PID 32139).
+result: "Slot-word fine-tune (210 min, 9,804 of 30,500 labels rewritten): rollout hit, before -> after: trained names 0.96 -> 0.84, trained synonyms 0.00 -> 0.00, trained descriptions 0.02 -> 0.03, held-out synonyms 0.00 -> 0.00, held-out descriptions 0.01 -> 0.03, foreign 0.01 -> 0.05, nonsense 0.04 -> 0.05. Rewritten labels alone do not teach resolving new words at 0.6B. Probes: causal-block, size, restate, no-diagonals, vox instruction gain, box diag (logs/*.out). logs/slot-eval-{before,after}.out, runs/lm-slotwords"
