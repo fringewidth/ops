@@ -1,12 +1,15 @@
 title: Second Haiku window for the richer world
 summary: Label the new families (build, objects, zones, reasoning) with the same Haiku pipeline in another window.
 why: Tonight's window labels the current world only.
-status: todo
-kind: decision
+status: running
+kind: task
 parent: trk-language
-notes: "Owed by the user: when the next window is."
+notes: "Running since 2026-11-10 ~20:50 on the second account (the user said continue): (1) objects, blocks, zones and reasoning were already in the first window's export (--objects 1.0); (2) build family: data/vla/haiku/build-s{0,1}, 1500 tasks each from --only build draws, generating then verifying (scratchpad haiku_build.sh, logs/haiku-build-s*.out); (3) run-s1..s7: finishing verification and generating the rest (haiku_resume.sh). Guard stops all Haiku at 95% session or weekly usage."
 depends:
 - build-objects
 - rich-world
 created: "2026-11-10 15:55 +0530"
 by: beebot-f7 3d push
+links:
+- logs/haiku-build-s0.out
+updated: "2026-11-10 21:26 +0530"
