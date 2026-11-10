@@ -3,8 +3,8 @@ summary: Generate voxel expert demonstrations restricted to moves a pivoting cub
 why: The policy must learn moves the real cubes can perform. Injected move failures teach it to recover.
 status: done
 kind: task
-parent: grant-push-3d
+parent: trk-data
 created: 2026-11-10 11:54 +0530
 by: beebot-26 ops
 result: commit 4a2c728 (demos --cube)
-updated: 2026-11-10 11:54 +0530
+updated: 2026-11-10 12:00 +0530
