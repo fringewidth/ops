@@ -1,0 +1,10 @@
+title: Compact demonstration store and suite fixes
+summary: An agent packs the store about eight times smaller and removes impossible tasks.
+why: A full dataset would not fit on the Mac's free disk in today's format.
+status: running
+parent: trk-data
+est_h: 3.0
+depends:
+- cube-demos
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
