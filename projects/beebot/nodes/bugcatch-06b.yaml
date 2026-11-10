@@ -1,7 +1,7 @@
 title: End-to-end bug-catch at 0.8B
 summary: Train the full recipe on Qwen3.5-0.8B (full weights, Mac) on a sample and check that thoughts match their labels on held-out episodes.
 why: A bug found on the Mac costs nothing. Nothing runs on paid compute before this passes.
-status: running
+status: failed
 kind: run
 parent: trk-runs
 needs: mac-gpu
@@ -11,7 +11,7 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Nothing runs on paid compute before this passes. Full weights. Model: a small Qwen3.5 (small-qwen35), not Qwen3-0.6B. Track vision forgetting: rerun the vlm-probe set on each checkpoint."
-updated: "2026-11-10 22:31 +0530"
+updated: "2026-11-10 23:15 +0530"
 metric:
   series: think_thought_match{run="bugcatch-08b"}
   direction: up
@@ -23,5 +23,7 @@ claim:
   cmd: think_train Qwen3.5-0.8B smoke, 8 min, batch 4x4, scene views
   started: "2026-11-10 22:34 +0530"
   ends: "2026-11-10 23:20"
+  finished: "2026-11-10 23:15 +0530"
 links:
 - logs/bugcatch-08b-smoke.out
+result: "Smoke 1 (22:34): ran but only 3 steps in 8 min after a 31 s first step (0.52 ex/s then ~0.07); gpu 19.9 GB of 24, swap in use; val_loss 6.70 at step 3. logs/bugcatch-08b-smoke.out"
