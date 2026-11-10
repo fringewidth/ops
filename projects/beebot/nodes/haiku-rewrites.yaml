@@ -8,11 +8,11 @@ needs: none
 est_h: 3.0
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 18:25 +0530"
+updated: "2026-11-10 18:54 +0530"
 depends:
 - task-coverage
 - thought-format
 - wording-bank
-notes: "Running since 18:27 (scratchpad haiku_run.sh under caffeinate): data/vla/haiku/run-s{0..3}, 10,258 items, seeds 0-3, export options --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0 (demos must use the same to join). motion/subset/switch held in later.jsonl until their fixes (switch as separate turns, line verifier, selector equivalence). Pilot 1: 144/154 kept."
+notes: "Window 16:50-21:30 IST. Started late (18:27): export was not prepared before the window and a second pilot ran first (memory prepare-before-quota-windows). Running under caffeinate: run-s0..3 (10,258 tasks, old families + objects) since 18:27, about 120 tasks/min, no errors after the first timeouts; run-s4..7 (12k) exporting, generate starts when each export finishes (scratchpad haiku_run2.sh); motion/subset/switch per shard in run-s*-later since 18:53 (haiku_later.sh). Export options for the demo join: --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0, seeds 0-7, chunk 24. Pilot 1: 144/154 kept. Logs: logs/haiku-run-s*.out, logs/haiku-later-s*.out."
 links:
 - src/beebot/vla/voxel/haiku.py
