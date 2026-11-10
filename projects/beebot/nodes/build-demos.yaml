@@ -11,4 +11,7 @@ links:
 - logs/build-demos-s0.out
 created: "2026-11-10 20:51 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 20:54 +0530"
+updated: "2026-11-10 21:46 +0530"
+metric:
+  series: demos_kept{run="voxel_build"}
+  direction: up
