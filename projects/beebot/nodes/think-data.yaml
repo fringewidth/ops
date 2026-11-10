@@ -4,10 +4,11 @@ why: The trainer needs examples that put thoughts at the first step and at sub-g
 status: running
 parent: trk-trainer
 est_h: 8.0
-notes: "Agent in a worktree, started 2026-11-10 ~20:05, deadline 2026-11-11 14:00. Interface agreed with think-model (Example: obs, context_text with one SCENE marker, reply_text, act, codes, metadata)."
+notes: "Agent in a worktree, started 2026-11-10 ~20:05, due 2026-11-11 14:00. Interface agreed with think-model; images via views.scene_views. Gotchas to handle: strip or soften thought content not visible in images (exact robot counts, coordinates); assert every Haiku label's canonical record matches its episode (join by draw position is fragile)."
 depends:
 - full-demos
 - haiku-rewrites
 - thought-format
 created: "2026-11-10 19:57 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-10 20:28 +0530"
