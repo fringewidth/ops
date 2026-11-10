@@ -9,5 +9,5 @@ depends:
 - base-model-choice
 created: "2026-11-10 20:28 +0530"
 by: beebot-f7 3d push
-result: "User 2026-11-10 ~21:05: randomize the camera fully, and tell the model where the user stands relative to the camera; directions in instructions and thoughts are in the user's frame."
-updated: "2026-11-10 20:50 +0530"
+result: "User 2026-11-10 ~20:45: randomize the camera fully, and tell the model where the user stands relative to the camera; directions in instructions and thoughts are in the user's frame."
+updated: "2026-11-10 20:53 +0530"
