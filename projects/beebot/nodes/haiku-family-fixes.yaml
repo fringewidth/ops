@@ -1,0 +1,10 @@
+title: Haiku pipeline fixes for motion, subset and switch tasks
+summary: Switch episodes become one instruction per part (later parts arrive mid-task), the verifier menu explains line and selector fields, subset answers are compared by the robots they select.
+why: Pilot 2 kept 1 of 9 switch pairs and rejected line and subset pairs that were right.
+status: done
+parent: trk-language
+notes: "Agent in a worktree, started 18:40, merged 18:53 (main, branch worktree-agent-acfdddba8ce57753a b33f1c2); 15 haiku tests pass; replayed on pilot2 all 4 subset rejects accepted. Left: Labels does not merge directories; nothing in training calls switch_parts yet."
+depends:
+- haiku-rewrites
+created: "2026-11-10 18:54 +0530"
+by: beebot-f7 3d push
