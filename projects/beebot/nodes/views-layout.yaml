@@ -1,0 +1,8 @@
+title: What the model sees
+summary: Two 256x256 renders per step in the user turn, an oblique perspective view and a top-down view, randomized per episode; no ASCII grid.
+why: Image count and size set sequence length and cost per step. Chosen by Claude in views.py, not yet confirmed by the user; base-model-choice had said isometric plus top-down with height shading.
+status: todo
+kind: decision
+parent: trk-trainer
+created: "2026-11-10 21:51 +0530"
+by: beebot-f7 3d push
