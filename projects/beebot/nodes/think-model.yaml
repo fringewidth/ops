@@ -9,5 +9,5 @@ depends:
 - stream-layout
 created: "2026-11-10 19:57 +0530"
 by: beebot-f7 3d push
-result: "Merged to main 2026-11-10 ~21:10 (4c4422b): think.py ThinkVoxelPolicy (Qwen3.5 images in the user turn, voxel action slots), think_train.py (full weights default, DDP, resume, chunked reply CE, no packing because linear attention carries state), think_fake.py. Mac: Qwen3.5-4B only with LoRA (13.3 GB, ~55 tok/s); full 4B estimate ~117 GB without checkpointing, ~82 GB with: on a 96 GB GH200 use checkpointing."
-updated: "2026-11-10 20:51 +0530"
+result: "Merged to main 2026-11-10 ~20:48 (4c4422b): think.py ThinkVoxelPolicy (Qwen3.5 images in the user turn, voxel action slots), think_train.py (full weights default, DDP, resume, chunked reply CE, no packing because linear attention carries state), think_fake.py. Mac: Qwen3.5-4B only with LoRA (13.3 GB, ~55 tok/s); full 4B estimate ~117 GB without checkpointing, ~82 GB with: on a 96 GB GH200 use checkpointing."
+updated: "2026-11-10 20:53 +0530"
