@@ -1,8 +1,10 @@
 title: 3D viewer with thoughts
 summary: An agent builds the browser page that draws the voxel swarm and shows thoughts as they are written.
 why: It is independent of the model, so it can be ready before training finishes.
-status: running
+status: done
 parent: trk-demo
 est_h: 3.0
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+result: "Merged 603fd8c: scripts/voxel_steer.py and .html replay stored demonstrations with sub-goals as stand-in thoughts; local on port 8792; not yet seen on a real phone"
+updated: "2026-11-10 12:28 +0530"
