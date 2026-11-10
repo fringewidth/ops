@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+"""Claude subscription usage, every 5 minutes, read from `claude -p "/usage"`: the CLI's own
+report, so this collector never touches credentials (no keychain, tokens or cookies). Prints
+nothing on a machine without the `claude` command.
+
+claude_limit_percent{kind}     percent used: kind = session, weekly_all, weekly_fable (or another model)
+claude_limit_resets_in_hours{kind}   hours until that limit resets, when the report gives a date
+"""
+import re
+import shutil
+import subprocess
+import time
+from datetime import datetime
+from pathlib import Path
+
+stamp = Path.home() / ".cache" / "ops-claude-usage-stamp"
+if not shutil.which("claude") or (stamp.exists() and time.time() - stamp.stat().st_mtime < 290):
+    raise SystemExit(0)
+stamp.parent.mkdir(parents=True, exist_ok=True)
+stamp.touch()
+try:
+    report = subprocess.run(["claude", "-p", "/usage"], capture_output=True, text=True, timeout=50, cwd="/tmp").stdout
+except Exception:
+    raise SystemExit(0)
+
+for line in report.splitlines():
+    match = re.match(r"Current (session|week \(([^)]+)\)): (\d+)% used(?: · resets (.+?) \(.*\))?", line.strip())
+    if not match:
+        continue
+    kind = "session" if match.group(1) == "session" else "weekly_" + re.sub(r"\W+", "_", match.group(2).replace("all models", "all")).strip("_").lower()
+    print(f'claude_limit_percent{{kind="{kind}"}} {match.group(3)}')
+    if match.group(4):
+        try:
+            when = datetime.strptime(f"{match.group(4)} {datetime.now().year}", "%b %d at %I:%M%p %Y")
+            print(f'claude_limit_resets_in_hours{{kind="{kind}"}} {(when.timestamp() - time.time()) / 3600:.2f}')
+        except ValueError:
+            pass
