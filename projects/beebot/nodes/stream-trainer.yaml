@@ -5,9 +5,8 @@ status: todo
 parent: trk-trainer
 est_h: 6.0
 depends:
-- stream-layout
-- thought-labels
-- base-model-choice
+- think-data
+- think-model
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-updated: "2026-11-10 16:00 +0530"
+updated: "2026-11-10 19:57 +0530"
