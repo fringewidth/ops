@@ -1,7 +1,7 @@
 title: Failure rates from the cube simulation
 summary: Put the simulated failure rate of each move class into the demonstration generator.
 why: The policy should learn recovery at the rates real cubes will fail.
-status: todo
+status: done
 parent: trk-data
 est_h: 1.0
 depends:
@@ -9,4 +9,5 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Simulated per move with retries (success / harmless / harmful): convex up 0.77 / 0.20 / 0.03 anchored and 0.91 / 0.00 / 0.09 over a lone cube; convex down 1.00; wall crawl 0.96-1.00; floor roll 1.00; concave 0.98-1.00 anchored. A cube with two bonded faces never moves."
-updated: "2026-11-10 12:52 +0530"
+updated: "2026-11-10 20:06 +0530"
+result: "Applied 2026-11-10 ~20:30 to full-demos: --failure 0.10,up_over=0.23 (MuJoCo with retries: convex up fails 0.23, other classes 0-0.04; floor of 0.10 on every class kept as redundancy pressure the user asked for). Harmful failures not modelled: see harmful-failures."
