@@ -1,7 +1,7 @@
 title: "Gate: base 4B writes the right thought for held-out instructions"
 summary: Few-shot, no training, Qwen3-4B on the Mac writes the first thought for the frozen test set's instructions; score its resolved targets against the true task.
 why: Isolates P(thought right) at the size we will train; the earlier restate probe got 14 of 18 on hand-picked cases.
-status: running
+status: failed
 parent: trk-language
 needs: mac-gpu
 est_h: 1.0
@@ -15,7 +15,7 @@ created: "2026-11-10 15:50 +0530"
 by: beebot-f7 3d push
 links:
 - logs/gate-4b-restates.out
-updated: "2026-11-10 21:39 +0530"
+updated: "2026-11-10 22:18 +0530"
 claim:
   session: beebot-f7 3d push
   host: GB-497
@@ -23,3 +23,5 @@ claim:
   cmd: scratchpad/gate4b (Qwen3.5-4B inference)
   started: "2026-11-10 21:27 +0530"
   ends: "2026-11-10 22:20"
+  finished: "2026-11-10 22:18 +0530"
+result: "Base Qwen3.5-4B few-shot, 239 of 508 test pairs (random, both arms): image 0.62, text 0.60 (se ~0.03), pass 0.8. Seeing is not the bottleneck: ~34 of 90 image failures resolve right in the thought but pick a neighbouring JSON kind (herd_region vs herd_trench, parallel job format); compass words 0.48 vs 0.71 without. logs/gate-4b-restates.out, scratchpad gate4b/"
