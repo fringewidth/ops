@@ -1,7 +1,7 @@
 title: Full 3D demonstration set
 summary: Generate about 30,000 episodes with cube moves, any swarm size, failures and sub-goal records.
 why: The sample has 875 episodes and the 2D model needed 30,000.
-status: todo
+status: running
 parent: trk-data
 est_h: 2.0
 depends:
@@ -13,5 +13,7 @@ depends:
 - rich-world
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes: "Use --cube --compact --counts log --rule switch_cube --coverage F (user chose electromagnets 2026-11-10, magnet-choice). Measured 2026-11-10: 111 kept of 161 tried in 21 s on one Mac core (48 scenes, coverage 0.3), about 19k kept episodes per core-hour; one episode is about 12k tokens (72 steps x ~170). Data volume is free; the limits are near-duplicate steps within an episode and Haiku-written text. Consider generating fresh episodes on the rented machine's 72 CPU cores during training."
-updated: "2026-11-10 15:55 +0530"
+notes: "Started 2026-11-10 ~20:00 on the Mac CPU (8 processes, niced, one per seed 0-7): data/vla/voxel_full/s{0..7}, 1200 scenes each, --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0 --chunk 24 --compact, the same draw as the Haiku export so labels join by (seed, index) through attempts.jsonl. No --build (the Haiku export had none; build demos go in a separate store later). Expect about 25-30k kept episodes."
+updated: "2026-11-10 19:55 +0530"
+links:
+- logs/full-demos-s0.out
