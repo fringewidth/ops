@@ -6,7 +6,8 @@ parent: trk-data
 est_h: 2.0
 depends:
 - compact-store
+- free-cube-rules
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: Use --cube --compact --counts log. Disk is no longer the blocker (about 0.6 GB for 30k episodes). Cyan has few wording expressions; herding expert succeeds a third of the time.
-updated: "2026-11-10 12:29 +0530"
+updated: "2026-11-10 12:31 +0530"
