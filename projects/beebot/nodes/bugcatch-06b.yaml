@@ -1,7 +1,7 @@
 title: End-to-end bug-catch at 0.8B
 summary: Train the full recipe on Qwen3.5-0.8B (full weights, Mac) on a sample and check that thoughts match their labels on held-out episodes.
 why: A bug found on the Mac costs nothing. Nothing runs on paid compute before this passes.
-status: todo
+status: queued
 kind: run
 parent: trk-runs
 needs: mac-gpu
@@ -11,8 +11,8 @@ depends:
 - bugcatch-smoke2
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Full weights, Qwen3.5-0.8B. Track vision forgetting. Smoke 1 (22:34, logs/bugcatch-08b-smoke.out): 3 steps in 8 min, 19.9 GB, swapping; diagnosing in bugcatch-smoke2."
-updated: "2026-11-10 23:15 +0530"
+notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Full weights, Qwen3.5-0.8B. Queued 23:20 to start when bugcatch-smoke2 exits (~23:25): batch 2x8, checkpointing, 1200-step schedule, 470 min (ends ~07:20), val every 45 min, step-named checkpoints hourly. Inputs: stores voxel_full s0-s7 (failure 0.10, up_over 0.23 from failure-rates) + voxel_build s0-s1; Haiku labels run-s0..s7 (+later) and build-s0/s1, mismatch=drop (draw-divergence); views scene at DEFAULT_STRENGTH 0.75 (views-readability); vision encoder frozen, projector trained (vision-encoder-training, open); voxel action slots (action-representation, open). Not yet modelled: harmful-failures."
+updated: "2026-11-10 23:19 +0530"
 metric:
   series: think_thought_match{run="bugcatch-08b"}
   direction: up
