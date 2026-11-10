@@ -7,7 +7,8 @@ parent: trk-cubes
 needs: mac-gpu
 est_h: 6.0
 depends:
+- cube-closed-loop
 - main-4b-run
 created: 2026-11-10 11:54 +0530
 by: beebot-26 ops
-updated: 2026-11-10 12:00 +0530
+updated: 2026-11-10 12:02 +0530
