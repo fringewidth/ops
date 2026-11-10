@@ -1,7 +1,7 @@
 title: Training examples for think-then-act
 summary: "ThinkData: per sampled step, the context (instruction, first thought and last switch line as memory, scene), the reply (Qwen3 think tags with the thought or empty, then the act marker) and the action codes; Haiku labels where verified, templates otherwise; refusals; validation split."
 why: The trainer needs examples that put thoughts at the first step and at sub-goal switches and carry earlier reasoning forward.
-status: running
+status: done
 parent: trk-trainer
 est_h: 8.0
 notes: "Agent in a worktree, started 2026-11-10 ~20:05, due 2026-11-11 14:00. Interface agreed with think-model; images via views.scene_views. Gotchas to handle: strip or soften thought content not visible in images (exact robot counts, coordinates); assert every Haiku label's canonical record matches its episode (join by draw position is fragile)."
@@ -11,4 +11,5 @@ depends:
 - thought-format
 created: "2026-11-10 19:57 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 20:28 +0530"
+updated: "2026-11-10 21:20 +0530"
+result: "Branch worktree-agent-ad9effa0ece097c0c merged locally 2026-11-10 ~21:20 (tests running): think_data.py ThinkData/Example/tokenize; on the real stores 30,905 episodes: 10,109 Haiku-labelled (28,075 verified choices), 20,384 template, 681 refusal pairs, 1,579 held out; thoughts cut to what images show (8,402 of 31,184 Haiku thoughts changed); user frame by quarter turns; ~570-1,100 examples/s per core. Use mismatch='drop' until fix-draw-divergence."
