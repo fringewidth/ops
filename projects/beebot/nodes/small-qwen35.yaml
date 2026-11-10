@@ -9,5 +9,5 @@ depends:
 - base-model-choice
 created: "2026-11-10 20:28 +0530"
 by: beebot-f7 3d push
-result: "User asked for a Qwen3.5 0.6B; the smallest is Qwen/Qwen3.5-0.8B (Apache-2.0, 1.7 GB), downloaded 2026-11-10 ~21:05 to the HF cache (needed HF_HUB_DISABLE_XET=1). Sizes: 0.8B, 2B, 4B, 9B."
-updated: "2026-11-10 20:50 +0530"
+result: "User asked for a Qwen3.5 0.6B; the smallest is Qwen/Qwen3.5-0.8B (Apache-2.0, 1.7 GB), downloaded 2026-11-10 ~20:45 to the HF cache (needed HF_HUB_DISABLE_XET=1). Sizes: 0.8B, 2B, 4B, 9B."
+updated: "2026-11-10 20:53 +0530"
