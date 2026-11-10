@@ -12,4 +12,7 @@ created: "2026-11-10 15:55 +0530"
 by: beebot-f7 3d push
 links:
 - logs/haiku-build-s0.out
-updated: "2026-11-10 21:26 +0530"
+updated: "2026-11-10 21:46 +0530"
+metric:
+  series: haiku_pairs_verified{window="2026-11-10"}
+  direction: up
