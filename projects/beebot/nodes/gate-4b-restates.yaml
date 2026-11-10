@@ -1,0 +1,15 @@
+title: "Gate: base 4B writes the right thought for held-out instructions"
+summary: Few-shot, no training, Qwen3-4B on the Mac writes the first thought for the frozen test set's instructions; score its resolved targets against the true task.
+why: Isolates P(thought right) at the size we will train; the earlier restate probe got 14 of 18 on hand-picked cases.
+status: todo
+parent: trk-language
+needs: mac-gpu
+est_h: 1.0
+notes: "Pass: about 0.8 or better on held-out categories and words. Inference only."
+depends:
+- haiku-rewrites
+metric:
+  series: gate_4b_restate_acc
+  direction: up
+created: "2026-11-10 15:50 +0530"
+by: beebot-f7 3d push
