@@ -1,0 +1,8 @@
+title: Train or freeze the vision encoder
+summary: "Default in think.py: vision encoder frozen, projector and language model trained with full weights."
+why: Training the encoder may fit our renderer and forget real images; freezing may cap what it can read. Chosen by Claude, not yet confirmed; the views-readability and vision-forgetting probes measure it.
+status: todo
+kind: decision
+parent: trk-trainer
+created: "2026-11-10 21:51 +0530"
+by: beebot-f7 3d push
