@@ -10,13 +10,13 @@ links:
 - logs/causal-block.out
 - logs/size-probe.out
 - logs/lm-slotwords.out
-created: 2026-11-10 11:54 +0530
+created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
 claim:
-  session: beebot-d8 evidence day
+  session: beebot-a3 evidence day
   host: GB-497
-  pid: 62010
-  cmd: evidence_chain.sh (causal-block, size-probe, lm-slotwords, slot-eval)
-  started: 2026-11-10 08:45 +0530
-  ends: 2026-11-10 17:00
-updated: 2026-11-10 11:54 +0530
+  pid: 90249
+  cmd: evidence_chain2.sh (slot-eval before, lm-slotwords 210 min, slot-eval after)
+  started: "2026-11-10 12:28 +0530"
+  ends: "2026-11-10 17:30"
+updated: "2026-11-10 11:54 +0530"
