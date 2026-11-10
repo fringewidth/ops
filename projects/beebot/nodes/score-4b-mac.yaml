@@ -7,5 +7,9 @@ needs: mac-gpu
 est_h: 1.0
 depends:
 - scorecard-3d
-created: 2026-11-10 12:02 +0530
+created: "2026-11-10 12:02 +0530"
 by: beebot-a3 3d push
+metric:
+  series: scorecard3d_mean{run="base-4b"}
+  direction: up
+updated: "2026-11-10 21:47 +0530"
