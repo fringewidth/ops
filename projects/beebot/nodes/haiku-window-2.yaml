@@ -1,7 +1,7 @@
 title: Second Haiku window for the richer world
 summary: Label the new families (build, objects, zones, reasoning) with the same Haiku pipeline in another window.
 why: Tonight's window labels the current world only.
-status: running
+status: done
 kind: task
 parent: trk-language
 notes: "Running since 2026-11-10 ~20:50 on the second account (the user said continue): (1) objects, blocks, zones and reasoning were already in the first window's export (--objects 1.0); (2) build family: data/vla/haiku/build-s{0,1}, 1500 tasks each from --only build draws, generating then verifying (scratchpad haiku_build.sh, logs/haiku-build-s*.out); (3) run-s1..s7: finishing verification and generating the rest (haiku_resume.sh). Guard stops all Haiku at 95% session or weekly usage."
@@ -12,7 +12,8 @@ created: "2026-11-10 15:55 +0530"
 by: beebot-f7 3d push
 links:
 - logs/haiku-build-s0.out
-updated: "2026-11-10 21:46 +0530"
+updated: "2026-11-10 23:15 +0530"
 metric:
   series: haiku_pairs_verified{window="2026-11-10"}
   direction: up
+result: "All sets finished before the weekly reset: 66,161 verified pairs in the window's sets (run-s0..s7 + later: 60,150; build-s0/s1: 6,011 from 3,000 build tasks). data/vla/haiku/"
