@@ -5,13 +5,16 @@ status: running
 kind: run
 parent: generalist-swarm
 needs: none
-created: 2026-11-10 11:54 +0530
+created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
 claim:
   session: beebot-d8 website
   host: GB-497
   pid: 16144
   cmd: scripts/swarm_steer.py (local copy on port 8791, PID 47153)
-  started: 2026-11-09 22:25 +0530
+  started: "2026-11-09 22:25 +0530"
   ends: until the user says
-updated: 2026-11-10 11:55 +0530
+updated: "2026-11-10 12:28 +0530"
+links:
+- http://127.0.0.1:8790/
+notes: "Public link is down since 2026-11-10 12:03: cloudflared vanished from the Mac. Local site still runs."
