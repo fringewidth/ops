@@ -18,4 +18,4 @@ metric:
   direction: up
   target: 0.9
 links:
-- logs/bugcatch-08b-smoke.out
+- logs/bugcatch-08b.out
