@@ -11,7 +11,7 @@ links:
 metric:
   series: examples_per_s{run="bugcatch-08b-smoke2"}
   direction: up
-status: running
+status: done
 claim:
   session: beebot-f7 3d push
   host: GB-497
@@ -19,4 +19,6 @@ claim:
   cmd: "think_train 0.8B smoke 2: batch 2x8, checkpointing, log every step"
   started: "2026-11-10 23:15 +0530"
   ends: "2026-11-10 23:35"
-updated: "2026-11-10 23:15 +0530"
+  finished: "2026-11-10 23:23 +0530"
+updated: "2026-11-10 23:23 +0530"
+result: Steady 0.67 ex/s (24 s per 16-example step), 15.5 GB with checkpointing; loss 7.6 to 2.8 in 15 steps, val_loss 3.01 (text 1.22, action 1.79). Smoke 1's slowdown was memory pressure. logs/bugcatch-08b-smoke2.out
