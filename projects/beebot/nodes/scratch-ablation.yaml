@@ -1,0 +1,12 @@
+title: From-scratch ablation
+summary: Train the same architecture from random weights on the same data.
+why: It shows that language pretraining is what buys the generalisation.
+status: todo
+kind: run
+parent: trk-runs
+est_h: 15.0
+depends:
+- bugcatch-06b
+- upload-demos
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
