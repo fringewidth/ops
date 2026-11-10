@@ -17,5 +17,6 @@ claim:
   host: GB-497
   pid: 62010
   cmd: evidence_chain.sh (causal-block, size-probe, lm-slotwords, slot-eval)
-  started: 2026-11-10 11:54 +0530
+  started: 2026-11-10 08:45 +0530
   ends: 2026-11-10 17:00
+updated: 2026-11-10 11:54 +0530
