@@ -1,0 +1,8 @@
+title: Decisions and operations
+summary: Things only the user can decide or provide.
+why: Each of these blocks a task on the critical path.
+status: todo
+kind: goal
+parent: grant-push-3d
+created: 2026-11-10 12:00 +0530
+by: beebot-a3 3d push
