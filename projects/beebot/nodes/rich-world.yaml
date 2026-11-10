@@ -1,7 +1,7 @@
 title: Objects with properties, blocks, zones and reasoning tasks
 summary: Object sizes, shapes, patterns and weight (more observation channels), passive blocks, floor zones and plates, conditional/counting/superlative/relational tasks; variable world size if time.
 why: Today's world has three same-sized cheeses differing only in colour, which limits what language can refer to as much as the training text did.
-status: running
+status: done
 parent: trk-data
 est_h: 6.0
 notes: Agent in a worktree; owns world.py changes. Must land within about two days to make the full demo set and a second Haiku window.
@@ -9,4 +9,5 @@ depends:
 - task-coverage
 created: "2026-11-10 15:55 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 16:52 +0530"
+updated: "2026-11-10 17:03 +0530"
+result: "Merged: 10 observation channels (object RGB per voxel, food, zone RGB), object sizes/shapes/patterns/weight, passive blocks, floor zones, reasoning tasks (conditionals, counting, superlatives, comparisons, relations); demos/haiku --objects F, draw pinned. Expert passed share (cube+switch_cube, 144 fresh scenes): things 0.76, blocks 0.74, zones 0.83, reasoning 0.83. Not done: pressure plates, variable world size. README 'Objects'; runs/objects/expert.{txt,jsonl}"
