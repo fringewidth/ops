@@ -1,5 +1,5 @@
-title: End-to-end bug-catch at 0.6B
-summary: Train the full recipe at 0.6B on the sample and check that thoughts match their labels on held-out episodes.
+title: End-to-end bug-catch at 0.8B
+summary: Train the full recipe on Qwen3.5-0.8B (full weights, Mac) on a sample and check that thoughts match their labels on held-out episodes.
 why: A bug found on the Mac costs nothing. Nothing runs on paid compute before this passes.
 status: todo
 kind: run
@@ -11,4 +11,4 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Nothing runs on paid compute before this passes. Full weights. Model: a small Qwen3.5 (small-qwen35), not Qwen3-0.6B. Track vision forgetting: rerun the vlm-probe set on each checkpoint."
-updated: "2026-11-10 20:29 +0530"
+updated: "2026-11-10 21:48 +0530"
