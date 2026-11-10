@@ -1,7 +1,7 @@
 title: Qwen3-4B (text) or Qwen3.5-4B (vision-language) as the base
 summary: "Choose the base for the 3D runs: rendered views plus voxel action slots with Qwen3.5, or voxel tokens only with Qwen3."
 why: Switching costs one to two days of engineering and about 2-4x longer sequences; it is worth it only if the probe shows the visual prior transfers.
-status: todo
+status: done
 kind: decision
 parent: trk-trainer
 notes: "Probe passed (vlm-probe). Caveat: the comparison is zero-shot; the text arms got ASCII, while our trained Qwen3 policy gets learned voxel-patch tokens, so the probe shows the visual prior transfers, not that a trained voxel-token model cannot catch up. Cost of switching: about 300 image tokens per step against 64 scene tokens, linear-attention kernels (flash-linear-attention) to install on the training GPU, torchvision for the processor, 1-2 days of engineering in think-model; actions keep voxel slots. Owed by the user."
@@ -9,4 +9,5 @@ depends:
 - vlm-probe
 created: "2026-11-10 16:00 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 20:16 +0530"
+updated: "2026-11-10 20:20 +0530"
+result: "User 2026-11-10 ~20:30: vision. Base Qwen/Qwen3.5-4B (vision-language): two scene renders per step (top-down with height shading, isometric) in the user turn; actions stay voxel slots after the act marker. think-model and think-data agents redirected the same evening. To check: smaller Qwen3.5 sizes for the size comparison (not cached; download needs the user's yes), flash-linear-attention and causal-conv1d on the training GPU."
