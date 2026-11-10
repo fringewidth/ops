@@ -1,0 +1,11 @@
+title: Task suite covering everything a user can ask
+summary: Add stop/stay, subset selectors (smaller swarm, left group, three of you), multi-group scenes, go/gather/spread/split/climb and mid-episode redirects, each with an expert and a score, plus canonical_record and scene_summary for the Haiku pipeline.
+why: User wants 100% coverage of things the swarm can do; Haiku can only label tasks whose canonical form and expert exist.
+status: running
+parent: trk-data
+est_h: 6.0
+notes: "Agent in a worktree. Checkpoint by 16:00: canonical forms and sampler for new kinds. Pass: each new kind's expert success comparable to existing families on fresh seeds. Must work under --cube --rule switch_cube."
+depends:
+- cube-demos
+created: "2026-11-10 14:42 +0530"
+by: beebot-f7 3d push
