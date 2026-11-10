@@ -6,5 +6,7 @@ parent: trk-data
 est_h: 1.0
 depends:
 - pivot-reliability
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+notes: "Simulated per move with retries (success / harmless / harmful): convex up 0.77 / 0.20 / 0.03 anchored and 0.91 / 0.00 / 0.09 over a lone cube; convex down 1.00; wall crawl 0.96-1.00; floor roll 1.00; concave 0.98-1.00 anchored. A cube with two bonded faces never moves."
+updated: "2026-11-10 12:52 +0530"
