@@ -1,0 +1,10 @@
+title: Second adversarial review
+summary: An independent agent attacks the think-then-act design with today's results.
+why: The first review was of the old design. The user wants the adversary's view before committing.
+status: todo
+parent: grant-push-3d
+est_h: 1.0
+depends:
+- evidence-day
+created: 2026-11-10 12:02 +0530
+by: beebot-a3 3d push
