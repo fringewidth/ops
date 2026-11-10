@@ -1,0 +1,22 @@
+created: "2026-11-10 23:15 +0530"
+by: beebot-f7 3d push
+kind: run
+title: Bug-catch throughput smoke
+summary: "Find why the 0.8B smoke slowed from 31 s to minutes per step: batch 2, checkpointing, every step logged."
+why: At 0.07 examples per second the bug-catch cannot run on the Mac; this tells memory pressure from data or model cost.
+parent: trk-runs
+needs: mac-gpu
+mitigates: bugcatch-06b
+links:
+- logs/bugcatch-08b-smoke2.out
+metric:
+  series: examples_per_s{run="bugcatch-08b-smoke2"}
+  direction: up
+status: running
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 11126
+  cmd: "think_train 0.8B smoke 2: batch 2x8, checkpointing, log every step"
+  started: "2026-11-10 23:15 +0530"
+  ends: "2026-11-10 23:35"
