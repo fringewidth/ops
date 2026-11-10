@@ -1,0 +1,8 @@
+title: Pivot reliability of the 5 cm cube
+summary: An agent raises simulated move success on a steel floor without diagonals, lowest harm first.
+why: Harmful failures are what break a ten-cube demo.
+status: running
+parent: trk-cubes
+est_h: 3.0
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
