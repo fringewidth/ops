@@ -1,0 +1,12 @@
+title: Reserve rerun
+summary: One rerun or continuation of the main run, only if it fails or clearly needs more steps.
+why: A week leaves room for one correction.
+status: todo
+kind: run
+parent: trk-runs
+needs: rented-gpu
+est_h: 20.0
+depends:
+- main-4b-run
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
