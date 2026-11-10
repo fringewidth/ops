@@ -5,7 +5,7 @@ status: queued
 parent: trk-trainer
 needs: mac-gpu
 est_h: 1.5
-notes: "Pass: clearly better than the text model on letters and shapes. Also time inference on MPS (Qwen3.5 is mostly linear attention; kernels may be slow or missing). Inference only."
+notes: "Pass: clearly better than the text model on letters and shapes. Also time inference on MPS (Qwen3.5 is mostly linear attention). Inference only. Deferred until the Mac is on power (user out 2026-11-10 evening, Mac on battery)."
 depends:
 - evidence-day
 metric:
@@ -13,3 +13,4 @@ metric:
   direction: up
 created: "2026-11-10 16:00 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-10 17:11 +0530"
