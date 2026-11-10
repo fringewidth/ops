@@ -1,0 +1,13 @@
+title: Full-length 0.6B on Kaggle
+summary: Train the new recipe at full length at 0.6B for free.
+why: If thoughts and actions work here, the paid run changes only the model size. It is also the first point of the size curve.
+status: todo
+kind: run
+parent: trk-runs
+needs: kaggle-fringewidth
+est_h: 15.0
+depends:
+- bugcatch-06b
+- upload-demos
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
