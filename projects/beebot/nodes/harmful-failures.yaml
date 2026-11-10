@@ -8,3 +8,7 @@ depends:
 - failure-rates
 created: "2026-11-10 20:06 +0530"
 by: beebot-f7 3d push
+metric:
+  series: grid_mujoco_outcome_gap
+  direction: down
+updated: "2026-11-10 21:47 +0530"
