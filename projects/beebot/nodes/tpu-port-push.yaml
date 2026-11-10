@@ -1,0 +1,8 @@
+title: Allow pushing the tpu-port branch to GitHub
+summary: The queued TPU kernel tries to git clone branch tpu-port from the public repo at session start, so code fixes made while it queues reach it; pushing that branch was denied by the permission check, so it falls back to the frozen code dataset.
+why: TPU sessions queue for up to 24 hours and re-queuing loses the place; only the user can allow the push.
+status: todo
+kind: decision
+parent: trk-runs
+created: "2026-11-10 23:55 +0530"
+by: beebot-f7 3d push
