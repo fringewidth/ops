@@ -1,7 +1,7 @@
 title: Public 2D steering site
 summary: Serve the 0.6B 2D policy as a website where visitors steer their own swarm.
 why: It is the public demo of the 2D work. It stays up as is while 2D work is paused.
-status: running
+status: done
 kind: run
 parent: generalist-swarm
 needs: none
@@ -14,7 +14,9 @@ claim:
   cmd: scripts/swarm_steer.py (local copy on port 8791, PID 47153)
   started: "2026-11-09 22:25 +0530"
   ends: until the user says
-updated: "2026-11-10 12:28 +0530"
+  finished: "2026-11-10 18:57 +0530"
+updated: "2026-11-10 18:57 +0530"
 links:
 - http://127.0.0.1:8790/
 notes: "Public link is down since 2026-11-10 12:03: cloudflared vanished from the Mac. Local site still runs."
+result: Stopped 2026-11-10 ~19:05 at the user's request (PIDs 16132/16135/16144). It had no public tunnel since cloudflared was removed that morning.
