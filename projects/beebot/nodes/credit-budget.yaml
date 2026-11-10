@@ -1,0 +1,9 @@
+title: How the Vultr balance is split
+summary: The 255 dollar balance is split into capped uses with a hard stop at 200 spent.
+why: Rented compute is the scarce resource. Caps decided in advance stop one bad run from using everything.
+status: todo
+kind: decision
+parent: trk-ops
+notes: "Caps: setup and benchmark 6; fuse (short 4B and 1.7B runs) 15; main run 90; reserve rerun 60; demo serving during the post 29; locked reserve 50, plus 5 of the user's own cash. The last 50 is released only by the user. Rules: nothing runs there before it ran end to end on the Mac; no evaluations on the paid GPU; stop at the first checkpoint if loss or thoughts look wrong; destroy the machine after every run; ntfy the user at every start and stop with the running total."
+created: "2026-11-10 13:01 +0530"
+by: beebot-f7 3d push
