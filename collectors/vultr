@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Vultr account balance and running machines, every 5 minutes.
+
+Needs VULTR_API_KEY (a line in ~/.config/ops/env); without it the collector prints nothing.
+Use the key of a sub-user that can only view billing (and subscriptions, for the machine count),
+never the account owner's key: this collector only ever sends GET requests.
+
+vultr_credit_usd      credit on the account (the API reports credit as a negative balance)
+vultr_pending_usd     charges accrued this billing period, not yet taken from the credit
+vultr_remaining_usd   credit minus pending charges: what is left to spend
+vultr_machines        cloud instances plus bare-metal machines that exist (each one bills until destroyed)
+"""
+import json
+import os
+import time
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+key = os.environ.get("VULTR_API_KEY")
+stamp = Path.home() / ".cache" / "ops-vultr-stamp"
+if not key or (stamp.exists() and time.time() - stamp.stat().st_mtime < 290):
+    raise SystemExit(0)
+stamp.parent.mkdir(parents=True, exist_ok=True)
+stamp.touch()
+
+
+def get(path):
+    """The JSON body of a GET to the Vultr API, or None when the key may not read it."""
+    request = urllib.request.Request(f"https://api.vultr.com/v2/{path}", headers={"Authorization": f"Bearer {key}", "User-Agent": "ops-vultr-collector"})
+    try:
+        body = json.load(urllib.request.urlopen(request, timeout=20))
+    except (urllib.error.URLError, json.JSONDecodeError, TimeoutError):
+        body = None
+    return body
+
+
+account = (get("account") or {}).get("account")
+if account:
+    credit = -float(account.get("balance", 0))
+    pending = float(account.get("pending_charges", 0))
+    print(f"vultr_credit_usd {credit:.2f}")
+    print(f"vultr_pending_usd {pending:.2f}")
+    print(f"vultr_remaining_usd {credit - pending:.2f}")
+machines = [get("instances?per_page=100"), get("bare-metals?per_page=100")]
+if any(m is not None for m in machines):
+    count = sum(len((m or {}).get(name, [])) for m, name in zip(machines, ("instances", "bare_metals")))
+    print(f"vultr_machines {count}")
