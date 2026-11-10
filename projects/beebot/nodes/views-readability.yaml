@@ -1,7 +1,7 @@
 title: "Views: Qwen reads randomized renders"
 summary: Base Qwen3.5-4B answers colour, letter and shape probes on renders at 5 randomization strengths, 30 items each, to pick DEFAULT_STRENGTH.
 why: Too strong a randomization may hide what the model must read; too weak teaches one look.
-status: queued
+status: running
 parent: visual-randomization
 needs: mac-gpu
 est_h: 0.4
@@ -14,3 +14,10 @@ metric:
   direction: up
 created: "2026-11-10 21:44 +0530"
 by: beebot-f7 3d push
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 98789
+  cmd: views.py --qwen (5 strengths x 3 probes x 30, Qwen3.5-4B zero-shot)
+  started: "2026-11-10 22:18 +0530"
+  ends: "2026-11-10 22:45"
