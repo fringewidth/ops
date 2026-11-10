@@ -1,7 +1,7 @@
 title: Trainer for thoughts and actions
 summary: Train interleaved thoughts and action slots with resume, step-named checkpoints and 16-bit autocast on CUDA.
 why: The existing 3D trainer has no text loss, no autocast and evaluates inside the run.
-status: todo
+status: done
 parent: trk-trainer
 est_h: 6.0
 depends:
@@ -10,4 +10,5 @@ depends:
 - visual-randomization
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-updated: "2026-11-10 20:25 +0530"
+updated: "2026-11-10 21:48 +0530"
+result: "Done as think.py + think_train.py (merged 4c4422b): chunked reply CE, action slots, full weights, DDP, resume"
