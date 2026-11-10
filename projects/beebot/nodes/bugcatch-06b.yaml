@@ -22,7 +22,7 @@ links:
 claim:
   session: beebot-f7 3d push
   host: GB-497
-  pid: 12934
-  cmd: think_train Qwen3.5-0.8B bug-catch, batch 2x8, 1200 steps, 470 min
-  started: "2026-11-10 23:23 +0530"
-  ends: "2026-11-11 07:25"
+  pid: 93066
+  cmd: think_train 0.8B bug-catch, resumed at step 767, to step 1200
+  started: "2026-11-11 05:21 +0530"
+  ends: "2026-11-11 08:35"
