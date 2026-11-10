@@ -4,5 +4,8 @@ why: Harmful failures are what break a ten-cube demo.
 status: running
 parent: trk-cubes
 est_h: 3.0
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+notes:
+  Risk: pivots fail too often for a ten-cube clip (simulated 0.70-0.97 per move). Also mitigated by failures in training, the closed loop and a scripted-expert fallback.
+updated: "2026-11-10 12:29 +0530"
