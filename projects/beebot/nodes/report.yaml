@@ -1,0 +1,10 @@
+title: Short report
+summary: Write four pages around the four figures.
+why: It is the application package for larger grants.
+status: todo
+parent: trk-demo
+est_h: 6.0
+depends:
+- scaling-figures
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
