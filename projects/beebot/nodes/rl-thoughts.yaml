@@ -9,8 +9,10 @@ notes: Pilot for bugs on 0.6B on the Mac first (rl-thoughts-pilot); the effect n
 depends:
 - main-4b-run
 - haiku-rewrites
+- rl-thoughts-pilot
 metric:
   series: heldout_thought_acc{run="rl-thoughts"}
   direction: up
 created: "2026-11-10 15:51 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-10 15:51 +0530"
