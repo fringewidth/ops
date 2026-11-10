@@ -1,0 +1,11 @@
+title: Demo stores' object draws drift from the Haiku export
+summary: "demos.write's object-task draws stop matching demos.draws (and so the Haiku export) partway through a seed, starting at a surround_thing:compare item: 894 of 30,905 episodes (s0 229, s1 305, s2 326, s7 32, s4 1, s5 1) carry labels that are not theirs."
+why: Labels attached to the wrong episode teach the model wrong text for the actions; found by think-data's label/episode check.
+status: failed
+kind: failure
+parent: trk-data
+notes: "Suite and coverage draws stay aligned; something the expert run touches changes later object draws (likely shared world state or an rng consumed during play). Mitigation in place: ThinkData(mismatch='drop') falls back to templates for those episodes. Root-cause fix needed before the next regeneration (harmful-failures) and before build stores are trusted."
+depends:
+- full-demos
+created: "2026-11-10 21:19 +0530"
+by: beebot-f7 3d push
