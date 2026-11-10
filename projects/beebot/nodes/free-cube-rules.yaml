@@ -1,7 +1,7 @@
 title: Demonstrations that move only free cubes
 summary: Generate demonstrations under rules where a cube with a second face bond stays put, and measure which tasks the expert can still do.
 why: The policy must learn to peel cubes off the outside of a group. The alternative is hardware that can release a bond.
-status: running
+status: done
 parent: trk-data
 est_h: 4.0
 mitigates: bonded-cubes-frozen
@@ -9,4 +9,5 @@ depends:
 - cube-demos
 created: "2026-11-10 12:31 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 12:52 +0530"
+updated: "2026-11-10 14:23 +0530"
+result: "free_cube rule + FreeCubeExpert planner merged (b7d3367). 192 scenes, 72 steps, score/success: cube 0.77/0.79, switch_cube 0.70/0.71, free_cube planner 0.49/0.40, planner + spaced start 0.59/0.55. Eating cheese 0/60 under permanent magnets, runners ~0; towers 0.85, trench 0.92 survive. Time does not help (144 steps same). Tables: src/beebot/vla/voxel/README.md 'Free cubes'; rows runs/free_cube/*.jsonl; samples data/vla/voxel_demos_free_cube{,_apart}_sample"
