@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+"""Vultr GPU stock from the public catalogue, every 5 minutes. Uses no key and sends only GETs.
+
+vultr_gpu_regions{plan}   regions where a GPU plan can be ordered right now (0: none anywhere)
+
+When a plan goes from 0 to at least one region, it sends one ntfy notice to the topic in the
+OPS_NTFY_TOPIC environment variable (if set). It never orders anything: creating a machine needs
+the user's explicit approval in chat (see the project's CLAUDE.md).
+"""
+import json
+import os
+import time
+import urllib.request
+from pathlib import Path
+
+stamp = Path.home() / ".cache" / "ops-vultr-gpu-stamp"
+state = Path.home() / ".cache" / "ops-vultr-gpu-state.json"
+if stamp.exists() and time.time() - stamp.stat().st_mtime < 290:
+    raise SystemExit(0)
+stamp.parent.mkdir(parents=True, exist_ok=True)
+stamp.touch()
+
+
+def get(path):
+    request = urllib.request.Request(f"https://api.vultr.com/v2/{path}", headers={"User-Agent": "ops-vultr-gpu-collector"})
+    with urllib.request.urlopen(request, timeout=20) as response:
+        return json.load(response)
+
+
+try:
+    metal = [p["id"] for p in get("plans-metal?per_page=500")["plans_metal"] if p.get("gpu_type")]
+    cloud = [p["id"] for p in get("plans?type=vcg&per_page=500")["plans"] if p.get("gpu_type")]
+    regions = [r["id"] for r in get("regions?per_page=500")["regions"]]
+    stock = {plan: 0 for plan in metal + cloud}
+    for region in regions:
+        for kind in ("vbm", "vcg"):
+            for plan in get(f"regions/{region}/availability?type={kind}").get("available_plans", []):
+                if plan in stock:
+                    stock[plan] += 1
+except Exception:
+    raise SystemExit(0)
+
+for plan, count in sorted(stock.items()):
+    print(f'vultr_gpu_regions{{plan="{plan}"}} {count}')
+
+before = json.loads(state.read_text()) if state.exists() else {}
+state.write_text(json.dumps(stock))
+topic = os.environ.get("OPS_NTFY_TOPIC")
+arrived = [plan for plan, count in stock.items() if count and not before.get(plan)]
+if topic and arrived and before:
+    message = "Vultr GPU in stock: " + ", ".join(f"{p} ({stock[p]} regions)" for p in arrived)
+    try:
+        urllib.request.urlopen(urllib.request.Request(f"https://ntfy.sh/{topic}", data=message.encode(), headers={"User-Agent": "ops-vultr-gpu-collector"}), timeout=20)
+    except Exception:
+        pass
