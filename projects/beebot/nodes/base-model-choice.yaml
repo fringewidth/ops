@@ -1,0 +1,11 @@
+title: Qwen3-4B (text) or Qwen3.5-4B (vision-language) as the base
+summary: "Choose the base for the 3D runs: rendered views plus voxel action slots with Qwen3.5, or voxel tokens only with Qwen3."
+why: Switching costs one to two days of engineering and about 2-4x longer sequences; it is worth it only if the probe shows the visual prior transfers.
+status: todo
+kind: decision
+parent: trk-trainer
+notes: Owed by the user after vlm-probe. Check the smaller Qwen3.5 sizes for the scaling figure, and linear-attention kernels on the GH200 (ARM).
+depends:
+- vlm-probe
+created: "2026-11-10 16:00 +0530"
+by: beebot-f7 3d push
