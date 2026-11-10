@@ -1,7 +1,7 @@
 title: 3D scorecard that can rank
 summary: Score 48 or more episodes per family with a shuffled-instruction control, thought accuracy and held-out words, categories and compositions.
 why: Today's card uses 12 episodes per family, so one episode moves a score by 0.08.
-status: todo
+status: running
 parent: trk-trainer
 needs: mac-gpu
 est_h: 3.0
@@ -9,5 +9,5 @@ depends:
 - wording-bank
 created: "2026-11-10 12:02 +0530"
 by: beebot-a3 3d push
-notes: "Code can be written now; the baseline run needs the Mac GPU after the evidence chain. Risk it answers: today's 3D card has 12 episodes per family and cannot rank anything."
-updated: "2026-11-10 12:52 +0530"
+notes: "Agent in a worktree, started 2026-11-10 ~21:05, due 2026-11-11 15:00, together with think-act-loop: rollout.py (closed-loop think-then-act episodes, instruction switches, refusals) and scorecard (48 episodes per family over all 14 families, shuffled-instruction control, thought accuracy, held-out test set, oracle-thought arm for gate-act-follows-thought, standard errors). Stand-ins for ThinkData's context builder and views until they land."
+updated: "2026-11-10 21:03 +0530"
