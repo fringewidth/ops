@@ -1,14 +1,14 @@
 title: Open-vocabulary instruction rewrites
 summary: Paraphrase the 3D instructions and captions with Haiku.
 why: 3D wording is only 2-5 templates per intent today. Generalisation should come from varied data, not from model constraints.
-status: running
+status: done
 kind: task
 parent: trk-language
 needs: none
 est_h: 3.0
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 20:23 +0530"
+updated: "2026-11-10 23:17 +0530"
 depends:
 - task-coverage
 - thought-format
@@ -20,3 +20,4 @@ metric:
   series: haiku_items_generated{window="2026-11-10"}
   direction: up
   target: 23400
+result: "Haiku rewrites finished across both windows: 66,161 verified pairs in the 2026-11-10 sets (run-s0..s7 with later parts, build-s0/s1) plus the frozen test set of 508. data/vla/haiku/"
