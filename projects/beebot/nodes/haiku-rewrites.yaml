@@ -8,7 +8,7 @@ needs: none
 est_h: 3.0
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 18:54 +0530"
+updated: "2026-11-10 18:56 +0530"
 depends:
 - task-coverage
 - thought-format
@@ -17,5 +17,5 @@ notes: "Window 16:50-21:30 IST. Started late (18:27): export was not prepared be
 links:
 - logs/haiku-run-s0.out
 metric:
-  series: items{run="haiku-run-s0"}
+  series: haiku_items_generated{window="2026-11-10"}
   direction: up
