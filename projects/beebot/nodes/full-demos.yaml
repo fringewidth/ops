@@ -1,0 +1,10 @@
+title: Full 3D demonstration set
+summary: Generate about 30,000 episodes with cube moves, any swarm size, failures and sub-goal records.
+why: The sample has 875 episodes and the 2D model needed 30,000.
+status: todo
+parent: trk-data
+est_h: 2.0
+depends:
+- compact-store
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
