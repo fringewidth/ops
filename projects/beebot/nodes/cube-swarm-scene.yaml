@@ -1,0 +1,8 @@
+title: Ten-cube MuJoCo scene
+summary: An agent builds one persistent scene where any of ten cubes can move and the lattice is read back after each move.
+why: Today's simulation covers one move of one cube.
+status: running
+parent: trk-cubes
+est_h: 3.0
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
