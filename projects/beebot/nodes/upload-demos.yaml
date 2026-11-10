@@ -1,0 +1,10 @@
+title: Upload the demonstrations
+summary: Publish the store as a Kaggle dataset and copy it to the rented machine.
+why: Kaggle and the rented GPU both train from it.
+status: todo
+parent: trk-data
+est_h: 1.0
+depends:
+- full-demos
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
