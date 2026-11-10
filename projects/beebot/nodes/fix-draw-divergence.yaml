@@ -6,3 +6,8 @@ parent: trk-data
 mitigates: draw-divergence
 created: "2026-11-10 21:20 +0530"
 by: beebot-f7 3d push
+metric:
+  series: draw_mismatch_episodes
+  direction: down
+  target: 0
+updated: "2026-11-10 21:48 +0530"
