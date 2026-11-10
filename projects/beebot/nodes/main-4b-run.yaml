@@ -11,6 +11,8 @@ depends:
 - fuse-4b-17b
 - kaggle-06b
 - wording-bank
-created: 2026-11-10 11:54 +0530
+created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: 2026-11-10 12:02 +0530
+updated: "2026-11-10 12:28 +0530"
+notes:
+  Gate at the first checkpoint: stop if loss or thoughts look wrong after about one hour. No evaluations on the paid GPU; destroy the machine after the run. Size (4B or 1.7B) is decided by the fuse.
