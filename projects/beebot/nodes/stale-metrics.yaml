@@ -1,0 +1,8 @@
+title: Remove stale metrics from the dashboard
+summary: Numbers tab hides series not reported for 2 h (toggle to show), pins prefer fresh series over stale duplicates, beebot pins updated; worker gains DELETE /series?id= for real removal.
+why: The user asked to remove stale metrics; 58 of 88 series had stopped reporting.
+status: done
+parent: trk-ops
+notes: "Deployed to Pages 2026-11-10 ~19:50 (ops 3df010a). The worker endpoint is NOT deployed: this Mac has no node/wrangler. After the user deploys the worker (cd ~/ops/worker && npx wrangler deploy), delete with: curl -X DELETE -H 'Authorization: Bearer $OPS_TOKEN' '$OPS_WORKER/series?id=5,6,7,8,15,25,...' (stale ids: 5-8 old keychain claude_limit, 15 rented_credit_usd_left, 25-75 finished lm-slotwords run whose result is in evidence-day, plus the watcher's claude_limit_percent{source=usage})."
+created: "2026-11-10 19:47 +0530"
+by: beebot-f7 3d push
