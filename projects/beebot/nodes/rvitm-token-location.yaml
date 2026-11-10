@@ -1,0 +1,8 @@
+title: Where rvitmpolicyboot's Kaggle credentials are
+summary: The TPU agent needs the folder holding rvitmpolicyboot's Kaggle access token (path only) to queue the same kernel on that account.
+why: TPU sessions can queue for up to 24 hours, so queueing on both accounts halves the wait; searching the disk for credentials is not allowed, so only the user can say where they are.
+status: todo
+kind: decision
+parent: trk-runs
+created: "2026-11-10 23:31 +0530"
+by: beebot-f7 3d push
