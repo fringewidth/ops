@@ -1,7 +1,7 @@
 title: Demonstrations that move only free cubes
 summary: Generate demonstrations under rules where a cube with a second face bond stays put, and measure which tasks the expert can still do.
 why: The policy must learn to peel cubes off the outside of a group. The alternative is hardware that can release a bond.
-status: todo
+status: running
 parent: trk-data
 est_h: 4.0
 mitigates: bonded-cubes-frozen
@@ -9,3 +9,4 @@ depends:
 - cube-demos
 created: "2026-11-10 12:31 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-10 12:52 +0530"
