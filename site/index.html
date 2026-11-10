@@ -376,7 +376,8 @@ function humanName(name) {
 // ======================================================================
 let state, project, series = [], seriesById = new Map();
 const hashTab = location.hash.slice(1).split("/")[0], hashNode = location.hash.slice(1).split("/")[1];
-let tab = TABS.some(([t]) => t === hashTab) ? hashTab : store.get("tab") || "now";
+const knownTab = (t) => TABS.some(([name]) => name === t);
+let tab = [hashTab, store.get("tab")].find(knownTab) || "now";
 const P = () => state.projects[project];
 const nodes = () => P().nodes;
 let _byId;

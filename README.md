@@ -97,8 +97,8 @@ The site has four tabs:
 
 1. Now: insights, pinned numbers, running, queue, ready work grouped by resource, messages.
 1. Plan: the tree, with ready nodes and the critical path marked. Tap a node to see it and edit it.
-1. Metrics: every series. Tap to plot. Use `x:` to plot against another series, e.g. step instead of time.
-1. Log: recent changes.
+1. Numbers: every series. Tap to plot. Use `x:` to plot against another series, e.g. step instead of time.
+1. History: recent changes.
 
 Insights are computed on the page. They flag:
 
