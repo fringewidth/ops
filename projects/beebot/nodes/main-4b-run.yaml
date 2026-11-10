@@ -8,7 +8,9 @@ needs: rented-gpu
 est_h: 20.0
 depends:
 - evidence-day
-- haiku-rewrites
+- fuse-4b-17b
+- kaggle-06b
+- wording-bank
 created: 2026-11-10 11:54 +0530
 by: beebot-26 ops
-updated: 2026-11-10 12:00 +0530
+updated: 2026-11-10 12:02 +0530
