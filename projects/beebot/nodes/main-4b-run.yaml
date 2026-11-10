@@ -3,7 +3,7 @@ summary: Train the 4B policy with the plain causal layout on rented compute.
 why: The grant demo needs the strongest model we can afford. One big run is planned, with one rerun in reserve.
 status: todo
 kind: task
-parent: grant-push-3d
+parent: trk-runs
 needs: rented-gpu
 est_h: 20.0
 depends:
@@ -11,3 +11,4 @@ depends:
 - haiku-rewrites
 created: 2026-11-10 11:54 +0530
 by: beebot-26 ops
+updated: 2026-11-10 12:00 +0530
