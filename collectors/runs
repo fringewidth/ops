@@ -32,6 +32,9 @@ if listing.exists():
             repos[parts[0]] = Path(parts[1].strip()).expanduser()
 
 
+LABEL_KEYS = ("arm", "split", "family", "strength", "probe", "set")
+
+
 def numbers(record, prefix=""):
     """(series name, value) for every number in a JSON object, nested ones flattened."""
     out = []
@@ -78,9 +81,11 @@ for path in home.glob("projects/*/nodes/*.yaml"):
         clock = [r.get("minutes") for r in records if isinstance(r.get("minutes"), (int, float))]
         latest = max(clock) if clock else None
         for record in records:
+            # a few low-cardinality string fields become labels, so arms, splits and families stay separate series
+            extra = "".join(f',{key}="{re.sub(r"[^a-zA-Z0-9_.:-]", "_", record[key])[:40]}"' for key in LABEL_KEYS if isinstance(record.get(key), str))
             minutes = record.get("minutes")
             behind = (latest - minutes) * 60 if latest is not None and isinstance(minutes, (int, float)) else 0
             stamp = int((now - behind) * 1000)
             for name, value in numbers(record):
-                print(f'{name}{{run="{log.stem}",project="{project}",node="{path.stem}"}} {value} {stamp}')
+                print(f'{name}{{run="{log.stem}",project="{project}",node="{path.stem}"{extra}}} {value} {stamp}')
         mark.write_text(str(start + end))

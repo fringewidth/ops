@@ -89,7 +89,7 @@ Existing collectors:
 1. `vultr_gpu`: `vultr_gpu_regions{plan}`, the regions where each GPU plan can be ordered, every 5 minutes from Vultr's public catalogue (no key). It sends one ntfy notice to `OPS_NTFY_TOPIC` when a plan comes into stock, and never orders.
 1. `claude_usage`: `claude_limit_percent{kind}` and `claude_limit_resets_in_hours{kind}` (kind: session, weekly_all, weekly_fable, ...) every 5 minutes, parsed from `claude -p "/usage"`. It reads the CLI's own report and never touches credentials; it replaces the keychain-reading collector removed on 2026-11-10.
 1. `site_age`: `ops_site_age_minutes`, minutes since the published `state.json` was built. GitHub Pages deploys can fail while the build succeeds, which freezes the site.
-1. `runs`: every number in the JSON lines of a running node's log links (`.out`, `.log`, `.jsonl`), labelled `run=<file stem>`, nested objects flattened with underscores. It keeps its read position in `~/.cache/ops-runs/`, so no `ops tail` process is needed on the host that holds the claim. Relative links resolve against `~/<project>`, or a line `<project> <path>` in `~/.config/ops/repos`.
+1. `runs`: every number in the JSON lines of a running node's log links (`.out`, `.log`, `.jsonl`), labelled `run=<file stem>`, nested objects flattened with underscores. The string fields `arm`, `split`, `family`, `strength`, `probe` and `set` become labels too. It keeps its read position in `~/.cache/ops-runs/`, so no `ops tail` process is needed on the host that holds the claim. Relative links resolve against `~/<project>`, or a line `<project> <path>` in `~/.config/ops/repos`.
 
 ## New project
 
