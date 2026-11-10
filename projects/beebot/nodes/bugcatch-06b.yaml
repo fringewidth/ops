@@ -8,9 +8,10 @@ needs: mac-gpu
 est_h: 4.0
 depends:
 - think-act-loop
+- bugcatch-smoke2
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Nothing runs on paid compute before this passes. Full weights. Model: a small Qwen3.5 (small-qwen35), not Qwen3-0.6B. Track vision forgetting: rerun the vlm-probe set on each checkpoint."
+notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Full weights, Qwen3.5-0.8B. Track vision forgetting. Smoke 1 (22:34, logs/bugcatch-08b-smoke.out): 3 steps in 8 min, 19.9 GB, swapping; diagnosing in bugcatch-smoke2."
 updated: "2026-11-10 23:15 +0530"
 metric:
   series: think_thought_match{run="bugcatch-08b"}
