@@ -1,0 +1,10 @@
+# Public settings for the site and the CLI. Secrets live in ~/.config/ops/env (OPS_TOKEN).
+repo: fringewidth/ops
+worker: https://ops.fringewidth.workers.dev
+# Series shown as cards on every project's Now tab (selectors: name{label="value"}).
+pins:
+  - gpu_util_percent
+  - mem_used_bytes
+  - claude_limit_percent{kind="session"}
+  - claude_limit_percent{kind="weekly_all"}
+  - kaggle_gpu_hours_left

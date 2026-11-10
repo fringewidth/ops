@@ -1,0 +1,28 @@
+name: pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 200
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run --script ops.py check || echo "::warning::ops check found problems"
+      - run: mkdir -p out && cp -r site/. out/ && uv run --script ops.py build out
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+      - uses: actions/deploy-pages@v4

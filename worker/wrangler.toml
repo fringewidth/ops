@@ -1,0 +1,15 @@
+name = "ops"
+main = "index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+RETAIN_DAYS = "180"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ops-metrics"
+database_id = "7bce04c4-6ec6-4a8f-ba49-6e7d55ab5e71"

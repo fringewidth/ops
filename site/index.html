@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ops</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ops">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151515" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uplot@1.6.30/dist/uPlot.min.css">
+<script src="https://cdn.jsdelivr.net/npm/uplot@1.6.30/dist/uPlot.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<style>
+:root {
+  --bg: #fbfbfa; --panel: #ffffff; --text: #1d1d1b; --muted: #6b6b66; --line: #e4e3df;
+  --accent: #2f5bd3; --good: #23864a; --bad: #c4352b; --warn: #b7791f; --run: #2f5bd3;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #151515; --panel: #1e1e1d; --text: #e8e7e3; --muted: #9a9993; --line: #33332f;
+    --accent: #7c9cff; --good: #4cc27a; --bad: #ef6b5f; --warn: #e2a845; --run: #7c9cff; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+header { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+header h1 { font-size: 15px; margin: 0 8px 0 0; }
+nav button, .btn { background: none; border: 1px solid var(--line); color: var(--text); border-radius: 6px; padding: 4px 10px; font: inherit; cursor: pointer; }
+nav button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+select, input, textarea { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; font: inherit; }
+main { max-width: 1000px; margin: 0 auto; padding: 12px 16px 80px; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 22px 0 8px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.grid > * { min-width: 0; }
+html, body { overflow-x: hidden; }
+main, #drawer { overflow-wrap: anywhere; }
+.toggle { width: 14px; display: inline-block; cursor: pointer; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.s-todo { background: var(--muted); } .s-queued { background: var(--warn); } .s-running { background: var(--run); }
+.s-done { background: var(--good); } .s-failed { background: var(--bad); } .s-dropped { background: var(--line); }
+.chip { font-size: 11px; border: 1px solid var(--line); border-radius: 10px; padding: 0 7px; color: var(--muted); white-space: nowrap; }
+.chip.ready { border-color: var(--good); color: var(--good); }
+.chip.crit { border-color: var(--bad); color: var(--bad); }
+.flag { border-left: 3px solid var(--warn); } .flag.bad { border-left-color: var(--bad); }
+.tree .node { padding: 5px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+.tree .node:hover { background: var(--panel); }
+.big { font-size: 22px; font-variant-numeric: tabular-nums; }
+.num { font-variant-numeric: tabular-nums; }
+svg.spark { width: 100%; height: 34px; display: block; }
+svg.spark polyline { fill: none; stroke: var(--accent); stroke-width: 1.5; }
+#drawer { position: fixed; inset: 0 0 0 auto; width: min(560px, 100vw); background: var(--panel); border-left: 1px solid var(--line); overflow-y: auto; padding: 14px 16px 60px; transform: translateX(100%); transition: transform .15s; z-index: 10; }
+#drawer.open { transform: none; }
+textarea { width: 100%; min-height: 220px; font: 12px/1.4 ui-monospace, Menlo, monospace; }
+.lane { min-width: 0; }
+a { color: var(--accent); }
+.u-legend { font-size: 11px; }
+header { padding-top: calc(10px + env(safe-area-inset-top)); }
+#drawer { padding-top: calc(14px + env(safe-area-inset-top)); }
+.node .row, .card .row { min-width: 0; }
+.node b, .card b { overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+  header { padding-left: 16px; padding-right: 16px; }
+  #built { display: none; }
+  nav#tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; display: flex; background: var(--bg); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+  nav#tabs button { flex: 1; border: none; border-radius: 0; padding: 13px 0; }
+  nav#tabs button.on { background: none; color: var(--accent); border-top: 2px solid var(--accent); }
+  main { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tree .node { padding: 8px 0; }
+  .big { font-size: 19px; }
+  #drawer { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+  input, select, textarea { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>ops</h1>
+  <select id="project"></select>
+  <nav id="tabs"></nav>
+  <span class="muted small" id="built"></span>
+  <button class="btn" id="settings" style="margin-left:auto">token</button>
+</header>
+<main id="main"></main>
+<aside id="drawer"></aside>
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
+const TABS = ["now", "plan", "metrics", "log"];
+let state, project, series = [], tab = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : store.get("tab") || "now";
+
+// ---------- data ----------
+async function load() {
+  state = await (await fetch("state.json?" + Date.now())).json();
+  const names = Object.keys(state.projects);
+  project = names.includes(store.get("project")) ? store.get("project") : names[0];
+  $("#project").innerHTML = names.map((n) => `<option ${n === project ? "selected" : ""}>${esc(n)}</option>`).join("");
+  $("#project").style.display = names.length > 1 ? "" : "none";
+  $("#built").textContent = "plan built " + state.built;
+  await refreshSeries();
+  render();
+}
+const worker = () => (state.config.worker || "").replace(/\/$/, "");
+async function refreshSeries() {
+  if (!worker()) return;
+  try { series = await (await fetch(worker() + "/series")).json(); } catch { series = []; }
+}
+async function points(ids, since = 0, max = 400) {
+  if (!ids.length) return {};
+  try { return await (await fetch(`${worker()}/points?id=${ids.join(",")}&since=${since}&max=${max}`)).json(); } catch { return {}; }
+}
+function parseSelector(text) {
+  const m = String(text || "").match(/^\s*([^{\s]+)\s*(?:\{(.*)\})?\s*$/);
+  if (!m) return null;
+  const labels = {};
+  for (const l of (m[2] || "").matchAll(/(\w+)\s*=\s*"([^"]*)"/g)) labels[l[1]] = l[2];
+  return { name: m[1], labels };
+}
+function matching(selector) {
+  const sel = parseSelector(selector);
+  if (!sel) return [];
+  return series.filter((s) => s.name === sel.name && Object.entries(sel.labels).every(([k, v]) => s.labels[k] === v));
+}
+const P = () => state.projects[project];
+const nodes = () => P().nodes;
+const byId = () => Object.fromEntries(nodes().map((n) => [n.id, n]));
+
+// ---------- planning ----------
+const OPEN = new Set(["todo", "queued", "running"]);
+function readyNodes() {
+  const ids = byId();
+  return nodes().filter((n) => ["todo", "queued", undefined].includes(n.status)
+    && (n.depends || []).every((d) => ids[d]?.status === "done")
+    && !nodes().some((c) => c.parent === n.id && OPEN.has(c.status || "todo")));
+}
+function criticalPath() {
+  const ids = byId(), memo = {};
+  const cost = (n) => (OPEN.has(n.status || "todo") ? Number(n.est_h) || 0 : 0);
+  function longest(id, seen = new Set()) {
+    if (memo[id]) return memo[id];
+    if (seen.has(id)) return { h: 0, path: [] };
+    seen.add(id);
+    const n = ids[id];
+    let best = { h: 0, path: [] };
+    for (const d of n.depends || []) if (ids[d]) { const r = longest(d, seen); if (r.h > best.h) best = r; }
+    return (memo[id] = { h: best.h + cost(n), path: [...best.path, id] });
+  }
+  let best = { h: 0, path: [] };
+  for (const n of nodes()) if (OPEN.has(n.status || "todo")) { const r = longest(n.id); if (r.h > best.h) best = r; }
+  return best;
+}
+function lastValue(selector) { const s = matching(selector)[0]; return s ? s.last_v : null; }
+function fmt(v) {
+  if (v == null) return "–";
+  const a = Math.abs(v);
+  if (a >= 1e9) return (v / 2 ** 30).toFixed(1) + "G";
+  if (a >= 1e6) return (v / 1e6).toFixed(1) + "M";
+  if (a >= 1000) return v.toFixed(0);
+  if (a >= 10) return v.toFixed(1);
+  return v.toPrecision(3);
+}
+function ago(ms) { const m = (Date.now() - ms) / 60000; return m < 1 ? "now" : m < 60 ? `${m | 0}m ago` : m < 1440 ? `${(m / 60) | 0}h ago` : `${(m / 1440) | 0}d ago`; }
+
+async function insights() {
+  const out = [], ids = byId(), ready = readyNodes();
+  for (const n of nodes().filter((n) => n.status === "running")) {
+    const alive = matching(`ops_claim_alive{node="${n.id}",project="${project}"}`)[0];
+    if (alive && alive.last_v === 0) out.push({ bad: true, text: `${n.id}: its process is gone but the claim says running` });
+    if (alive && Date.now() - alive.last_t > 10 * 60000) out.push({ text: `${n.id}: no liveness report for ${ago(alive.last_t)}` });
+    const ends = n.claim?.ends && Date.parse(String(n.claim.ends).replace(" ", "T"));
+    if (ends && ends < Date.now()) out.push({ text: `${n.id}: past its expected end (${esc(n.claim.ends)})` });
+  }
+  const resources = P().meta.resources || {};
+  for (const [name, r] of Object.entries(resources)) {
+    const busy = nodes().filter((n) => n.status === "running" && n.needs === name).length;
+    const waiting = ready.filter((n) => n.needs === name);
+    const cap = r.capacity || 1;
+    if (busy < cap && waiting.length) out.push({ text: `${name}: ${cap - busy} slot(s) free and ${waiting.length} task(s) ready (${waiting.slice(0, 3).map((n) => n.id).join(", ")})` });
+    if (busy > cap) out.push({ bad: true, text: `${name}: ${busy} jobs claimed on capacity ${cap}` });
+    if (r.busy_series) {
+      const v = lastValue(r.busy_series);
+      if (v != null && v > 50 && !busy) out.push({ text: `${name}: busy (${fmt(v)}) with no claim` });
+    }
+  }
+  for (const n of nodes().filter((n) => OPEN.has(n.status || "todo"))) {
+    for (const d of n.depends || []) {
+      if (ids[d]?.status === "failed" && !nodes().some((m) => m.mitigates === d && m.status !== "dropped"))
+        out.push({ bad: true, text: `${n.id} waits on ${d}, which failed with no mitigation` });
+    }
+  }
+  const watched = nodes().filter((n) => n.metric?.series && n.status === "running");
+  const sel = watched.map((n) => [n, matching(n.metric.series)[0]]).filter(([, s]) => s);
+  const pts = await points(sel.map(([, s]) => s.id), 0, 200);
+  for (const [n, s] of sel) {
+    const p = (pts[s.id] || []).map((x) => x[1]);
+    if (p.length < 20) continue;
+    const q = (p.length / 4) | 0;
+    const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+    const recent = mean(p.slice(-q)), before = mean(p.slice(-2 * q, -q));
+    const worse = n.metric.direction === "up" ? recent < before : recent > before;
+    if (worse) out.push({ text: `${n.id}: ${s.name} moving the wrong way (${fmt(before)} to ${fmt(recent)})` });
+    else if (Math.abs(recent - before) < 0.002 * Math.abs(before || 1)) out.push({ text: `${n.id}: ${s.name} flat at ${fmt(recent)}` });
+  }
+  for (const sel of state.config.pins || []) for (const s of matching(sel))
+    if (Date.now() - s.last_t > 15 * 60000) out.push({ text: `${s.name} silent since ${ago(s.last_t)}` });
+  return out;
+}
+
+// ---------- render ----------
+function render() {
+  $("#tabs").innerHTML = TABS.map((t) => `<button class="${t === tab ? "on" : ""}" data-tab="${t}">${t}</button>`).join("");
+  ({ now: renderNow, plan: renderPlan, metrics: renderMetrics, log: renderLog })[tab]();
+}
+function spark(pts) {
+  if (!pts || pts.length < 2) return `<svg class="spark"></svg>`;
+  const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const d = pts.map((p) => `${((p[0] - x0) / (x1 - x0 || 1)) * 100},${30 - ((p[1] - y0) / (y1 - y0 || 1)) * 28}`).join(" ");
+  return `<svg class="spark" viewBox="0 0 100 32" preserveAspectRatio="none"><polyline vector-effect="non-scaling-stroke" points="${d}"/></svg>`;
+}
+function labelText(l) { return Object.entries(l).filter(([k]) => k !== "host" || true).map(([k, v]) => `${k}=${v}`).join(" "); }
+function nodeLine(n, extra = "", prefix = "") {
+  const m = n.metric?.series ? lastValue(n.metric.series) : null;
+  const arrow = n.metric ? (n.metric.direction === "up" ? "↑" : "↓") : "";
+  return `<div class="row">${prefix}<span class="dot s-${n.status || "todo"}"></span><b>${esc(n.title)}</b>
+    <span class="muted small">${esc(n.id)}</span>${n.needs ? `<span class="chip">${esc(n.needs)}</span>` : ""}
+    ${m != null ? `<span class="chip num">${arrow} ${fmt(m)}${n.metric.target != null ? " / " + fmt(n.metric.target) : ""}</span>` : ""}${extra}</div>`;
+}
+
+async function renderNow() {
+  const main = $("#main"), ready = readyNodes();
+  const running = nodes().filter((n) => n.status === "running");
+  const queued = nodes().filter((n) => n.status === "queued").sort((a, b) => String(a.created).localeCompare(String(b.created)));
+  const pins = [...new Map((state.config.pins || []).concat(P().meta.pins || []).flatMap(matching).map((s) => [s.id, s])).values()];
+  main.innerHTML = `<h2>Insights</h2><div id="flags" class="muted small">checking…</div>
+    <h2>Pinned</h2><div class="grid">${pins.map((s) => `<div class="card" data-series="${s.id}"><div class="muted small">${esc(s.name)} <span>${esc(labelText(s.labels))}</span></div>
+      <div class="big">${fmt(s.last_v)}</div><div id="sp-${s.id}"></div><div class="muted small">${ago(s.last_t)}</div></div>`).join("") || `<span class="muted">pin series in config.yaml (pins:)</span>`}</div>
+    <h2>Running</h2>${running.map((n) => `<div class="card" data-node="${n.id}">${nodeLine(n)}<div class="muted small">${esc(n.claim?.session || "")} · pid ${esc(n.claim?.pid ?? "–")} on ${esc(n.claim?.host || "–")} · since ${esc(n.claim?.started || "?")} · ends ${esc(n.claim?.ends || "?")}</div><div id="nsp-${n.id}"></div></div>`).join("") || `<div class="muted">nothing</div>`}
+    <h2>Queue</h2>${queued.map((n) => `<div class="card" data-node="${n.id}">${nodeLine(n, `<span class="chip">${esc(n.est_h ?? "?")} h</span>`)}</div>`).join("") || `<div class="muted">empty</div>`}
+    <h2>Ready now, by resource</h2><div class="grid">${Object.entries(groupBy(ready, (n) => n.needs || "none")).map(([r, list]) => `<div class="card lane"><div class="muted small">${esc(r)} · ${list.length}</div>${list.map((n) => `<div data-node="${n.id}" style="cursor:pointer">${nodeLine(n)}</div>`).join("")}</div>`).join("") || `<span class="muted">nothing ready</span>`}</div>
+    <h2>Messages</h2>${P().messages.map((m) => `<div class="card small"><b>${esc(m.from)}</b>${m.to ? " to " + esc(m.to) : ""} <span class="muted">${esc(m.at)}</span><div>${esc(m.text)}</div></div>`).join("") || `<div class="muted">none</div>`}
+    <div class="row"><input id="msg" placeholder="message to the sessions" style="flex:1"><button class="btn" id="send">send</button></div>`;
+  const pinPts = await points(pins.map((s) => s.id), Date.now() - 6 * 3600000, 120);
+  for (const s of pins) { const el = $(`#sp-${s.id}`); if (el) el.innerHTML = spark(pinPts[s.id]); }
+  const runSel = running.map((n) => [n, n.metric?.series && matching(n.metric.series)[0]]).filter(([, s]) => s);
+  const runPts = await points(runSel.map(([, s]) => s.id), 0, 200);
+  for (const [n, s] of runSel) { const el = $(`#nsp-${n.id}`); if (el) el.innerHTML = spark(runPts[s.id]); }
+  const flags = await insights();
+  $("#flags").outerHTML = `<div>${flags.map((f) => `<div class="card flag ${f.bad ? "bad" : ""}">${esc(f.text)}</div>`).join("") || `<div class="muted">nothing to flag</div>`}</div>`;
+}
+function groupBy(list, key) { const o = {}; for (const x of list) (o[key(x)] ||= []).push(x); return o; }
+
+function renderPlan() {
+  const ids = byId(), ready = new Set(readyNodes().map((n) => n.id)), crit = criticalPath();
+  const critSet = new Set(crit.path);
+  const showDone = store.get("showDone") === "1";
+  const kids = groupBy(nodes(), (n) => (n.parent && ids[n.parent] ? n.parent : ""));
+  const collapsed = new Set(JSON.parse(store.get("collapsed") || "[]"));
+  function walk(parent, depth) {
+    return (kids[parent] || []).sort((a, b) => (a.order || 0) - (b.order || 0) || a.id.localeCompare(b.id))
+      .filter((n) => showDone || !["done", "dropped"].includes(n.status))
+      .map((n) => {
+        const has = (kids[n.id] || []).length, closed = collapsed.has(n.id);
+        const chips = (ready.has(n.id) ? `<span class="chip ready">ready</span>` : "") + (critSet.has(n.id) ? `<span class="chip crit">critical</span>` : "")
+          + ((n.depends || []).length ? `<span class="chip">after ${esc(n.depends.join(", "))}</span>` : "") + (n.mitigates ? `<span class="chip">mitigates ${esc(n.mitigates)}</span>` : "");
+        return `<div class="node" data-node="${n.id}" style="padding-left:${depth * 16}px">${nodeLine(n, chips, has ? `<span class="toggle muted" data-toggle="${n.id}">${closed ? "▸" : "▾"}</span>` : `<span class="toggle"></span>`)}
+          <div class="muted small" style="padding-left:30px">${esc(n.summary)}</div></div>` + (closed ? "" : walk(n.id, depth + 1));
+      }).join("");
+  }
+  $("#main").innerHTML = `<div class="row" style="margin-top:8px"><label class="small"><input type="checkbox" id="showDone" ${showDone ? "checked" : ""}> show done</label>
+    <button class="btn" id="newNode">new node</button><span class="muted small">critical path ${crit.h.toFixed(1)} h: ${esc(crit.path.join(" → ") || "–")}</span></div>
+    <div class="tree">${walk("", 0)}</div>`;
+}
+
+let chart;
+async function renderMetrics() {
+  const q = store.get("mq") || "";
+  const list = series.filter((s) => (s.name + " " + labelText(s.labels)).toLowerCase().includes(q.toLowerCase()));
+  const groups = groupBy(list, (s) => s.name);
+  $("#main").innerHTML = `<div class="row" style="margin-top:8px"><input id="mq" placeholder="filter" value="${esc(q)}" style="flex:1">
+    <select id="mx"><option value="">x: time</option>${[...new Set(series.map((s) => s.name))].map((n) => `<option ${store.get("mx") === n ? "selected" : ""}>${esc(n)}</option>`).join("")}</select>
+    <select id="mrange">${[["6h", 6], ["24h", 24], ["7d", 168], ["30d", 720], ["all", 0]].map(([l, h]) => `<option value="${h}" ${store.get("mrange") === String(h) ? "selected" : ""}>${l}</option>`).join("")}</select></div>
+    <div id="chart" class="card" style="margin-top:8px"><span class="muted small">tap a series (several with the same name overlay)</span></div>
+    ${Object.entries(groups).map(([name, ss]) => `<h2>${esc(name)}</h2>${ss.map((s) => `<div class="card row" data-plot="${s.id}" style="cursor:pointer"><span class="small" style="flex:1">${esc(labelText(s.labels)) || "–"}</span><span class="num">${fmt(s.last_v)}</span><span class="muted small">${ago(s.last_t)}</span></div>`).join("")}`).join("")}`;
+}
+let plotted = [];
+async function plot(ids) {
+  plotted = ids;
+  const range = Number(store.get("mrange") ?? 24);
+  const since = range ? Date.now() - range * 3600000 : 0;
+  const xName = store.get("mx") || "";
+  const chosen = ids.map((id) => series.find((s) => s.id === id)).filter(Boolean);
+  const xSeries = xName ? chosen.map((s) => series.find((x) => x.name === xName && JSON.stringify(x.labels) === JSON.stringify(s.labels))) : [];
+  const pts = await points([...ids, ...xSeries.filter(Boolean).map((s) => s.id)], since, 1500);
+  const lines = chosen.map((s, i) => {
+    const raw = pts[s.id] || [];
+    if (!xName) return raw.map(([t, v]) => [t / 1000, v]);
+    const xs = new Map((pts[xSeries[i]?.id] || []).map(([t, v]) => [t, v]));
+    return raw.filter(([t]) => xs.has(t)).map(([t, v]) => [xs.get(t), v]);
+  });
+  const xsAll = [...new Set(lines.flatMap((l) => l.map((p) => p[0])))].sort((a, b) => a - b);
+  const data = [xsAll, ...lines.map((l) => { const m = new Map(l); return xsAll.map((x) => m.get(x) ?? null); })];
+  const el = $("#chart");
+  el.innerHTML = "";
+  const palette = ["#2f5bd3", "#c4352b", "#23864a", "#b7791f", "#7a4fd1", "#1c8a9e", "#b8457f"];
+  const dark = matchMedia("(prefers-color-scheme: dark)").matches, axis = { stroke: dark ? "#9a9993" : "#6b6b66", grid: { stroke: dark ? "#33332f" : "#eeede9" } };
+  chart?.destroy();
+  chart = new uPlot({ width: el.clientWidth - 24, height: 300, scales: { x: { time: !xName } }, axes: [axis, axis],
+    series: [{ label: xName || "time" }, ...chosen.map((s, i) => ({ label: labelText(s.labels) || s.name, stroke: palette[i % palette.length], width: 1.5, spanGaps: true }))] }, data, el);
+}
+
+function renderLog() {
+  $("#main").innerHTML = `<h2>Changes</h2>${P().log.map((l) => `<div class="card small"><span class="muted">${esc(l.at.slice(0, 16).replace("T", " "))}</span> ${esc(l.text)}</div>`).join("")}`;
+}
+
+// ---------- node drawer and edits ----------
+function openNode(id, fresh) {
+  const n = fresh || byId()[id];
+  const ids = byId();
+  const body = { ...n }; delete body.id;
+  $("#drawer").innerHTML = `<div class="row"><button class="btn" id="close">close</button><span class="muted small">${esc(n.id)}</span></div>
+    <h3>${esc(n.title || "new node")}</h3><p>${esc(n.summary || "")}</p><p class="muted">${esc(n.why || "")}</p>
+    ${n.result ? `<p><b>result</b> ${esc(n.result)}</p>` : ""}
+    <div id="nodeChart"></div>
+    ${(n.links || []).map((l) => `<div class="small">${/^https?:/.test(l) ? `<a href="${esc(l)}">${esc(l)}</a>` : esc(l)}</div>`).join("")}
+    <div class="small muted">children: ${esc(nodes().filter((c) => c.parent === n.id).map((c) => c.id).join(", ") || "–")} · needed by: ${esc(nodes().filter((c) => (c.depends || []).includes(n.id)).map((c) => c.id).join(", ") || "–")}</div>
+    <h2>Edit</h2>
+    <div class="row"><select id="eStatus">${["todo", "queued", "running", "done", "failed", "dropped"].map((s) => `<option ${s === (n.status || "todo") ? "selected" : ""}>${s}</option>`).join("")}</select>
+    <select id="eParent"><option value="">(top level)</option>${Object.keys(ids).filter((x) => x !== n.id).map((x) => `<option ${x === n.parent ? "selected" : ""}>${esc(x)}</option>`).join("")}</select>
+    ${fresh ? `<input id="eId" placeholder="id (lowercase-dashes)">` : ""}</div>
+    <textarea id="eYaml">${esc(jsyaml.dump(body, { lineWidth: 1000 }))}</textarea>
+    <div class="row"><button class="btn" id="save">commit</button><span id="saveMsg" class="small muted"></span></div>`;
+  $("#drawer").classList.add("open");
+  $("#drawer").dataset.id = n.id || "";
+  if (n.metric?.series) {
+    const s = matching(n.metric.series);
+    if (s.length) points(s.map((x) => x.id), 0, 300).then((p) => { $("#nodeChart").innerHTML = s.map((x) => `<div class="small muted">${esc(x.name)} ${esc(labelText(x.labels))}: ${fmt(x.last_v)}</div>${spark(p[x.id])}`).join(""); });
+  }
+  const sync = () => {
+    const doc = jsyaml.load($("#eYaml").value) || {};
+    doc.status = $("#eStatus").value;
+    if ($("#eParent").value) doc.parent = $("#eParent").value; else delete doc.parent;
+    $("#eYaml").value = jsyaml.dump(doc, { lineWidth: 1000 });
+  };
+  $("#eStatus").onchange = sync; $("#eParent").onchange = sync;
+}
+const sentences = (t) => (String(t).trim().match(/[.!?](\s+|$)/g) || [1]).length;
+async function saveNode() {
+  const msg = $("#saveMsg");
+  const id = $("#eId") ? $("#eId").value.trim() : $("#drawer").dataset.id;
+  let doc;
+  try { doc = jsyaml.load($("#eYaml").value); } catch (e) { msg.textContent = "YAML error: " + e.message; return; }
+  const errors = [];
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) errors.push("id must be lowercase letters, digits and dashes");
+  for (const k of ["title", "summary", "why"]) if (!String(doc[k] || "").trim()) errors.push(`missing ${k}`);
+  if (doc.summary && sentences(doc.summary) > 1) errors.push("summary must be one sentence");
+  if (doc.why && sentences(doc.why) > 2) errors.push("why must be at most two sentences");
+  if ($("#eId") && byId()[id]) errors.push("id exists");
+  if (errors.length) { msg.textContent = errors.join("; "); return; }
+  const token = store.get("ghToken");
+  if (!token) { msg.textContent = "set a GitHub token first (top right)"; return; }
+  const path = `projects/${project}/nodes/${id}.yaml`;
+  const api = `https://api.github.com/repos/${state.config.repo}/contents/${path}`;
+  const headers = { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" };
+  msg.textContent = "committing…";
+  const current = await fetch(api, { headers });
+  const sha = current.ok ? (await current.json()).sha : undefined;
+  doc.updated = new Date().toISOString().slice(0, 16).replace("T", " ");
+  const content = btoa(String.fromCharCode(...new TextEncoder().encode(jsyaml.dump(doc, { lineWidth: 1000 }))));
+  const res = await fetch(api, { method: "PUT", headers, body: JSON.stringify({ message: `${project}: ${sha ? "edit" : "add"} ${id} (web)`, content, sha }) });
+  if (!res.ok) { msg.textContent = "failed: " + (await res.text()).slice(0, 200); return; }
+  const i = nodes().findIndex((n) => n.id === id);
+  if (i >= 0) nodes()[i] = { id, ...doc }; else nodes().push({ id, ...doc });
+  msg.textContent = "committed; the site rebuilds in about a minute";
+  render();
+}
+async function sendMessage() {
+  const text = $("#msg").value.trim(), token = store.get("ghToken");
+  if (!text || !token) { alert(token ? "empty" : "set a GitHub token first"); return; }
+  const stamp = new Date(), pad = (x) => String(x).padStart(2, "0");
+  const id = `${stamp.getFullYear()}${pad(stamp.getMonth() + 1)}${pad(stamp.getDate())}-${pad(stamp.getHours())}${pad(stamp.getMinutes())}${pad(stamp.getSeconds())}-web`;
+  const body = jsyaml.dump({ at: stamp.toISOString().slice(0, 16).replace("T", " "), from: "user (web)", text });
+  const res = await fetch(`https://api.github.com/repos/${state.config.repo}/contents/projects/${project}/messages/${id}.yaml`, { method: "PUT", headers: { Authorization: `Bearer ${token}` }, body: JSON.stringify({ message: `${project}: message from the user (web)`, content: btoa(String.fromCharCode(...new TextEncoder().encode(body))) }) });
+  if (res.ok) { P().messages.push({ id, from: "user (web)", text, at: "now" }); render(); } else alert("failed");
+}
+
+// ---------- events ----------
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("[data-tab],[data-node],[data-toggle],[data-plot],#close,#save,#newNode,#settings,#send");
+  if (!t) return;
+  if (t.dataset.tab) { tab = t.dataset.tab; store.set("tab", tab); render(); }
+  else if (t.dataset.toggle) { e.stopPropagation(); const c = new Set(JSON.parse(store.get("collapsed") || "[]")); c.has(t.dataset.toggle) ? c.delete(t.dataset.toggle) : c.add(t.dataset.toggle); store.set("collapsed", JSON.stringify([...c])); render(); }
+  else if (t.dataset.node) openNode(t.dataset.node);
+  else if (t.dataset.plot) { const id = Number(t.dataset.plot), s = series.find((x) => x.id === id); const same = plotted.map((p) => series.find((x) => x.id === p)).filter((x) => x && x.name === s.name).map((x) => x.id); plot(same.includes(id) ? same.filter((x) => x !== id) : [...same, id]); }
+  else if (t.id === "close") $("#drawer").classList.remove("open");
+  else if (t.id === "save") saveNode();
+  else if (t.id === "send") sendMessage();
+  else if (t.id === "newNode") openNode(null, { id: "", title: "", summary: "", why: "", status: "todo", kind: "task" });
+  else if (t.id === "settings") { const v = prompt("GitHub fine-grained token with contents:write on " + state.config.repo + " (kept in this browser only)", store.get("ghToken") || ""); if (v !== null) store.set("ghToken", v.trim()); }
+});
+document.addEventListener("change", (e) => {
+  if (e.target.id === "project") { project = e.target.value; store.set("project", project); render(); }
+  if (e.target.id === "showDone") { store.set("showDone", e.target.checked ? "1" : "0"); render(); }
+  if (e.target.id === "mx") { store.set("mx", e.target.value); if (plotted.length) plot(plotted); }
+  if (e.target.id === "mrange") { store.set("mrange", e.target.value); if (plotted.length) plot(plotted); }
+});
+document.addEventListener("input", (e) => { if (e.target.id === "mq") { store.set("mq", e.target.value); clearTimeout(window._mq); window._mq = setTimeout(() => { renderMetrics(); $("#mq").focus(); $("#mq").setSelectionRange(99, 99); }, 300); } });
+setInterval(async () => { if (tab === "now" && !$("#drawer").classList.contains("open")) { await refreshSeries(); render(); } }, 60000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) load(); });
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+"""Claude plan usage for the account logged in to Claude Code on this machine.
+
+Reads the OAuth token Claude Code keeps in the macOS keychain (or ~/.claude/.credentials.json)
+and asks the usage endpoint Claude Code's /usage uses. Undocumented: it may change.
+The account label is OPS_CLAUDE_ACCOUNT, else the first 8 characters of the account id.
+"""
+import json
+import os
+import subprocess
+import sys
+import urllib.request
+from datetime import datetime
+from pathlib import Path
+
+raw = None
+if sys.platform == "darwin":
+    found = subprocess.run(["security", "find-generic-password", "-s", "Claude Code-credentials", "-w"], capture_output=True, text=True)
+    raw = found.stdout if found.returncode == 0 else None
+if raw is None and (Path.home() / ".claude" / ".credentials.json").exists():
+    raw = (Path.home() / ".claude" / ".credentials.json").read_text()
+if not raw:
+    sys.exit(0)
+token = json.loads(raw)["claudeAiOauth"]["accessToken"]
+account = os.environ.get("OPS_CLAUDE_ACCOUNT")
+if not account:
+    with open(Path.home() / ".claude.json") as handle:
+        account = (json.load(handle).get("oauthAccount") or {}).get("accountUuid", "unknown")[:8]
+request = urllib.request.Request("https://api.anthropic.com/api/oauth/usage", headers={"Authorization": f"Bearer {token}", "anthropic-beta": "oauth-2025-04-20"})
+try:
+    usage = json.load(urllib.request.urlopen(request, timeout=20))
+except Exception:
+    sys.exit(0)  # expired token: Claude Code refreshes it the next time it runs
+for limit in usage.get("limits") or []:
+    labels = f'account="{account}",kind="{limit["kind"]}"' + (f',scope="{limit["scope"]}"' if limit.get("scope") else "")
+    print(f"claude_limit_percent{{{labels}}} {limit['percent']}")
+    if limit.get("resets_at"):
+        print(f"claude_limit_resets_at{{{labels}}} {int(datetime.fromisoformat(limit['resets_at']).timestamp())}")
+extra = usage.get("extra_usage") or {}
+if extra.get("is_enabled") and extra.get("used_credits") is not None:
+    print(f'claude_extra_usage_credits{{account="{account}"}} {extra["used_credits"]}')

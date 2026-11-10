@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""Status of Kaggle kernels named by running nodes (field `kaggle: owner/slug`), every 5 minutes.
+
+kaggle_kernel_status{slug} is 1 running, 2 queued, 0 complete, -1 error or cancelled.
+Kaggle has no quota API; push hours left by hand: ops push 'kaggle_gpu_hours_left{account="x"} 12'.
+"""
+import os
+import re
+import subprocess
+import time
+from pathlib import Path
+
+home = Path(os.environ.get("OPS_HOME", Path.home() / "ops"))
+stamp = Path.home() / ".cache" / "ops-kaggle-stamp"
+if stamp.exists() and time.time() - stamp.stat().st_mtime < 290:
+    raise SystemExit(0)
+stamp.parent.mkdir(parents=True, exist_ok=True)
+stamp.touch()
+codes = {"running": 1, "queued": 2, "complete": 0, "error": -1, "cancelacknowledged": -1, "cancelrequested": -1}
+for path in home.glob("projects/*/nodes/*.yaml"):
+    text = path.read_text()
+    slug = re.search(r"^kaggle: (\S+)$", text, re.M)
+    if not slug or not re.search(r"^status: (running|queued)$", text, re.M):
+        continue
+    out = subprocess.run(["uvx", "--with", "six", "kaggle", "kernels", "status", slug.group(1)], capture_output=True, text=True, timeout=50).stdout.lower()
+    state = re.search(r'has status "?(?:kernelworkerstatus\.)?(\w+)', out)
+    if state:
+        print(f'kaggle_kernel_status{{slug="{slug.group(1)}",project="{path.parent.parent.name}",node="{path.stem}"}} {codes.get(state.group(1), -1)}')
