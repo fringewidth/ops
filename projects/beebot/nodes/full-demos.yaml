@@ -20,4 +20,4 @@ links:
 metric:
   series: demos_kept{run="voxel_full"}
   direction: up
-  target: 25000.0
+  target: 25000
