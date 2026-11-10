@@ -4,9 +4,9 @@ why: "User: the vision must not learn one lighting or render style; sim2real pre
 status: running
 parent: trk-trainer
 est_h: 6.0
-notes: "Agent ETA (21:24): merge-ready core commit by about 22:45 (renderer works: oblique perspective + top-down following the azimuth, azimuth within 30 deg of a side, markers and grid, clean mode, all randomization groups, name-preserving colour jitter; left: framing, shadow acne, tests, README, speed). Interface: images, pose = scene_views(obs, rng, ViewSpec(), look=None); pose['azimuth'] degrees, world frame (0 front +y, 90 right +x), pose['side'], pose['views']; look=sample_look(rng, spec) fixes camera and scene for an episode. Zero-shot check per strength after the commit, once the GPU is free."
+notes: "Core merged to main 2026-11-10 ~21:40 (be8da9f via b73221e; tests running before push): scene_views(obs, rng, ViewSpec(), look=None) -> 2 PIL images at 256 + pose (azimuth world frame, within 30 deg of a side, 15+ from diagonals), sample_look for a fixed camera per episode, ViewSpec.clean(). Contact sheets runs/views/. Open: distractors must not look like nameable objects (sent back), speed (4-6 randomized pairs/s per thread under load; target 50), zero-shot check per strength after the gate."
 depends:
 - base-model-choice
 created: "2026-11-10 20:25 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 21:24 +0530"
+updated: "2026-11-10 21:33 +0530"
