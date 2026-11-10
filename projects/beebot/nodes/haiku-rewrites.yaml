@@ -1,19 +1,19 @@
 title: Open-vocabulary instruction rewrites
 summary: Paraphrase the 3D instructions and captions with Haiku.
 why: 3D wording is only 2-5 templates per intent today. Generalisation should come from varied data, not from model constraints.
-status: running
+status: todo
 kind: task
 parent: trk-language
 needs: none
 est_h: 3.0
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 20:14 +0530"
+updated: "2026-11-10 20:21 +0530"
 depends:
 - task-coverage
 - thought-format
 - wording-bank
-notes: "Second window started 2026-11-10 ~20:15 at the user's request (session usage 76%, resets 21:50). Now: verifying the ~8.5k generated but unchecked tasks in run-s2..s7 (scratchpad haiku_verify_rest.sh, logs/haiku-verify2-s*.out); guard stops Haiku at 95% session usage (usage_watch95.sh). Next: build-family items once the build branch has a build-only draw (agent target 20:45). First window: 16,553 tasks generated, 15,977 pairs verified, 508 test. Export options for the demo join: --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0, seeds 0-7, chunk 24."
+notes: "Paused 2026-11-10 ~20:40 at the user's request, during the second window's verification of run-s2..s7 (resumable: python -m beebot.vla.voxel.haiku verify --name run-sN). Verified pairs so far: 27853. Build-family labels not started (waiting on build-objects' build-only draw). First window: 16,553 tasks generated, 508 test pairs. Export options for the demo join: --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0, seeds 0-7, chunk 24."
 links:
 - logs/haiku-run-s0.out
 metric:
