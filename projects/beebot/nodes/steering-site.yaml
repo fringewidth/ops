@@ -1,9 +1,16 @@
 title: Public 2D steering site
 summary: Serve the 0.6B 2D policy as a website where visitors steer their own swarm.
 why: It is the public demo of the 2D work. It stays up as is while 2D work is paused.
-status: todo
+status: running
 kind: run
 parent: generalist-swarm
 needs: none
 created: 2026-11-10 11:54 +0530
 by: beebot-26 ops
+claim:
+  session: beebot-d8 website
+  host: GB-497
+  pid: 16144
+  cmd: scripts/swarm_steer.py (local copy on port 8791, PID 47153)
+  started: 2026-11-10 11:54 +0530
+  ends: until the user says
