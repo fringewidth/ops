@@ -1,7 +1,7 @@
 title: 3D scorecard that can rank
 summary: Score 48 or more episodes per family with a shuffled-instruction control, thought accuracy and held-out words, categories and compositions.
 why: Today's card uses 12 episodes per family, so one episode moves a score by 0.08.
-status: running
+status: done
 parent: trk-trainer
 needs: cpu
 est_h: 3.0
@@ -10,9 +10,10 @@ depends:
 created: "2026-11-10 12:02 +0530"
 by: beebot-a3 3d push
 notes: "Agent in a worktree, started 2026-11-10 ~21:05, due 2026-11-11 15:00, together with think-act-loop: rollout.py (closed-loop think-then-act episodes, instruction switches, refusals) and scorecard (48 episodes per family over all 14 families, shuffled-instruction control, thought accuracy, held-out test set, oracle-thought arm for gate-act-follows-thought, standard errors). Stand-ins for ThinkData's context builder and views until they land."
-updated: "2026-11-10 21:52 +0530"
+updated: "2026-11-10 22:18 +0530"
 metric:
   series: scorecard3d_noise
   direction: down
 links:
 - logs/scorecard3d.jsonl
+result: "Merged to main (rollout.py, scorecard.py, 66 tests pass). Expert/still card, 2 repeats, CPU: expert 0.83/0.82/0.80 (test/Haiku test set/held-out wording, se ~0.01-0.02), standing still 0.19-0.22. Still passes 0.73 of logic and 0.54 of switch tasks, so gate b prints still beside it. Full card ~4,700 policy episodes: milestone only; routine checkpoints use --arms policy,shuffled --splits test --per-family 16. runs/scorecard3d/expert_still/card.md"
