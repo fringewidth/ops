@@ -8,5 +8,9 @@ est_h: 15.0
 depends:
 - bugcatch-06b
 - upload-demos
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+metric:
+  series: scorecard3d_mean{run="scratch"}
+  direction: up
+updated: "2026-11-10 21:47 +0530"
