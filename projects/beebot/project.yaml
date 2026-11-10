@@ -16,10 +16,9 @@ resources:
     note: Vultr, $255 balance on 2026-11-10 ($250 credit, $5 own cash); GH200 at $1.99/h; scarce
 pins:
   - kaggle_gpu_hours_left
-  - rented_credit_usd_left
   - vultr_remaining_usd
   - vultr_machines
+  - claude_limit_percent{kind="session"}
+  - haiku_items_generated
   - disk_free_bytes
   - tool_present
-  - http_up
-  - demo_loss{run="lm-slotwords"}

@@ -421,8 +421,13 @@ function parseSelector(text) {
 function matching(selector) {
   const sel = parseSelector(selector);
   if (!sel) return [];
-  return series.filter((s) => s.name === sel.name && Object.entries(sel.labels).every(([k, v]) => s.labels[k] === v));
+  const found = series.filter((s) => s.name === sel.name && Object.entries(sel.labels).every(([k, v]) => s.labels[k] === v));
+  const fresh = found.filter((s) => !stale(s));
+  return fresh.length ? fresh : found; // a source that stopped reporting gives way to the one that replaced it
 }
+// a series is stale when nothing has reported it for STALE_MS; the Numbers tab hides it unless asked
+const STALE_MS = 2 * 3600000;
+const stale = (s) => Date.now() - s.last_t > STALE_MS;
 // labels worth showing: those that differ between series of the same name
 function varyingLabels(s) {
   const same = series.filter((x) => x.name === s.name);
@@ -900,11 +905,15 @@ function renderPlanList(showDone) {
 let chart, plotted = JSON.parse(store.get("plotted") || "[]");
 async function renderNumbers() {
   const q = (store.get("nq") || "").toLowerCase();
-  const list = series.filter((s) => (s.name + " " + Object.values(s.labels).join(" ")).toLowerCase().includes(q));
+  const showStale = store.get("nstale") === "1";
+  const keep = new Set([...pinsList().flatMap((pin) => matching(pin.series)), ...nodes().map(metricSeries).filter(Boolean)].map((s) => s.id));
+  const staleCount = series.filter((s) => stale(s) && !keep.has(s.id)).length;
+  const list = series.filter((s) => (showStale || !stale(s) || keep.has(s.id)) && (s.name + " " + Object.values(s.labels).join(" ")).toLowerCase().includes(q));
   const groups = {};
   for (const s of list) (groups[s.name] ||= []).push(s);
   plotted = plotted.filter((id) => seriesById.has(id));
-  $("#main").innerHTML = `<div class="section" style="margin-top:18px"><input class="field" id="nq" placeholder="Filter ${series.length} series" value="${esc(store.get("nq") || "")}" style="width:100%"></div>
+  $("#main").innerHTML = `<div class="section" style="margin-top:18px"><input class="field" id="nq" placeholder="Filter ${series.length - (showStale ? 0 : staleCount)} series" value="${esc(store.get("nq") || "")}" style="width:100%">
+    ${staleCount ? `<label class="muted tiny" style="display:inline-flex;gap:6px;align-items:center;margin-top:8px"><input type="checkbox" id="nstale" ${showStale ? "checked" : ""}> show ${staleCount} stale series (nothing reported for over ${STALE_MS / 3600000} h)</label>` : ""}</div>
     <div class="card chart-card" id="chartCard" ${plotted.length ? "" : 'style="display:none"'}><div class="chart-head"><span class="title" id="chartTitle"></span>
       <select id="mx"><option value="">against time</option>${[...new Set(series.map((s) => s.name))].map((n) => `<option value="${esc(n)}" ${store.get("mx") === n ? "selected" : ""}>against ${esc(humanName(n))}</option>`).join("")}</select>
       <select id="mrange">${[["6 h", 6], ["24 h", 24], ["7 d", 168], ["30 d", 720], ["all", 0]].map(([l, h]) => `<option value="${h}" ${(store.get("mrange") ?? "24") === String(h) ? "selected" : ""}>${l}</option>`).join("")}</select></div><div id="chart"></div></div>
@@ -1117,6 +1126,7 @@ document.addEventListener("change", (e) => {
   if (e.target.id === "eParent") syncEdit("parent", e.target.value);
   if (e.target.id === "mx") { store.set("mx", e.target.value); plot(); }
   if (e.target.id === "mrange") { store.set("mrange", e.target.value); plot(); }
+  if (e.target.id === "nstale") { store.set("nstale", e.target.checked ? "1" : "0"); renderNumbers(); }
 });
 document.addEventListener("input", (e) => {
   if (e.target.id === "planSearch") { store.set("planSearch", e.target.value); planMode === "graph" ? applySearch() : renderPlanList(store.get("showDone") === "1"); }

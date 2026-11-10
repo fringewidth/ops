@@ -3,6 +3,7 @@
 // POST /push            text lines `name{k="v",...} value [unix_ms]` (Prometheus text format subset).
 //                       Query ?labels=k="v",... adds labels to every line. Needs the bearer token.
 // GET  /series          every series with its last value (?q= filters by substring of name or labels).
+// DELETE /series?id=1,2 removes those series and all their points (token).
 // GET  /points?id=1,2   points per series (?since=unix_ms, ?max=N buckets, averaged).
 // GET  /targets         scrape targets; POST {url, labels} adds one; DELETE ?url= removes one (token).
 // Cron (every minute)   GETs each target URL and stores what it serves; drops points older than RETAIN_DAYS.
@@ -116,6 +117,18 @@ export default {
       const extra = parseLabels(url.searchParams.get("labels"));
       const count = await store(env, parse(await request.text(), extra, Date.now()));
       return reply({ stored: count });
+    }
+
+    if (url.pathname === "/series" && request.method === "DELETE") {
+      if (!authorized(request, env)) return reply("unauthorized", 401);
+      const ids = (url.searchParams.get("id") || "").split(",").map(Number).filter(Number.isInteger);
+      if (!ids.length) return reply("pass ?id=1,2", 400);
+      const marks = ids.map(() => "?").join(",");
+      await env.DB.batch([
+        env.DB.prepare(`DELETE FROM points WHERE series_id IN (${marks})`).bind(...ids),
+        env.DB.prepare(`DELETE FROM series WHERE id IN (${marks})`).bind(...ids),
+      ]);
+      return reply({ deleted: ids.length });
     }
 
     if (url.pathname === "/series") {
