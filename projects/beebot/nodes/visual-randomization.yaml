@@ -1,0 +1,11 @@
+title: Rendered views with domain randomization
+summary: "views.py: oblique perspective and top-down renders at 256 px with randomized camera, lighting, textures, name-preserving colour jitter, distractors, image corruptions and render style; optional state noise; clean mode; a check of zero-shot readability per strength."
+why: "User: the vision must not learn one lighting or render style; sim2real precautions from robotics belong here."
+status: running
+parent: trk-trainer
+est_h: 6.0
+notes: "Agent in a worktree, started 2026-11-10 ~20:55, due 2026-11-11 13:00. Pass: default strength keeps zero-shot Qwen3.5-4B accuracy close to clean on colours, letters and shapes. View choice assumed: oblique + top-down (user has not confirmed)."
+depends:
+- base-model-choice
+created: "2026-11-10 20:25 +0530"
+by: beebot-f7 3d push
