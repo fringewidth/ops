@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""How old the published dashboard is, every 5 minutes: GitHub Pages deploys can fail while the
+build succeeds, which freezes the site silently (2026-11-10, 19:10-19:45 IST).
+
+ops_site_age_minutes   minutes since the state.json served at https://hrishik.me/ops was built
+"""
+import json
+import time
+import urllib.request
+from datetime import datetime
+from pathlib import Path
+
+stamp = Path.home() / ".cache" / "ops-site-age-stamp"
+if stamp.exists() and time.time() - stamp.stat().st_mtime < 290:
+    raise SystemExit(0)
+stamp.parent.mkdir(parents=True, exist_ok=True)
+stamp.touch()
+try:
+    request = urllib.request.Request(f"https://hrishik.me/ops/state.json?t={int(time.time())}", headers={"User-Agent": "ops-site-age-collector"})
+    with urllib.request.urlopen(request, timeout=20) as response:
+        built = datetime.strptime(json.load(response)["built"], "%Y-%m-%d %H:%M %z")
+except Exception:
+    raise SystemExit(0)
+print(f"ops_site_age_minutes {(time.time() - built.timestamp()) / 60:.1f}")
