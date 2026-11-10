@@ -1,7 +1,7 @@
 title: "Views: Qwen reads randomized renders"
 summary: Base Qwen3.5-4B answers colour, letter and shape probes on renders at 5 randomization strengths, 30 items each, to pick DEFAULT_STRENGTH.
 why: Too strong a randomization may hide what the model must read; too weak teaches one look.
-status: running
+status: done
 parent: visual-randomization
 needs: mac-gpu
 est_h: 0.4
@@ -19,4 +19,6 @@ claim:
   cmd: views.py --qwen (5 strengths x 3 probes x 30, Qwen3.5-4B zero-shot)
   started: "2026-11-10 22:18 +0530"
   ends: "2026-11-10 22:45"
-updated: "2026-11-10 22:19 +0530"
+  finished: "2026-11-10 22:29 +0530"
+updated: "2026-11-10 22:29 +0530"
+result: "Zero-shot Qwen3.5-4B, 30 items/cell (se ~0.08): mean clean 0.72, 0.25 0.61, 0.5 0.61, 0.75 0.68, 1.0 0.59. Colours 0.90 to 0.77 (mostly naming terrain/table as a cheese), shapes flat, letters depend on camera side (rotated letters) not strength. DEFAULT_STRENGTH set to 0.75. runs/views/qwen.txt, logs/views-readability.out"
