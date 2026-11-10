@@ -11,5 +11,5 @@ depends:
 - upload-demos
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes: "Gate: measured cost per step fits the budget; 4B or 1.7B chosen on equal-step loss and thought accuracy. Risk: today's probes put the 1.7B close to the 4B."
-updated: "2026-11-10 12:28 +0530"
+notes: "User 2026-11-10: 1.7B only if time remains, so this fuse is 4B vs 0.6B at equal steps unless 1.7B is run."
+updated: "2026-11-10 15:18 +0530"
