@@ -12,3 +12,7 @@ created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Nothing runs on paid compute before this passes. Full weights. Model: a small Qwen3.5 (small-qwen35), not Qwen3-0.6B. Track vision forgetting: rerun the vlm-probe set on each checkpoint."
 updated: "2026-11-10 21:48 +0530"
+metric:
+  series: think_thought_match{run="bugcatch-08b"}
+  direction: up
+  target: 0.9
