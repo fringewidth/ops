@@ -1,7 +1,7 @@
 title: End-to-end bug-catch at 0.8B
 summary: Train the full recipe on Qwen3.5-0.8B (full weights, Mac) on a sample and check that thoughts match their labels on held-out episodes.
 why: A bug found on the Mac costs nothing. Nothing runs on paid compute before this passes.
-status: todo
+status: running
 kind: run
 parent: trk-runs
 needs: mac-gpu
@@ -16,3 +16,10 @@ metric:
   series: think_thought_match{run="bugcatch-08b"}
   direction: up
   target: 0.9
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 2502
+  cmd: think_train Qwen3.5-0.8B smoke, 8 min, batch 4x4, scene views
+  started: "2026-11-10 22:31 +0530"
+  ends: "2026-11-10 23:15"
