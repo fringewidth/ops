@@ -1,7 +1,7 @@
 title: Local evidence before buying compute
 summary: Run attention-blocking and model-size probes, then a slot-word SFT with rollout tests before and after.
 why: We should not spend rented credits until local runs show the setup works. A single big run that changes everything at once cannot be diagnosed.
-status: todo
+status: running
 kind: task
 parent: grant-push-3d
 needs: mac-gpu
@@ -12,3 +12,10 @@ links:
 - logs/lm-slotwords.out
 created: 2026-11-10 11:54 +0530
 by: beebot-26 ops
+claim:
+  session: beebot-d8 evidence day
+  host: GB-497
+  pid: 62010
+  cmd: evidence_chain.sh (causal-block, size-probe, lm-slotwords, slot-eval)
+  started: 2026-11-10 11:54 +0530
+  ends: 2026-11-10 17:00
