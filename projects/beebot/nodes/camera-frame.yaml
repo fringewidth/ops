@@ -1,0 +1,11 @@
+title: "Whose left: fixed camera side or per-camera relabelling"
+summary: Instructions and thoughts use world directions; a user means directions as seen from the camera, so random camera yaw breaks 'left'.
+why: A wrong frame makes every direction word in the data wrong for the vision model.
+status: todo
+kind: decision
+parent: trk-trainer
+notes: "Proposed: the camera stays on the user's side with small pose jitter. Owed by the user."
+depends:
+- base-model-choice
+created: "2026-11-10 20:28 +0530"
+by: beebot-f7 3d push
