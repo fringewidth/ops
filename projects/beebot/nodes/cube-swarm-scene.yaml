@@ -1,8 +1,10 @@
 title: Ten-cube MuJoCo scene
 summary: An agent builds one persistent scene where any of ten cubes can move and the lattice is read back after each move.
 why: Today's simulation covers one move of one cube.
-status: running
+status: done
 parent: trk-cubes
 est_h: 3.0
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+result: "Merged e65e7cf: src/beebot/hardware/cube_swarm.py; ten cubes build a three-high tower from a loose start in MuJoCo (runs/cube_swarm/demo.mp4); 11 of 24 seeds finish all 20 moves; 0.25 s wall per move"
+updated: "2026-11-10 12:31 +0530"
