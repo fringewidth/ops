@@ -5,8 +5,6 @@ status: running
 parent: visual-randomization
 needs: mac-gpu
 est_h: 0.4
-depends:
-- gate-4b-restates
 links:
 - logs/views-readability.out
 metric:
@@ -21,3 +19,4 @@ claim:
   cmd: views.py --qwen (5 strengths x 3 probes x 30, Qwen3.5-4B zero-shot)
   started: "2026-11-10 22:18 +0530"
   ends: "2026-11-10 22:45"
+updated: "2026-11-10 22:19 +0530"
