@@ -8,11 +8,11 @@ needs: none
 est_h: 3.0
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 15:07 +0530"
+updated: "2026-11-10 18:25 +0530"
 depends:
 - task-coverage
 - thought-format
 - wording-bank
-notes: "Haiku window approved by the user: 2026-11-10 16:50-21:30 IST, tokens unlimited within rate limits. Pipeline (agent, worktree): src/beebot/vla/voxel/haiku.py export/generate/verify/testset/pilot; 3 instructions per item on an indirection ladder + first thought + switch lines; ~10% refuse/clarify; round-trip verifier keeps only exact matches; frozen held-out test set. Pilot of 50 read by hand at 16:50 before going wide."
+notes: "Running since 18:27 (scratchpad haiku_run.sh under caffeinate): data/vla/haiku/run-s{0..3}, 10,258 items, seeds 0-3, export options --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0 (demos must use the same to join). motion/subset/switch held in later.jsonl until their fixes (switch as separate turns, line verifier, selector equivalence). Pilot 1: 144/154 kept."
 links:
 - src/beebot/vla/voxel/haiku.py
