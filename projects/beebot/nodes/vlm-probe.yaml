@@ -1,7 +1,7 @@
 title: Does a vision-language base read our renders?
 summary: "Zero-shot Qwen3.5-4B (cached, vision-language) on rendered scenes: cheese colours and places, letters formed by robots, object shapes; against text-only Qwen3-4B given scene_summary text."
 why: "Today's diagnosis is partly perception: the scene enters through a scratch-trained embedding. A VLM brings pretrained perception of colours, letters and shapes, if its prior transfers to our renders."
-status: queued
+status: running
 parent: trk-trainer
 needs: mac-gpu
 est_h: 1.5
@@ -13,4 +13,4 @@ metric:
   direction: up
 created: "2026-11-10 16:00 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 17:11 +0530"
+updated: "2026-11-10 18:32 +0530"
