@@ -1,0 +1,9 @@
+title: End-of-day report, 2026-11-10
+summary: Evidence day results, what was built, decisions made, risks and the path to the 4B run.
+why: The user asked for a report by end of day before committing compute.
+status: done
+kind: report
+parent: grant-push-3d
+notes: "Evidence: one attention head in layer 0 carries the colour word (blocking it: nothing eaten); hidden-state readout on synonyms 0.55/0.66/0.61 at 0.6B/1.7B/4B (size alone fails the +20 bar); restating few-shot 6/12/14 of 18 (size helps through thinking); slot-word fine-tune negative (trained names 0.96->0.84, every other class ~0). Built and merged: cube demos, compact store, wording bank, 3D viewer, stream layout, ten-cube MuJoCo scene, pivot retries (move score 0.72->0.85), free-cube rule study, coverage suite (motion 0.92, subset 0.88, switch 0.92 expert pass), richer world (objects, blocks, zones, reasoning; 0.74-0.83), Haiku pipeline and 16,553 tasks (15,977 verified pairs, 508 test). Pending merge: build by name (0.94). Decisions: 3D only; Qwen3 full weights; 0.6B and 4B (1.7B last); switchable bonds; thought format; RLVR on thoughts after SFT. Risks: no rented GPU (Vultr lists none; stock alert live); trainer not built (agents due 2026-11-11 14:00/16:00); base model (vision probe pending). Earliest 4B start: Thu 2026-11-13 evening if a GPU exists."
+created: "2026-11-10 19:58 +0530"
+by: beebot-f7 3d push
