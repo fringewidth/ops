@@ -1,0 +1,8 @@
+title: Free disk on the Mac
+summary: The user says what may be deleted or moved; 20 GB is free.
+why: Checkpoints and data for the push need room.
+status: todo
+kind: decision
+parent: trk-ops
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
