@@ -1,0 +1,11 @@
+title: Think-then-act model and trainer
+summary: Policy that splices scene patches into a chat context, trains reply text (chunked CE) and action slots, full weights by default, packing, AMP, DDP, resume, JSON-lines logs, held-out loss; greedy think-then-act step with KV cache.
+why: "The critical path to the 4B run: nothing trains thoughts and actions together today."
+status: running
+parent: trk-trainer
+est_h: 8.0
+notes: Agent in a worktree, started 2026-11-10 ~20:05, deadline 2026-11-11 16:00. Codes against ThinkData with a fake source until think-data lands. Reports MPS throughput for 0.6B and a 4B memory estimate.
+depends:
+- stream-layout
+created: "2026-11-10 19:57 +0530"
+by: beebot-f7 3d push
