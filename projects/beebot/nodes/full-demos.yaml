@@ -14,6 +14,10 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Started 2026-11-10 ~20:00 on the Mac CPU (8 processes, niced, one per seed 0-7): data/vla/voxel_full/s{0..7}, 1200 scenes each, --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0 --chunk 24 --compact, the same draw as the Haiku export so labels join by (seed, index) through attempts.jsonl. No --build (the Haiku export had none; build demos go in a separate store later). Expect about 25-30k kept episodes."
-updated: "2026-11-10 19:55 +0530"
+updated: "2026-11-10 19:56 +0530"
 links:
 - logs/full-demos-s0.out
+metric:
+  series: demos_kept{run="voxel_full"}
+  direction: up
+  target: 25000.0
