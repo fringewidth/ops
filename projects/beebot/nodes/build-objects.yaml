@@ -4,9 +4,9 @@ why: Open-vocabulary construction uses the LM's knowledge of objects and is a he
 status: running
 parent: trk-data
 est_h: 6.0
-notes: "Agent resumed 2026-11-10 ~20:05 to finish merging main into its branch (worktree-agent-af19940f5ef65d9ec): build family done (expert 0.94 on 272 episodes; 63 objects; parts programs; functional checks)."
+notes: "Agent finishing the second merge of main into worktree-agent-af19940f5ef65d9ec (first merge committed as dcad17c; one conflict left in suite.py at 20:11). Expected: branch ready about 21:00, then review and merge to main (full tests ~10 min), then a build-family demo store (CPU) and Haiku labels in the next window. Build family done: 63 objects from parts, expert 0.94 on 272 episodes (0.89 held-out objects, 1.00 uses)."
 depends:
 - task-coverage
 created: "2026-11-10 15:55 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 19:57 +0530"
+updated: "2026-11-10 20:12 +0530"
