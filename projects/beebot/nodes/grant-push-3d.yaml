@@ -1,0 +1,8 @@
+title: Two-week 3D push for grants
+summary: Make the 3D policy follow language and drive MuJoCo cubes by 2026-11-24.
+why: The team is out of compute and needs grants to continue. A 3D demo with a physical counterpart is the most convincing thing we can show.
+status: todo
+kind: goal
+parent: generalist-swarm
+created: 2026-11-10 11:54 +0530
+by: beebot-26 ops
