@@ -1,0 +1,9 @@
+title: Vultr shows no GPU machine available to this account
+summary: Every Vultr GPU plan (GH200, L40S, A100, H100) lists 0 locations and no region offers one, as of 2026-11-10 15:40 IST.
+why: The 4B run needs a GH200 (full weights need about 64 GB plus activations); if GPUs are gated on new accounts the user must request access, which can take days.
+status: todo
+kind: decision
+parent: trk-runs
+notes: "Found by listing plans-metal, plans?type=vcg and /regions/*/availability with the API key (read-only). Owed by the user: check the Vultr console or ask support whether GPU access must be requested for this account and whether the credit covers GPU plans; ask for GH200 in any region."
+created: "2026-11-10 15:18 +0530"
+by: beebot-f7 3d push
