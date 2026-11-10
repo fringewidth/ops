@@ -1,11 +1,11 @@
 title: "Gate: base 4B writes the right thought for held-out instructions"
 summary: Few-shot, no training, Qwen3-4B on the Mac writes the first thought for the frozen test set's instructions; score its resolved targets against the true task.
 why: Isolates P(thought right) at the size we will train; the earlier restate probe got 14 of 18 on hand-picked cases.
-status: todo
+status: running
 parent: trk-language
 needs: mac-gpu
 est_h: 1.0
-notes: "Pass: about 0.8 or better on held-out categories and words. Inference only."
+notes: "Started 2026-11-10 ~21:00 on the free Mac GPU (agent, inference only, about 75 min): base Qwen3.5-4B, two scene renders + held-out test instruction, few-shot thought then the task as JSON, scored with haiku.same_task; text arm with the scene summary for comparison. Pass: about 0.8 or better on the image arm."
 depends:
 - haiku-rewrites
 metric:
@@ -13,3 +13,6 @@ metric:
   direction: up
 created: "2026-11-10 15:50 +0530"
 by: beebot-f7 3d push
+links:
+- logs/gate-4b-restates.out
+updated: "2026-11-10 21:01 +0530"
