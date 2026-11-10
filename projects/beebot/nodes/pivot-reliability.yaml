@@ -1,10 +1,11 @@
 title: Pivot reliability of the 5 cm cube
 summary: An agent raises simulated move success on a steel floor without diagonals, lowest harm first.
 why: Harmful failures are what break a ten-cube demo.
-status: running
+status: done
 parent: trk-cubes
 est_h: 3.0
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Risk: pivots fail too often for a ten-cube clip (simulated 0.70-0.97 per move). Also mitigated by failures in training, the closed loop and a scripted-expert fallback."
-updated: "2026-11-10 12:29 +0530"
+updated: "2026-11-10 12:52 +0530"
+result: "Merged 1906143: move score 0.722 to 0.850 and harmful failures 0.107 to 0.036 on fresh seeds, from control only (retries, harm-aware speeds); convex up 0.77-0.91 is the limit; HARDWARE.md round 3"
