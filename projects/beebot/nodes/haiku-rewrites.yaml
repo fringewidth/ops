@@ -15,4 +15,7 @@ depends:
 - wording-bank
 notes: "Window 16:50-21:30 IST. Started late (18:27): export was not prepared before the window and a second pilot ran first (memory prepare-before-quota-windows). Running under caffeinate: run-s0..3 (10,258 tasks, old families + objects) since 18:27, about 120 tasks/min, no errors after the first timeouts; run-s4..7 (12k) exporting, generate starts when each export finishes (scratchpad haiku_run2.sh); motion/subset/switch per shard in run-s*-later since 18:53 (haiku_later.sh). Export options for the demo join: --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0, seeds 0-7, chunk 24. Pilot 1: 144/154 kept. Logs: logs/haiku-run-s*.out, logs/haiku-later-s*.out."
 links:
-- src/beebot/vla/voxel/haiku.py
+- logs/haiku-run-s0.out
+metric:
+  series: items{run="haiku-run-s0"}
+  direction: up
