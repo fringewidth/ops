@@ -16,3 +16,8 @@ resources:
     note: $250 free credits (GH200 at $1.99/h); scarce
 pins:
   - kaggle_gpu_hours_left
+  - rented_credit_usd_left
+  - disk_free_bytes
+  - tool_present
+  - http_up
+  - demo_loss{run="lm-slotwords"}

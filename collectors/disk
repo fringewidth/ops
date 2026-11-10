@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+"""Free and total disk space of the home volume: disk_free_bytes, disk_total_bytes."""
+import os
+from pathlib import Path
+
+stat = os.statvfs(Path.home())
+print(f"disk_free_bytes {stat.f_bavail * stat.f_frsize}")
+print(f"disk_total_bytes {stat.f_blocks * stat.f_frsize}")

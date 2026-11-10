@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""Numbers from the logs of running nodes on this host, so that loss curves keep flowing when the
+session that started `ops tail` is gone.
+
+For every running node claimed on this host, every `links:` entry ending in .out, .log or .jsonl
+is followed: each JSON line's numbers become series labelled run=<file stem> (nested objects are
+flattened with underscores: card.test_logic.score -> card_test_logic_score). A file's read
+position is kept in ~/.cache/ops-runs/, so every line is pushed once. Lines that carry "minutes"
+(the trainers' elapsed time) are given timestamps spaced by it when a backlog is read at once.
+
+Relative links resolve against the project's folder: a line "<project> <path>" in
+~/.config/ops/repos, else ~/<project>.
+"""
+import hashlib
+import json
+import os
+import re
+import socket
+import time
+from pathlib import Path
+
+home = Path(os.environ.get("OPS_HOME", Path.home() / "ops"))
+host = socket.gethostname()
+cache = Path.home() / ".cache" / "ops-runs"
+cache.mkdir(parents=True, exist_ok=True)
+repos = {}
+listing = Path.home() / ".config" / "ops" / "repos"
+if listing.exists():
+    for line in listing.read_text().splitlines():
+        parts = line.split(None, 1)
+        if len(parts) == 2 and not line.startswith("#"):
+            repos[parts[0]] = Path(parts[1].strip()).expanduser()
+
+
+def numbers(record, prefix=""):
+    """(series name, value) for every number in a JSON object, nested ones flattened."""
+    out = []
+    for key, value in record.items():
+        name = re.sub(r"[^a-zA-Z0-9_]", "_", prefix + str(key))
+        if isinstance(value, dict):
+            out += numbers(value, name + "_")
+        elif not isinstance(value, bool) and isinstance(value, (int, float)):
+            out.append((name, value))
+    return out
+
+
+for path in home.glob("projects/*/nodes/*.yaml"):
+    text = path.read_text()
+    if not re.search(r"^status: running$", text, re.M) or f"host: {host}" not in text:
+        continue
+    project = path.parent.parent.name
+    root = repos.get(project, Path.home() / project)
+    for link in re.findall(r"^- (\S+\.(?:out|log|jsonl))$", text, re.M):
+        log = Path(link) if link.startswith("/") else root / link
+        if not log.exists():
+            continue
+        mark = cache / hashlib.sha1(str(log).encode()).hexdigest()
+        start = int(mark.read_text()) if mark.exists() else 0
+        size = log.stat().st_size
+        if size < start:  # the log was replaced
+            start = 0
+        with open(log, "rb") as handle:
+            handle.seek(start)
+            chunk = handle.read(4_000_000)
+        end = chunk.rfind(b"\n") + 1  # only whole lines
+        records = []
+        for line in chunk[:end].decode("utf-8", "replace").splitlines():
+            brace = line.find("{")
+            if brace < 0:
+                continue
+            try:
+                record = json.loads(line[brace:])
+            except json.JSONDecodeError:
+                continue
+            if isinstance(record, dict):
+                records.append(record)
+        now = time.time()
+        clock = [r.get("minutes") for r in records if isinstance(r.get("minutes"), (int, float))]
+        latest = max(clock) if clock else None
+        for record in records:
+            minutes = record.get("minutes")
+            behind = (latest - minutes) * 60 if latest is not None and isinstance(minutes, (int, float)) else 0
+            stamp = int((now - behind) * 1000)
+            for name, value in numbers(record):
+                print(f'{name}{{run="{log.stem}",project="{project}",node="{path.stem}"}} {value} {stamp}')
+        mark.write_text(str(start + end))

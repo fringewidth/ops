@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+"""Whether the command-line tools the projects rely on are still installed: tool_present{tool} 1 or 0.
+
+The list is OPS_TOOLS (space separated), else uv, git, brew, cloudflared, node. On 2026-11-10 uv, brew
+and cloudflared vanished from the Mac mid-run; this makes that visible within a minute.
+"""
+import os
+import shutil
+
+path = os.pathsep.join([os.environ.get("PATH", ""), str(os.path.expanduser("~/.local/bin")), "/opt/homebrew/bin", "/usr/local/bin"])
+for tool in (os.environ.get("OPS_TOOLS") or "uv git brew cloudflared node").split():
+    print(f'tool_present{{tool="{tool}"}} {1 if shutil.which(tool, path=path) else 0}')
