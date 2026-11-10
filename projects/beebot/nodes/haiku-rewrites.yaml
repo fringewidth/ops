@@ -8,12 +8,12 @@ needs: none
 est_h: 3.0
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 19:32 +0530"
+updated: "2026-11-10 19:39 +0530"
 depends:
 - task-coverage
 - thought-format
 - wording-bank
-notes: "User 19:30: stop Haiku at about 70% of the usage limit (62% at 19:30) to keep usage for other work. Generation stopped 19:30 at about 15k of 23.4k exported tasks (s0 complete; s1-s7 partial, resumable); shards s8-s15 cancelled. Now verifying what was generated (scratchpad haiku_verify_all.sh: run-s0, then the rest one directory at a time, 8 workers). Kill with: pkill -f haiku_verify_all; pkill -f 'voxel.haiku verify'. Export options for the demo join: --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0, seeds 0-7, chunk 24."
+notes: "User 19:30: stop Haiku at 70% of the session limit. A watcher (scratchpad usage_watch.sh, log logs/usage-watch.out) reads 'claude -p /usage' every 3 minutes and kills the verify run and any Haiku calls at 70%, with an ntfy notice; ops collector claude_usage shows claude_limit_percent{kind=session} on the dashboard. Generation stopped 19:30 at about 15k of 23.4k exported tasks (s0 complete; s1-s7 partial, resumable); s8-s15 cancelled. Verifying what was generated (scratchpad haiku_verify_all.sh). Export options for the demo join: --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0, seeds 0-7, chunk 24."
 links:
 - logs/haiku-run-s0.out
 metric:
