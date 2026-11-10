@@ -8,9 +8,11 @@ needs: none
 est_h: 3.0
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 14:42 +0530"
+updated: "2026-11-10 15:07 +0530"
 depends:
 - task-coverage
 - thought-format
 - wording-bank
 notes: "Haiku window approved by the user: 2026-11-10 16:50-21:30 IST, tokens unlimited within rate limits. Pipeline (agent, worktree): src/beebot/vla/voxel/haiku.py export/generate/verify/testset/pilot; 3 instructions per item on an indirection ladder + first thought + switch lines; ~10% refuse/clarify; round-trip verifier keeps only exact matches; frozen held-out test set. Pilot of 50 read by hand at 16:50 before going wide."
+links:
+- src/beebot/vla/voxel/haiku.py
