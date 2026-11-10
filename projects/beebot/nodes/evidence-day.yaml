@@ -19,4 +19,9 @@ claim:
   cmd: evidence_chain2.sh (slot-eval before, lm-slotwords 210 min, slot-eval after)
   started: "2026-11-10 12:28 +0530"
   ends: "2026-11-10 17:30"
-updated: "2026-11-10 11:54 +0530"
+updated: "2026-11-10 12:28 +0530"
+metric:
+  series: demo_loss{run="lm-slotwords"}
+  direction: down
+notes:
+  Done so far: "attention blocking (one layer-0 head is the only route for the colour word), size probe (0.55/0.66/0.61 for 0.6B/1.7B/4B read directly), restating probe (6/12/14 of 18 when the model writes), no-diagonals probe (no loss at 72 steps), baseline rollouts (trained names 0.96, every other word class 0.00-0.04). Pass for the fine-tune: held-out words at 0.5 or better with nonsense at 0.15 or less."
