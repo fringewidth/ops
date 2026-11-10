@@ -1,0 +1,8 @@
+title: Cubes in MuJoCo
+summary: About ten physically simulated pivoting cubes carrying out the policy's moves.
+why: It turns a grid demo into a robotics result for grant reviewers.
+status: todo
+kind: goal
+parent: grant-push-3d
+created: 2026-11-10 12:00 +0530
+by: beebot-a3 3d push
