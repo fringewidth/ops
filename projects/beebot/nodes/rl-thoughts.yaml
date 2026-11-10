@@ -1,0 +1,16 @@
+title: RLVR on the first thought after SFT
+summary: "GRPO on the thought only: 8 samples per verified instruction with its scene, reward 1 if the thought's resolved targets equal the canonical record, small length penalty, KL to the SFT model, action demos still mixed in."
+why: Imitating Haiku's thoughts can memorise their surface; a verifiable reward makes the model use what it knows, which is the generalisation we are missing. Text-only rewards are cheap, unlike the action-level RL that failed.
+status: todo
+parent: trk-trainer
+needs: rented
+est_h: 4.0
+notes: Pilot for bugs on 0.6B on the Mac first (rl-thoughts-pilot); the effect needs 4B (0.6B restated 6/18 few-shot). Held-out words and categories never appear in RL prompts. Measure on the frozen test set before and after.
+depends:
+- main-4b-run
+- haiku-rewrites
+metric:
+  series: heldout_thought_acc{run="rl-thoughts"}
+  direction: up
+created: "2026-11-10 15:51 +0530"
+by: beebot-f7 3d push
