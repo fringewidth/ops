@@ -1,0 +1,18 @@
+title: Beebot
+description: A text-steered generalist robot swarm, trained by post-training pretrained LMs on simulator demonstrations.
+resources:
+  mac-gpu:
+    capacity: 1
+    busy_series: gpu_util_percent
+    note: M4 Pro, 24 GB; one GPU job at a time; never train an LM on CPU
+  kaggle-fringewidth:
+    capacity: 1
+    hours_series: kaggle_gpu_hours_left{account="fringewidth"}
+  kaggle-rvitmpolicyboot:
+    capacity: 1
+    hours_series: kaggle_gpu_hours_left{account="rvitmpolicyboot"}
+  rented-gpu:
+    capacity: 1
+    note: $250 free credits (GH200 at $1.99/h); scarce
+pins:
+  - kaggle_gpu_hours_left
