@@ -4,8 +4,9 @@ why: "User: the vision must not learn one lighting or render style; sim2real pre
 status: running
 parent: trk-trainer
 est_h: 6.0
-notes: "Agent in a worktree, started 2026-11-10 ~20:55, due 2026-11-11 13:00. Pass: default strength keeps zero-shot Qwen3.5-4B accuracy close to clean on colours, letters and shapes. View choice assumed: oblique + top-down (user has not confirmed)."
+notes: "Agent in a worktree, started 2026-11-10 ~20:55, due 2026-11-11 13:00. Pass: default strength keeps zero-shot Qwen3.5-4B accuracy close to clean on colours, letters and shapes. Views assumed: oblique + top-down (camera-frame decision pending). Add: arena corner markers and grid lines for pixel-to-voxel registration. For Kaggle: prerender several randomized views per step (4 CPU cores cannot render live)."
 depends:
 - base-model-choice
 created: "2026-11-10 20:25 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-10 20:28 +0530"
