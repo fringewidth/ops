@@ -1,11 +1,13 @@
 title: Think-then-act rollout loop
 summary: Roll out the policy so that it thinks at the start and whenever it chooses to, keeping instruction, thoughts and current scene in context.
 why: Thinking a few times per command keeps it fast enough to feel live.
-status: todo
+status: running
 parent: trk-trainer
 needs: mac-gpu
 est_h: 3.0
 depends:
 - stream-trainer
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+notes: Built with scorecard-3d by the same agent (rollout.py), due 2026-11-11 15:00.
+updated: "2026-11-10 21:04 +0530"
