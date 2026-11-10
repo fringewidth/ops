@@ -1,0 +1,8 @@
+title: Make demos.write draw exactly what demos.draws draws
+summary: Find what the expert run changes that later object draws read, make draws independent of play, and add a test that write's attempts equal draws' tasks.
+why: Every future store must join to its labels exactly.
+status: todo
+parent: trk-data
+mitigates: draw-divergence
+created: "2026-11-10 21:20 +0530"
+by: beebot-f7 3d push
