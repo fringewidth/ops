@@ -1,0 +1,8 @@
+title: Sequence layout and loss
+summary: "One causal sequence: images and instruction in the user turn, then <think> thoughts </think>, then <tool_call> and the action slots; reply cross-entropy in 512-position chunks plus action cross-entropy; no packing."
+why: No packing because Qwen3.5's linear attention carries state along the row. Chosen by Claude in think.py, following the user's plain-causal-layout call.
+status: todo
+kind: decision
+parent: trk-trainer
+created: "2026-11-10 21:51 +0530"
+by: beebot-f7 3d push
