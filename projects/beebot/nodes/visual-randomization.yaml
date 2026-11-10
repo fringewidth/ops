@@ -1,7 +1,7 @@
 title: Rendered views with domain randomization
 summary: "views.py: oblique perspective and top-down renders at 256 px with randomized camera, lighting, textures, name-preserving colour jitter, distractors, image corruptions and render style; optional state noise; clean mode; a check of zero-shot readability per strength."
 why: "User: the vision must not learn one lighting or render style; sim2real precautions from robotics belong here."
-status: running
+status: done
 parent: trk-trainer
 est_h: 6.0
 notes: "Core merged to main 2026-11-10 ~21:40 (be8da9f via b73221e; tests running before push): scene_views(obs, rng, ViewSpec(), look=None) -> 2 PIL images at 256 + pose (azimuth world frame, within 30 deg of a side, 15+ from diagonals), sample_look for a fixed camera per episode, ViewSpec.clean(). Contact sheets runs/views/. Open: distractors must not look like nameable objects (sent back), speed (4-6 randomized pairs/s per thread under load; target 50), zero-shot check per strength after the gate."
@@ -9,7 +9,8 @@ depends:
 - base-model-choice
 created: "2026-11-10 20:25 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 21:47 +0530"
+updated: "2026-11-10 22:29 +0530"
 metric:
   series: views_probe_acc
   direction: up
+result: "Merged to main: views.py renderer with randomization, unnameable distractors, 12-25 pairs/s per thread, DEFAULT_STRENGTH 0.75 from views-readability. runs/views/"
