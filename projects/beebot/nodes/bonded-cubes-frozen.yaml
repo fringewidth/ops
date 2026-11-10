@@ -1,0 +1,10 @@
+title: Bonded cubes cannot move
+summary: In the ten-cube scene a cube with any second face bond never moved (0 of 121), at any flywheel speed.
+why: Permanent magnets hold it in shear. The voxel world lets any robot move, so a policy trained there asks for moves real cubes cannot make.
+status: failed
+kind: failure
+parent: trk-cubes
+links:
+- runs/cube_swarm/mixed.jsonl
+created: "2026-11-10 12:31 +0530"
+by: beebot-f7 3d push
