@@ -1,0 +1,8 @@
+title: Disk filled during the bug-catch run
+summary: At 04:32 the 6 GB resume.pt plus 1 GB hourly checkpoints (runs/bugcatch-08b, 11 GB) and 10 GB of swap left 4 GB free; the log write failed and the trainer hung in exit at step 767.
+why: About 45 minutes of GPU lost; the run resumed at 05:25 from the intact resume.pt with resume saves off, after clearing the Go build and pip caches (8.8 GB, regenerable).
+status: failed
+kind: failure
+parent: trk-runs
+created: "2026-11-11 05:21 +0530"
+by: beebot-f7 3d push
