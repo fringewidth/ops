@@ -6,10 +6,13 @@ Kaggle has no quota API; push hours left by hand: ops push 'kaggle_gpu_hours_lef
 """
 import os
 import re
+import shutil
 import subprocess
 import time
 from pathlib import Path
 
+if not shutil.which("uvx") or not shutil.which("uv"):
+    raise SystemExit(0)  # the kaggle CLI runs through uvx
 home = Path(os.environ.get("OPS_HOME", Path.home() / "ops"))
 stamp = Path.home() / ".cache" / "ops-kaggle-stamp"
 if stamp.exists() and time.time() - stamp.stat().st_mtime < 290:

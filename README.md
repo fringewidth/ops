@@ -1,6 +1,6 @@
 # ops
 
-The shared state for the user's projects: the plan (a tree of goals and tasks with dependencies), who is running what on which machine, messages between agent sessions, and every number worth watching. The user reads it at https://fringewidth.github.io/ops, often from a phone. You change the plan only with `ops`.
+The shared state for the user's projects: the plan (a tree of goals and tasks with dependencies), who is running what on which machine, messages between agent sessions, and every number worth watching. The user reads it at https://hrishik.me/ops, often from a phone. You change the plan only with `ops`.
 
 1. Plan and claims: YAML files in this repo, `projects/<project>/nodes/<id>.yaml`. `ops` pulls, edits, validates, commits and pushes under a lock. Never edit them by hand. Never write `state.json`; CI builds it.
 1. Numbers: a Cloudflare Worker with D1 at https://ops.fringewidth.workers.dev. Anything holding the token can push to it from anywhere. Anyone can read it.
@@ -10,7 +10,7 @@ The shared state for the user's projects: the plan (a tree of goals and tasks wi
 
 ```sh
 git clone https://github.com/fringewidth/ops ~/ops     # already done on the user's Mac
-ln -sf ~/ops/ops.py ~/.local/bin/ops                   # needs uv
+ln -sf ~/ops/ops.py ~/.local/bin/ops                   # plain python3 >= 3.10, standard library only
 printf 'OPS_TOKEN=<ask the user>\nOPS_WORKER=https://ops.fringewidth.workers.dev\n' > ~/.config/ops/env
 ```
 
@@ -73,13 +73,12 @@ Line format: `name{label="value",...} value [unix_ms]`. Each distinct name plus 
 
 1. Push from a script with `ops push`, `ops tail`, or plain HTTP: `curl -X POST $OPS_WORKER/push -H "Authorization: Bearer $OPS_TOKEN" --data-binary @lines.txt`. A Kaggle kernel or a VPS pushes the same way. Send `User-Agent` other than Python's default, which Cloudflare blocks.
 1. Pull: the Worker scrapes any public URL serving Prometheus text format every minute. Register one with `curl -X POST $OPS_WORKER/targets -H "Authorization: Bearer $OPS_TOKEN" -d '{"url":"https://host/metrics","labels":{"box":"vps1"}}'`.
-1. Collectors: `ops agent` (launchd job `ops.agent` on the Mac, log at `~/Library/Logs/ops-agent.log`) runs every executable in `collectors/` (all machines) and `~/.config/ops/collectors/` (this machine only) once a minute. It pushes what they print and adds `host=<hostname>`. To add a provider, write an executable that prints lines. Test it with `ops agent --once`.
+1. Collectors: `ops agent` runs every executable in `collectors/` (all machines) and `~/.config/ops/collectors/` (this machine only) once a minute. It pushes what they print and adds `host=<hostname>`. To add a provider, write an executable that prints lines. Test it with `ops agent --once`. On the user's Mac, run the agent as a plain process (`nohup ops agent > ~/Library/Logs/ops-agent.log 2>&1 &`), never as a LaunchAgent: the Mac's endpoint security removed the launchd service on 2026-11-10, along with uv, brew and cloudflared. Collectors must never read credentials (keychain, tokens, cookies).
 1. Read: `GET $OPS_WORKER/series[?q=substr]` returns every series with its last value. `GET $OPS_WORKER/points?id=1,2&since=<unix_ms>&max=<n>` returns the points, averaged into at most n buckets.
 
 Existing collectors:
 
 1. `mac`: `gpu_util_percent`, `gpu_mem_bytes`, `cpu_load1`, `mem_used_bytes`.
-1. `claude`: `claude_limit_percent{account,kind}` and `claude_limit_resets_at` for the Claude account logged in on that machine. It uses an undocumented endpoint.
 1. `claims`: `ops_claim_alive{project,node}`.
 1. `kaggle`: `kaggle_kernel_status{slug}` for running nodes. Kaggle has no quota API, so update `kaggle_gpu_hours_left{account}` by hand with `ops push` after reading it on the site.
 1. `disk`: `disk_free_bytes`, `disk_total_bytes` of the home volume.

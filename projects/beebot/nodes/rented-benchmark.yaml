@@ -11,6 +11,5 @@ depends:
 - credit-terms
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes:
-  Risks: "the ARM machine may not run our stack (fallback: the L40S plan); the trainer was built for T4s and may use a fast GPU poorly, so the budget is recomputed from measured steps per dollar."
+notes: "Risks: the ARM machine may not run our stack (fallback: the L40S plan); the trainer was built for T4s and may use a fast GPU poorly, so the budget is recomputed from measured steps per dollar."
 updated: "2026-11-10 12:28 +0530"

@@ -1,10 +1,9 @@
 # Public settings for the site and the CLI. Secrets live in ~/.config/ops/env (OPS_TOKEN).
 repo: fringewidth/ops
 worker: https://ops.fringewidth.workers.dev
-# Series shown as cards on every project's Now tab (selectors: name{label="value"}).
+# Cards on every project's Now tab. series is a selector name{label="value"}; of: a series to show it against
+# (used / total); max: the full scale for the bar; label: the card's name.
 pins:
-  - gpu_util_percent
-  - mem_used_bytes
-  - claude_limit_percent{kind="session"}
-  - claude_limit_percent{kind="weekly_all"}
-  - kaggle_gpu_hours_left
+  - {series: gpu_util_percent, label: Mac GPU, max: 100}
+  - {series: mem_used_bytes, of: mem_total_bytes, label: Mac memory}
+  - {series: kaggle_gpu_hours_left, label: Kaggle hours left, max: 30}

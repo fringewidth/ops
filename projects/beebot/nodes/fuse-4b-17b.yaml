@@ -11,6 +11,5 @@ depends:
 - upload-demos
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes:
-  Gate: "measured cost per step fits the budget; 4B or 1.7B chosen on equal-step loss and thought accuracy. Risk: today's probes put the 1.7B close to the 4B."
+notes: "Gate: measured cost per step fits the budget; 4B or 1.7B chosen on equal-step loss and thought accuracy. Risk: today's probes put the 1.7B close to the 4B."
 updated: "2026-11-10 12:28 +0530"

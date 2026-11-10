@@ -1,12 +1,9 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["pyyaml>=6"]
-# ///
+#!/usr/bin/env python3
 """ops: tasks and claims as YAML in git, numbers pushed to a Worker.
 
 Every write pulls, edits, validates, commits and pushes under a file lock, so
 several sessions on one machine and machines elsewhere can write at once.
+Standard library only: runs with any python3 >= 3.10, no install.
 See README.md for the schema.
 """
 
@@ -26,7 +23,247 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-import yaml
+
+
+# ---------- a small YAML subset (block maps and lists, flow lists and maps, quoted and block scalars) ----------
+
+class YAMLError(ValueError):
+    pass
+
+
+_PLAIN_SAFE = re.compile(r"^[A-Za-z0-9_./(~$][^\n]*$")
+_NUMBER = re.compile(r"^[-+]?(\d[\d_]*)?(\.\d+)?([eE][-+]?\d+)?$")
+
+
+def _scalar(text):
+    text = text.strip()
+    if not text:
+        return None
+    if text[0] == '"':
+        end = _quoted_end(text, 0)
+        return json.loads(text[: end + 1])
+    if text[0] == "'":
+        end = _quoted_end(text, 0)
+        return text[1:end].replace("''", "'")
+    if text[0] == "[":
+        return [_scalar(part) for part in _split_flow(text[1:_matching(text, 0)])]
+    if text[0] == "{":
+        out = {}
+        for part in _split_flow(text[1:_matching(text, 0)]):
+            key, _, value = part.partition(":")
+            out[_scalar(key)] = _scalar(value)
+        return out
+    cut = re.search(r"\s#", text)
+    if cut:
+        text = text[: cut.start()].rstrip()
+    if text in ("null", "Null", "NULL", "~"):
+        return None
+    if text in ("true", "True", "TRUE"):
+        return True
+    if text in ("false", "False", "FALSE"):
+        return False
+    if _NUMBER.match(text) and any(c.isdigit() for c in text):
+        try:
+            return int(text.replace("_", ""))
+        except ValueError:
+            return float(text.replace("_", ""))
+    return text
+
+
+def _quoted_end(text, start):
+    quote, i = text[start], start + 1
+    while i < len(text):
+        if quote == '"' and text[i] == "\\":
+            i += 2
+            continue
+        if text[i] == quote:
+            if quote == "'" and i + 1 < len(text) and text[i + 1] == "'":
+                i += 2
+                continue
+            return i
+        i += 1
+    raise YAMLError(f"unterminated string: {text}")
+
+
+def _matching(text, start):
+    depth, i = 0, start
+    while i < len(text):
+        c = text[i]
+        if c in "\"'":
+            i = _quoted_end(text, i)
+        elif c in "[{":
+            depth += 1
+        elif c in "]}":
+            depth -= 1
+            if depth == 0:
+                return i
+        i += 1
+    raise YAMLError(f"unclosed bracket: {text}")
+
+
+def _split_flow(text):
+    parts, depth, start, i = [], 0, 0, 0
+    while i < len(text):
+        c = text[i]
+        if c in "\"'":
+            i = _quoted_end(text, i)
+        elif c in "[{":
+            depth += 1
+        elif c in "]}":
+            depth -= 1
+        elif c == "," and depth == 0:
+            parts.append(text[start:i])
+            start = i + 1
+        i += 1
+    parts.append(text[start:])
+    return [p.strip() for p in parts if p.strip()]
+
+
+def _key_split(content):
+    """'key: rest' -> (key, rest), or None if the line is not a mapping entry."""
+    if content[0] in "\"'":
+        end = _quoted_end(content, 0)
+        if content[end + 1 : end + 2] == ":":
+            return _scalar(content[: end + 1]), content[end + 2 :].strip()
+        return None
+    match = re.match(r"^([^\s:#][^:#]*?)\s*:(?:\s+(.*)|$)", content)
+    return (match.group(1), (match.group(2) or "").strip()) if match else None
+
+
+def yaml_load(text):
+    lines = []
+    for raw in text.splitlines():
+        stripped = raw.strip()
+        if raw.startswith("---") or raw.startswith("..."):
+            continue
+        lines.append((len(raw) - len(raw.lstrip(" ")), stripped, raw))
+    value, _ = _block(lines, _next(lines, 0), None)
+    return value
+
+
+def _next(lines, i):
+    while i < len(lines) and (not lines[i][1] or lines[i][1].startswith("#")):
+        i += 1
+    return i
+
+
+def _block(lines, i, parent_indent):
+    if i >= len(lines):
+        return None, i
+    indent = lines[i][0]
+    if parent_indent is not None and indent < parent_indent:
+        return None, i
+    if lines[i][1].startswith("- ") or lines[i][1] == "-":
+        return _sequence(lines, i, indent)
+    return _mapping(lines, i, indent)
+
+
+def _value_after(lines, i, indent, rest, allow_same_indent_seq):
+    """Value for a key or item whose inline text is rest; i points at the next line."""
+    if rest in ("|", "|-", "|+", ">", ">-", ">+"):
+        body, j = [], i
+        while j < len(lines) and (not lines[j][1] or lines[j][0] > indent):
+            body.append(lines[j][2])
+            j += 1
+        while body and not body[-1].strip():
+            body.pop()
+        cut = min((len(b) - len(b.lstrip(" ")) for b in body if b.strip()), default=0)
+        body = [b[cut:] for b in body]
+        text = "\n".join(body) if rest[0] == "|" else " ".join(b.strip() for b in body)
+        return (text if rest.endswith("-") else text + "\n"), j
+    j = _next(lines, i)
+    if rest:
+        value = _scalar(rest)
+        # plain scalar continued on more-indented lines
+        while isinstance(value, str) and rest[0] not in "\"'[{" and j < len(lines) and lines[j][0] > indent and _key_split(lines[j][1]) is None and not lines[j][1].startswith("- "):
+            value += " " + lines[j][1]
+            j = _next(lines, j + 1)
+        return value, j
+    if j < len(lines) and lines[j][0] > indent:
+        return _block(lines, j, indent + 1)
+    if allow_same_indent_seq and j < len(lines) and lines[j][0] == indent and lines[j][1].startswith("-"):
+        return _sequence(lines, j, indent)
+    return None, j
+
+
+def _mapping(lines, i, indent):
+    out = {}
+    while i < len(lines) and lines[i][0] == indent and not lines[i][1].startswith("- "):
+        split = _key_split(lines[i][1])
+        if split is None:
+            raise YAMLError(f"cannot parse line: {lines[i][2]}")
+        key, rest = split
+        out[key], i = _value_after(lines, i + 1, indent, rest, True)
+        i = _next(lines, i)
+    return out, i
+
+
+def _sequence(lines, i, indent):
+    out = []
+    while i < len(lines) and lines[i][0] == indent and (lines[i][1].startswith("- ") or lines[i][1] == "-"):
+        rest = lines[i][1][1:].strip()
+        if rest and rest[0] not in "\"'[{" and _key_split(rest):
+            # a mapping that starts on the dash line: re-read it as a block at the item's indent
+            item_indent = indent + 2
+            virtual = [(item_indent, rest, " " * item_indent + rest)]
+            j = i + 1
+            while j < len(lines) and (not lines[j][1] or lines[j][0] >= item_indent):
+                virtual.append(lines[j])
+                j += 1
+            value, _ = _mapping(virtual, 0, item_indent)
+            out.append(value)
+            i = _next(lines, j)
+            continue
+        value, i = _value_after(lines, i + 1, indent, rest, False)
+        out.append(value)
+        i = _next(lines, i)
+    return out, i
+
+
+def _emit_scalar(value):
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, (int, float)):
+        return repr(value)
+    text = str(value)
+    plain = (
+        _PLAIN_SAFE.match(text)
+        and text == text.strip()
+        and ": " not in text
+        and " #" not in text
+        and not text.endswith(":")
+        and not isinstance(_scalar(text), (bool, int, float, type(None)))
+        and not re.match(r"^(yes|no|on|off|y|n)$", text, re.I)  # booleans to YAML 1.1 readers
+        and not re.match(r"^\d{4}-\d\d-\d\d", text)  # timestamps to other readers
+    )
+    return text if plain else json.dumps(text, ensure_ascii=False)
+
+
+def yaml_dump(value, indent=0):
+    pad = " " * indent
+    if isinstance(value, dict):
+        out = []
+        for key, item in value.items():
+            if isinstance(item, dict) and item:
+                out.append(f"{pad}{_emit_scalar(key)}:\n{yaml_dump(item, indent + 2)}")
+            elif isinstance(item, list) and item:
+                out.append(f"{pad}{_emit_scalar(key)}:\n{yaml_dump(item, indent)}")
+            else:
+                empty = "{}" if isinstance(item, dict) else "[]" if isinstance(item, list) else _emit_scalar(item)
+                out.append(f"{pad}{_emit_scalar(key)}: {empty}\n")
+        return "".join(out)
+    if isinstance(value, list):
+        out = []
+        for item in value:
+            if isinstance(item, (dict, list)) and item:
+                out.append(f"{pad}- {json.dumps(item, ensure_ascii=False)}\n")
+            else:
+                out.append(f"{pad}- {_emit_scalar(item)}\n")
+        return "".join(out)
+    return f"{pad}{_emit_scalar(value)}\n"
+
 
 HOME = Path(os.environ.get("OPS_HOME", Path(__file__).resolve().parent))
 PROJECTS = HOME / "projects"
@@ -53,7 +290,7 @@ def env():
 
 def repo_config():
     path = HOME / "config.yaml"
-    return yaml.safe_load(path.read_text()) or {} if path.exists() else {}
+    return (yaml_load(path.read_text()) or {}) if path.exists() else {}
 
 
 def git(*args, check=True):
@@ -105,7 +342,7 @@ def project_dir(project):
 def load_nodes(project):
     nodes = {}
     for path in sorted((project_dir(project) / "nodes").glob("*.yaml")):
-        node = yaml.safe_load(path.read_text()) or {}
+        node = yaml_load(path.read_text()) or {}
         node["id"] = path.stem
         nodes[node["id"]] = node
     return nodes
@@ -114,7 +351,7 @@ def load_nodes(project):
 def load_messages(project):
     messages = []
     for path in sorted((project_dir(project) / "messages").glob("*.yaml")):
-        message = yaml.safe_load(path.read_text()) or {}
+        message = yaml_load(path.read_text()) or {}
         message["id"] = path.stem
         messages.append(message)
     return messages
@@ -124,7 +361,7 @@ def write_node(project, node):
     body = {key: value for key, value in node.items() if key != "id" and value not in (None, [], {}, "")}
     path = project_dir(project) / "nodes" / f"{node['id']}.yaml"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(yaml.safe_dump(body, sort_keys=False, allow_unicode=True, width=1000))
+    path.write_text(yaml_dump(body))
 
 
 def sentences(text):
@@ -201,12 +438,17 @@ def alive(claim):
 # ---------- commands ----------
 
 def parse_value(text):
+    """key=value on the command line: lists, maps, numbers, booleans and null are parsed; anything else stays text."""
     if text == "":
         return None
-    try:
-        return yaml.safe_load(text)
-    except yaml.YAMLError:
-        return text
+    stripped = text.strip()
+    if stripped[:1] in "[{" or stripped[:1] in "\"'":
+        try:
+            return _scalar(stripped)
+        except (YAMLError, ValueError):
+            return text
+    value = _scalar(stripped)
+    return value if isinstance(value, (bool, int, float, type(None))) else text
 
 
 def set_path(node, dotted, value):
@@ -326,7 +568,7 @@ def cmd_msg(args):
             return
         message_id = dt.datetime.now().strftime("%Y%m%d-%H%M%S-") + secrets.token_hex(2)
         body = {"at": now(), "from": args.who, "to": args.to, "text": " ".join(args.text)}
-        (folder / f"{message_id}.yaml").write_text(yaml.safe_dump({k: v for k, v in body.items() if v}, sort_keys=False, allow_unicode=True, width=1000))
+        (folder / f"{message_id}.yaml").write_text(yaml_dump({k: v for k, v in body.items() if v}))
         commit_and_push(f"{args.project}: message from {args.who}")
         print(message_id)
 
@@ -361,7 +603,7 @@ def cmd_show(args):
     if args.id:
         if args.id not in nodes:
             sys.exit(f"ops: no node {args.id}")
-        print(yaml.safe_dump(nodes[args.id], sort_keys=False, allow_unicode=True, width=1000))
+        print(yaml_dump(nodes[args.id]).rstrip())
         children = [n["id"] for n in nodes.values() if n.get("parent") == args.id]
         if children:
             print("children:", ", ".join(children))
@@ -482,7 +724,7 @@ def cmd_build(args):
     for folder in sorted(PROJECTS.iterdir()) if PROJECTS.exists() else []:
         if not folder.is_dir():
             continue
-        meta = yaml.safe_load((folder / "project.yaml").read_text()) if (folder / "project.yaml").exists() else {}
+        meta = yaml_load((folder / "project.yaml").read_text()) if (folder / "project.yaml").exists() else {}
         log = git("log", "-40", "--format=%aI%x09%s", "--", f"projects/{folder.name}", check=False).stdout.splitlines()
         state["projects"][folder.name] = {
             "meta": meta or {},
