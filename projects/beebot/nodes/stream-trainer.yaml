@@ -7,5 +7,7 @@ est_h: 6.0
 depends:
 - stream-layout
 - thought-labels
-created: 2026-11-10 12:01 +0530
+- base-model-choice
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+updated: "2026-11-10 16:00 +0530"
