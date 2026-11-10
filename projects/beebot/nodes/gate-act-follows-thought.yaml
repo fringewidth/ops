@@ -1,0 +1,16 @@
+title: "Gate: actions follow given thoughts on held-out instructions (0.6B)"
+summary: With the 0.6B thinking policy, feed ground-truth thoughts for held-out-test instructions and measure task success against the same tasks given in plain words.
+why: Success = P(thought right) x P(action follows thought); this isolates the second factor, which the 0.6B can show. If it fails, more compute at 4B does not help.
+status: todo
+parent: trk-trainer
+needs: mac-gpu
+est_h: 1.5
+notes: "Pass: success with given thoughts on held-out instructions >= 0.9 x success on the plain canonical instruction."
+depends:
+- bugcatch-06b
+- haiku-rewrites
+metric:
+  series: gate_follow_ratio
+  direction: up
+created: "2026-11-10 15:50 +0530"
+by: beebot-f7 3d push
