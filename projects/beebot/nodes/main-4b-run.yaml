@@ -1,4 +1,4 @@
-title: Qwen3-4B main run
+title: Qwen3.5-4B main run
 summary: Train the 4B policy with the plain causal layout on rented compute.
 why: The grant demo needs the strongest model we can afford. One big run is planned, with one rerun in reserve.
 status: todo
