@@ -1,0 +1,13 @@
+title: 'Fuse: short 4B and 1.7B runs'
+summary: Run both sizes for a few hours on the real data and compare loss and thought accuracy at equal steps.
+why: It decides the model size and catches problems before the main run.
+status: todo
+kind: run
+parent: trk-runs
+needs: rented-gpu
+est_h: 5.0
+depends:
+- rented-benchmark
+- upload-demos
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
