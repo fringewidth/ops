@@ -13,3 +13,5 @@ created: "2026-11-10 23:26 +0530"
 by: beebot-f7 3d push
 notes: "User 2026-11-10 ~23:40: use the unclaimed TPU hours this week, 20 on fringewidth and 20 on rvitmpolicyboot; an agent may do the port. Probe budget: at most ~1.5 TPU hours before reporting back. Kaggle trains and saves only; the Mac scores."
 updated: "2026-11-10 23:27 +0530"
+links:
+- logs/tpu-probe.out
