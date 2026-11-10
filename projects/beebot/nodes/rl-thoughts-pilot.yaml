@@ -1,0 +1,14 @@
+title: RLVR pilot on 0.6B (Mac)
+summary: The rl-thoughts recipe on the 0.6B bug-catch checkpoint for about an hour, to find bugs and check reward rises.
+why: Catches recipe bugs before rented hours; it cannot show the full effect at 0.6B.
+status: todo
+parent: trk-trainer
+needs: mac-gpu
+est_h: 1.5
+depends:
+- bugcatch-06b
+metric:
+  series: thought_reward{run="rl-pilot"}
+  direction: up
+created: "2026-11-10 15:51 +0530"
+by: beebot-f7 3d push
