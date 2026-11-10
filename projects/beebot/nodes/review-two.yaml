@@ -6,5 +6,7 @@ parent: grant-push-3d
 est_h: 1.0
 depends:
 - evidence-day
-created: 2026-11-10 12:02 +0530
+created: "2026-11-10 12:02 +0530"
 by: beebot-a3 3d push
+notes: "Also the gate for the whole plan: the user wants the adversary's verdict on the think-then-act design, with the day's evidence, before committing."
+updated: "2026-11-10 13:01 +0530"
