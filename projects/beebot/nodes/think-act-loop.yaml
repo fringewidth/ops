@@ -1,7 +1,7 @@
 title: Think-then-act rollout loop
 summary: Roll out the policy so that it thinks at the start and whenever it chooses to, keeping instruction, thoughts and current scene in context.
 why: Thinking a few times per command keeps it fast enough to feel live.
-status: running
+status: done
 parent: trk-trainer
 needs: cpu
 est_h: 3.0
@@ -10,9 +10,10 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "rollout.py merged with stand-ins: build_context, canonical_thought and stand_in_views to be swapped for think_data.context, template_thought and views.scene_views (--views scene exists). User frame always equals world frame in rollouts until wired."
-updated: "2026-11-10 22:18 +0530"
+updated: "2026-11-10 22:24 +0530"
 metric:
   series: rollout_success{arm="oracle_thought"}
   direction: up
 links:
 - logs/think_act_loop.jsonl
+result: Merged to main (rollout.py on think_data.context, template_thought, views.scene_views, user frame per episode; 68 tests incl. rollout context == ThinkData context). Expert/still card only so far; no model scored yet. logs/think_act_loop.jsonl
