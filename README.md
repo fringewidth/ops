@@ -82,6 +82,10 @@ Existing collectors:
 1. `claude`: `claude_limit_percent{account,kind}` and `claude_limit_resets_at` for the Claude account logged in on that machine. It uses an undocumented endpoint.
 1. `claims`: `ops_claim_alive{project,node}`.
 1. `kaggle`: `kaggle_kernel_status{slug}` for running nodes. Kaggle has no quota API, so update `kaggle_gpu_hours_left{account}` by hand with `ops push` after reading it on the site.
+1. `disk`: `disk_free_bytes`, `disk_total_bytes` of the home volume.
+1. `tools`: `tool_present{tool}` for the command-line tools the projects rely on (`OPS_TOOLS`, else uv, git, brew, cloudflared, node).
+1. `http`: `http_up{project,node,url}` and `http_seconds` for every http link of a running node.
+1. `runs`: every number in the JSON lines of a running node's log links (`.out`, `.log`, `.jsonl`), labelled `run=<file stem>`, nested objects flattened with underscores. It keeps its read position in `~/.cache/ops-runs/`, so no `ops tail` process is needed on the host that holds the claim. Relative links resolve against `~/<project>`, or a line `<project> <path>` in `~/.config/ops/repos`.
 
 ## New project
 
