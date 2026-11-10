@@ -1,0 +1,11 @@
+title: Closed loop between grid and physics
+summary: Map each voxel action to one pivot and re-plan from the read-back state, first with the scripted expert.
+why: Pivots fail sometimes, so open-loop replay falls apart.
+status: todo
+parent: trk-cubes
+est_h: 6.0
+depends:
+- cube-swarm-scene
+- cube-demos
+created: 2026-11-10 12:01 +0530
+by: beebot-a3 3d push
