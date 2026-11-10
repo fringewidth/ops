@@ -1,0 +1,10 @@
+title: Open-vocabulary instruction rewrites
+summary: Paraphrase the 3D instructions and captions with Haiku.
+why: 3D wording is only 2-5 templates per intent today. Generalisation should come from varied data, not from model constraints.
+status: todo
+kind: task
+parent: grant-push-3d
+needs: none
+est_h: 3.0
+created: 2026-11-10 11:54 +0530
+by: beebot-26 ops
