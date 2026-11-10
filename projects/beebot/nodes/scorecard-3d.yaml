@@ -1,0 +1,11 @@
+title: 3D scorecard that can rank
+summary: Score 48 or more episodes per family with a shuffled-instruction control, thought accuracy and held-out words, categories and compositions.
+why: Today's card uses 12 episodes per family, so one episode moves a score by 0.08.
+status: todo
+parent: trk-trainer
+needs: mac-gpu
+est_h: 3.0
+depends:
+- wording-bank
+created: 2026-11-10 12:02 +0530
+by: beebot-a3 3d push
