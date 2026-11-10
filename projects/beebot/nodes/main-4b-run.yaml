@@ -14,7 +14,8 @@ depends:
 - gpu-access
 - gate-act-follows-thought
 - gate-4b-restates
+- base-model-choice
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-10 15:50 +0530"
+updated: "2026-11-10 16:00 +0530"
 notes: "Gate at the first checkpoint: stop if loss or thoughts look wrong after about one hour. No evaluations on the paid GPU; destroy the machine after the run. Size (4B or 1.7B) is decided by the fuse."
