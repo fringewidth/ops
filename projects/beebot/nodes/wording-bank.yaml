@@ -1,8 +1,10 @@
 title: 3D wording bank and held-out sets
 summary: An agent writes 40 or more phrasings per intent, open slot words, categories and token-checked held-out sets.
 why: It makes raw-token lookup insufficient and fixes the test words before training.
-status: running
+status: done
 parent: trk-language
 est_h: 3.0
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+result: "Merged 3fed33d: 42 templates per intent, 282 colour expressions, 20 categories (7 held out), token check clean; src/beebot/vla/voxel/wordings.json"
+updated: "2026-11-10 12:28 +0530"
