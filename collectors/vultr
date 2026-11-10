@@ -2,8 +2,8 @@
 """Vultr account balance and running machines, every 5 minutes.
 
 Needs VULTR_API_KEY (a line in ~/.config/ops/env); without it the collector prints nothing.
-Use the key of a sub-user that can only view billing (and subscriptions, for the machine count),
-never the account owner's key: this collector only ever sends GET requests.
+This collector only ever sends GET requests. The same key can create machines: sessions must not
+create one without the user's explicit approval (see the project's CLAUDE.md).
 
 vultr_credit_usd      credit on the account (the API reports credit as a negative balance)
 vultr_pending_usd     charges accrued this billing period, not yet taken from the credit
