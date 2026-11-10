@@ -3,7 +3,7 @@ summary: Build-only demos (--only build, 144 steps) for seeds 0-1, matching the 
 why: Building by name needs its own episodes; build-only draws keep the Haiku join exact.
 status: running
 parent: trk-data
-notes: "Started 2026-11-10 ~21:15: data/vla/voxel_build/s{0,1}, 1600 scenes each, --cube --rule switch_cube --counts log --compact --build 1.0 --only build --steps 144 --failure 0.10,up_over=0.23. Haiku export: data/vla/haiku/build-s{0,1}, 1500 items each, same options."
+notes: "Started 2026-11-10 ~20:50: data/vla/voxel_build/s{0,1}, 1600 scenes each, --cube --rule switch_cube --counts log --compact --build 1.0 --only build --steps 144 --failure 0.10,up_over=0.23. Haiku export: data/vla/haiku/build-s{0,1}, 1500 items each, same options."
 depends:
 - build-objects
 - failure-rates
@@ -11,3 +11,4 @@ links:
 - logs/build-demos-s0.out
 created: "2026-11-10 20:51 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-10 20:54 +0530"
