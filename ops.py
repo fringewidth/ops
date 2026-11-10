@@ -318,7 +318,7 @@ def pull():
 
 
 def commit_and_push(message):
-    git("add", "-A", "projects")
+    git("add", "-A", "projects", HIDDEN.name)
     staged = git("diff", "--cached", "--quiet", check=False)
     if staged.returncode == 0:
         return
@@ -687,6 +687,58 @@ def cmd_tail(args):
             return
 
 
+# ---------- deleting series ----------
+# The worker deletes a series and its points on DELETE /series?id= (token). A worker deployed before
+# that endpoint answers the request like a GET; then the series are hidden instead: their ids go into
+# hidden-series.json with the last report time, the site leaves them out, and a series that reports
+# again after being hidden shows up again.
+HIDDEN = Path(__file__).resolve().parent / "hidden-series.json"
+
+
+def worker_request(path, method="GET"):
+    values = env()
+    url = values.get("OPS_WORKER") or repo_config().get("worker")
+    headers = {"User-Agent": "ops/1"}
+    if method != "GET":
+        headers["Authorization"] = f"Bearer {values.get('OPS_TOKEN', '')}"
+    request = urllib.request.Request(f"{url.rstrip('/')}{path}", method=method, headers=headers)
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return json.loads(response.read() or b"null")
+
+
+def cmd_rm_series(args):
+    every = worker_request("/series")
+    chosen = {}
+    for target in args.series:
+        if target.isdigit():
+            chosen.update((s["id"], s) for s in every if s["id"] == int(target))
+            continue
+        name, _, rest = target.partition("{")
+        labels = dict(re.findall(r'(\w+)="([^"]*)"', rest))
+        chosen.update((s["id"], s) for s in every if s["name"] == name and all(s["labels"].get(k) == v for k, v in labels.items()))
+    if args.stale_hours is not None:
+        cutoff = time.time() * 1000 - args.stale_hours * 3600000
+        chosen.update((s["id"], s) for s in every if s["last_t"] < cutoff)
+    if not chosen:
+        sys.exit("ops: no series matched")
+    for s in sorted(chosen.values(), key=lambda s: (s["name"], json.dumps(s["labels"]))):
+        print(f'{s["id"]:>5}  {s["name"]}{json.dumps(s["labels"]) if s["labels"] else ""}')
+    if args.dry_run:
+        print(f"{len(chosen)} series would be removed (dry run)")
+        return
+    answer = worker_request(f"/series?id={','.join(map(str, sorted(chosen)))}", method="DELETE")
+    if isinstance(answer, dict) and "deleted" in answer:
+        print(f"deleted {answer['deleted']} series and their points")
+        return
+    with locked():
+        pull()
+        hidden = json.loads(HIDDEN.read_text()) if HIDDEN.exists() else {}
+        hidden.update({str(i): s["last_t"] for i, s in chosen.items()})
+        HIDDEN.write_text(json.dumps(hidden, indent=0, sort_keys=True) + "\n")
+        commit_and_push(f"hide {len(chosen)} series ({args.who or 'ops'})")
+    print(f"hid {len(chosen)} series (the deployed worker has no delete yet; deploy worker/ to delete for real)")
+
+
 def cmd_agent(args):
     """Run every executable collector every interval and push what it prints."""
     folders = [HOME / "collectors", Path.home() / ".config" / "ops" / "collectors"]
@@ -720,7 +772,7 @@ def cmd_agent(args):
 
 def cmd_build(args):
     """Write state.json for the site: every project's nodes, messages and recent log."""
-    state = {"built": now(), "config": repo_config(), "projects": {}}
+    state = {"built": now(), "config": repo_config(), "hidden": json.loads(HIDDEN.read_text()) if HIDDEN.exists() else {}, "projects": {}}
     for folder in sorted(PROJECTS.iterdir()) if PROJECTS.exists() else []:
         if not folder.is_dir():
             continue
@@ -833,6 +885,12 @@ def main():
     command.add_argument("--interval", type=int, default=60)
     command.add_argument("--once", action="store_true")
     command.set_defaults(func=cmd_agent)
+
+    command = sub.add_parser("rm-series", help="delete metric series by id or selector name{k=\"v\"} (hides them until the worker can delete)")
+    command.add_argument("series", nargs="*")
+    command.add_argument("--stale-hours", type=float, help="also every series nothing has reported for this many hours")
+    command.add_argument("--dry-run", action="store_true", help="list what would go and stop")
+    command.set_defaults(func=cmd_rm_series)
 
     command = sub.add_parser("build", help="write state.json for the site")
     command.add_argument("out")

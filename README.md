@@ -53,6 +53,7 @@ ops done <id> --result "<what happened, where the output is>" [--failed | --drop
 ops msg "<text>" [--to <session>]    # ops msg --rm <message-id> once it has been acted on
 ops push 'name{k="v"} 1.23' ...      # push numbers (or pipe lines on stdin)
 ops tail <log> [--label run=x]       # follow a log and push every number in its JSON lines
+ops rm-series <id|name{k="v"}>... [--stale-hours H] [--dry-run]   # delete series (worker DELETE /series); until the worker is redeployed it hides them via hidden-series.json, and a hidden series that reports again comes back
 ops check                            # validate every project
 ```
 

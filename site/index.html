@@ -396,7 +396,8 @@ async function load() {
 async function refreshSeries() {
   if (!worker()) return;
   try {
-    series = await (await fetch(worker() + "/series")).json();
+    const hidden = state?.hidden || {}; // removed with `ops rm-series`; a series that reports again comes back
+    series = (await (await fetch(worker() + "/series")).json()).filter((s) => !(hidden[s.id] != null && s.last_t <= hidden[s.id]));
     seriesById = new Map(series.map((s) => [s.id, s]));
   } catch { series = []; }
 }
