@@ -1,7 +1,7 @@
 title: Small Qwen3.5 for the bug-catch run and the size curve
 summary: Download a small Qwen3.5 (about 0.8B or 2B; sizes to confirm) so the 0.6B-class runs use the same vision-language family as the 4B.
 why: Comparing text-only Qwen3-0.6B with vision Qwen3.5-4B mixes model families.
-status: todo
+status: done
 kind: decision
 parent: trk-trainer
 notes: "Needs the user's yes for a download of a few GB (disk: about 28 GB free)."
@@ -9,3 +9,5 @@ depends:
 - base-model-choice
 created: "2026-11-10 20:28 +0530"
 by: beebot-f7 3d push
+result: "User asked for a Qwen3.5 0.6B; the smallest is Qwen/Qwen3.5-0.8B (Apache-2.0, 1.7 GB), downloaded 2026-11-10 ~21:05 to the HF cache (needed HF_HUB_DISABLE_XET=1). Sizes: 0.8B, 2B, 4B, 9B."
+updated: "2026-11-10 20:50 +0530"
