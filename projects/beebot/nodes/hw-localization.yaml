@@ -1,0 +1,9 @@
+title: How real cubes know their lattice positions
+summary: The action slots assume every cube's position is known; hardware needs neighbour reporting or camera tracking with markers.
+why: This is the main sim2real gap for the hardware story, larger than appearance.
+status: todo
+kind: decision
+parent: trk-cubes
+notes: "Owed by the user: in scope now or after the grant demo."
+created: "2026-11-10 20:28 +0530"
+by: beebot-f7 3d push
