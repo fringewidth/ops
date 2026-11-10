@@ -19,9 +19,9 @@ metric:
 claim:
   session: beebot-f7 3d push
   host: GB-497
-  pid: 2502
+  pid: 3094
   cmd: think_train Qwen3.5-0.8B smoke, 8 min, batch 4x4, scene views
-  started: "2026-11-10 22:31 +0530"
-  ends: "2026-11-10 23:15"
+  started: "2026-11-10 22:34 +0530"
+  ends: "2026-11-10 23:20"
 links:
 - logs/bugcatch-08b-smoke.out
