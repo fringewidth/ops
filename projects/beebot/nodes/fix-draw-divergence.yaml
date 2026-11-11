@@ -1,7 +1,7 @@
 title: Make demos.write draw exactly what demos.draws draws
 summary: Find what the expert run changes that later object draws read, make draws independent of play, and add a test that write's attempts equal draws' tasks.
 why: Every future store must join to its labels exactly.
-status: running
+status: done
 parent: trk-data
 mitigates: draw-divergence
 created: "2026-11-10 21:20 +0530"
@@ -10,5 +10,6 @@ metric:
   series: draw_mismatch_episodes
   direction: down
   target: 0
-updated: "2026-11-11 15:04 +0530"
+updated: "2026-11-11 16:20 +0530"
 notes: 15:05 delegated to subagent 'divergence' (worktree).
+result: "Root cause: objects.draw_ref looped over a set of words (order follows per-process string hashing), so demos.write and the Haiku export (another process) drew different compare references from s0 715, s1 815, s2 783, s7 2744 on. Fixed (sorted) + per-attempt draw hash checked at export and join. Branch worktree-agent-aee6d6266cf3d2c1d (cb065cc, 4816dec), merged into main locally, tests running before push. Old object episodes past the cut stay template-labelled (300+507+525+68)."
