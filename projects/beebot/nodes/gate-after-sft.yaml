@@ -5,11 +5,11 @@ status: todo
 parent: trk-language
 mitigates: gate-4b-restates
 depends:
-- bugcatch-06b
+- frame-into-training
 metric:
   series: think_thought_match{split="testset"}
   direction: up
 created: "2026-11-10 22:18 +0530"
 by: beebot-f7 3d push
 notes: "First reading 2026-11-11 ~09:40, bug-catch step 1200 (Qwen3.5-0.8B, ~19k examples, Mac): Haiku test set first-sub-goal match 0.46 (parse 0.87), per family parallel 0.00, subset 0.00, herd 0.12, blocks 0.12, reasoning 0.25; template test split 0.88 (parse 0.99). Not comparable one to one with the base-4B few-shot 0.62 (that scored the restated task as JSON). runs/bugcatch-08b/card_thoughts/card.md"
-updated: "2026-11-11 09:50 +0530"
+updated: "2026-11-11 14:37 +0530"
