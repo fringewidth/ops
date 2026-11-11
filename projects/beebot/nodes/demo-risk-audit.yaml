@@ -1,0 +1,12 @@
+title: Everything that can break the MuJoCo demo
+summary: Trace the demo end to end (typed instruction, policy, grid actions, MuJoCo cubes, video) and list every way it can fail, with evidence and a mitigation each.
+why: The grant rests on the MuJoCo demo; risks found late cost a training cycle. The user asked for the big picture first.
+status: running
+kind: task
+parent: trk-demo
+notes: "15:05 delegated to subagent 'risk-audit' (read-only). Known so far: grid world idealised vs MuJoCo (harmful failures, edge contacts, simultaneous moves); no cheese or terrain in MuJoCo."
+metric:
+  series: demo_risks_open
+  direction: down
+created: "2026-11-11 15:04 +0530"
+by: beebot-f7 3d push
