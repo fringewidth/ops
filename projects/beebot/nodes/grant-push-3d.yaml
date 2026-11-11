@@ -6,5 +6,5 @@ kind: goal
 parent: generalist-swarm
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-notes: "User 2026-11-11 ~17:30: start no new agents or tasks until tomorrow (usage); running agents finish, GPU/CPU jobs keep running (Mac training chain). Running agents: integrator (merges + tpu-port sync), cube-harm-down, camera-frame-all."
+notes: "User 2026-11-11 ~17:35: new GPU/CPU runs may start; no more code writing today; token cap about 20% of the weekly limit per day (today started at 7%, now 23%). Running agents: integrator, cube-harm-down, camera-frame-all."
 updated: "2026-11-11 16:58 +0530"
