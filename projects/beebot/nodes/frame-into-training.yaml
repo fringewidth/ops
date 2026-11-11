@@ -1,7 +1,7 @@
 title: Train on the frame-aware thoughts
 summary: Restart think-08b-mac from its newest checkpoint with data_kwargs frame_dirs=data/vla/haiku/frame once the Haiku run ends.
 why: The running Mac job started before the frame thoughts existed and never sees them.
-status: todo
+status: running
 kind: task
 needs: mac-gpu
 depends:
@@ -11,3 +11,7 @@ metric:
   direction: down
 created: "2026-11-11 12:29 +0530"
 by: beebot-f7 3d push
+notes: "Chain (scratchpad mac_frame.sh, pid in logs/mac-frame-chain.out) waits for the running session's ~15:01 save, stops it, then alternates 2-hour segments (--resume, data_kwargs + frame_dirs; also the count fix and makers) with the basics eval on each segment's last checkpoint. Data check: 2,929 frame episodes of 32,763, 12% of drawn examples; 222 count-based refusals dropped."
+links:
+- logs/think-08b-mac.out
+updated: "2026-11-11 14:17 +0530"
