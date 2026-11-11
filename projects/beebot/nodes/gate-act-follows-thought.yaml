@@ -7,10 +7,11 @@ needs: mac-gpu
 est_h: 1.5
 notes: "Pass: success with given thoughts on held-out instructions >= 0.9 x success on the plain canonical instruction."
 depends:
-- bugcatch-06b
+- frame-into-training
 - haiku-rewrites
 metric:
   series: gate_follow_ratio
   direction: up
 created: "2026-11-10 15:50 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-11 14:37 +0530"
