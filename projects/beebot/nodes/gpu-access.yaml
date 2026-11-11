@@ -4,7 +4,7 @@ why: The 4B run needs a GH200 (full weights need about 64 GB plus activations); 
 status: todo
 kind: decision
 parent: trk-runs
-notes: "2026-11-10 19:35: key works over IPv4 after the user allowlisted every IPv4 address (IPv6 still refused; the vultr collector now forces IPv4). With the key, every GPU plan still lists no locations. GPU stock is polled every 5 minutes from the public catalogue by ~/ops/collectors/vultr_gpu (series vultr_gpu_regions{plan}); it sends one ntfy notice to hrishik when a plan comes into stock and never orders. Launching still needs the user's explicit yes for that launch (CLAUDE.md)."
+notes: "2026-11-11 14:55: plan vcg-a100-12c-120g-80vram (1x A100 80 GB, 12 vCPU, 120 GB RAM) is available in ewr at $2.397/h ($1,750/month cap); L40S plans list no locations. Account credit $255 (~106 h of A100). Nothing created."
 created: "2026-11-10 15:18 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 19:15 +0530"
+updated: "2026-11-11 14:34 +0530"
