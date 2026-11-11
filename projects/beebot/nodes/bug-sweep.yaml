@@ -1,7 +1,7 @@
 title: Full bug sweep of the pipeline
 summary: "Two independent agents hunt verified bugs: data generation through ThinkData, and model, training, rollout and scorecard."
 why: The no-op bias and the switch checker bug went unnoticed for days; the user wants the rest of the pipeline checked before more compute goes in.
-status: running
+status: done
 parent: trk-data
 metric:
   series: bugs_verified
@@ -9,4 +9,5 @@ metric:
 created: "2026-11-11 09:24 +0530"
 by: beebot-f7 3d push
 notes: "Fixed and pushed (main and tpu-port): task mix (keep samplers, contrast needs a plan, mix weights: still-passable 8.9% -> 2.6%); step loss weighting; XLA linear-attention inverse; ThinkData: no steps after done (moving robots in action targets 15.6% -> 25.4%), refusals act with every robot staying (clarifications speak), validation held out by scene; quarantine runs/quarantine.json (1,156 episodes: gravity shapes 418, done at start 361, short towers 343, crate 35; 381 heavy labels). Open: B5 frame-turning word lists, B11 visible counts, B3 parallel partial passes, B8 build-use checks, bf16 checkpoints, code fixes in the makers for future draws, directions spec."
-updated: "2026-11-11 11:02 +0530"
+updated: "2026-11-11 11:17 +0530"
+result: Fixes on main (cd21e2d, 5bd3eda, 732edcf) and tpu-port (b1a755d); open items in sweep-open-items
