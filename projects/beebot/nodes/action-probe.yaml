@@ -1,0 +1,21 @@
+created: "2026-11-11 10:24 +0530"
+by: beebot-f7 3d push
+kind: run
+title: Why actions don't follow thoughts
+summary: "Per robot voxel on held-out examples, the bug-catch policy's action distribution against the expert's code, by step: does it know which robots move, and does argmax hide it?"
+why: Closed-loop the policy scores like a still swarm although its thoughts match 0.89; 84% of training action targets are STAY, so per-robot argmax may pick STAY even when the model knows who moves.
+parent: trk-runs
+needs: mac-gpu
+links:
+- logs/action-probe.out
+metric:
+  series: movers_argmax_correct{run="action-probe"}
+  direction: up
+status: running
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 74351
+  cmd: teacher-forced action probe of bugcatch-08b step 1200 on held-out examples
+  started: "2026-11-11 10:24 +0530"
+  ends: "2026-11-11 10:54"
