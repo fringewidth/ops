@@ -1,7 +1,7 @@
 title: End-to-end bug-catch at 0.8B
 summary: Train the full recipe on Qwen3.5-0.8B (full weights, Mac) on a sample and check that thoughts match their labels on held-out episodes.
 why: A bug found on the Mac costs nothing. Nothing runs on paid compute before this passes.
-status: running
+status: todo
 kind: run
 parent: trk-runs
 needs: mac-gpu
@@ -11,18 +11,11 @@ depends:
 - bugcatch-smoke2
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes: "Gate: loss falls, thoughts parse and match their labels on held-out episodes at 0.9 or better, and rollouts act on them. Full weights, Qwen3.5-0.8B. Queued 23:20 to start when bugcatch-smoke2 exits (~23:25): batch 2x8, checkpointing, 1200-step schedule, 470 min (ends ~07:20), val every 45 min, step-named checkpoints hourly. Inputs: stores voxel_full s0-s7 (failure 0.10, up_over 0.23 from failure-rates) + voxel_build s0-s1; Haiku labels run-s0..s7 (+later) and build-s0/s1, mismatch=drop (draw-divergence); views scene at DEFAULT_STRENGTH 0.75 (views-readability); vision encoder frozen, projector trained (vision-encoder-training, open); voxel action slots (action-representation, open). Not yet modelled: harmful-failures."
-updated: "2026-11-11 05:21 +0530"
+notes: "Training finished 08:2x at step 1200 (about 19k examples; the 04:32 disk-full crash was resumed from step 767): val_loss 1.48 -> 1.04 (text 0.25, action 0.80). Checkpoints runs/bugcatch-08b/policy_step767.pt and policy_step1200.pt. The gate (thoughts parse and match at 0.9, rollouts act on them) waits on card-bugcatch-08b. The first full card attempt was too slow (about 6 min per family per arm, ~7 h) and was stopped after 2 groups: policy formation score 0.23, construction 0.25, both pass 0 (runs/bugcatch-08b/card-first-attempt.out)."
+updated: "2026-11-11 08:36 +0530"
 metric:
   series: think_thought_match{run="bugcatch-08b"}
   direction: up
   target: 0.9
 links:
 - logs/bugcatch-08b-r1.out
-claim:
-  session: beebot-f7 3d push
-  host: GB-497
-  pid: 93066
-  cmd: think_train 0.8B bug-catch, resumed at step 767, to step 1200
-  started: "2026-11-11 05:21 +0530"
-  ends: "2026-11-11 08:35"
