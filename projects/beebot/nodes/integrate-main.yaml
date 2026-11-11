@@ -1,7 +1,7 @@
 title: Integrate the agents' branches into main
 summary: Merge reviewed agent branches into main in dependency order, resolve conflicts, keep the test suite green and push.
 why: Main is what the Mac training chain runs at each 2-hour segment start; several agents change the same files.
-status: running
+status: done
 kind: task
 parent: trk-ops
 notes: "c0e7d5f fails tests/test_vla_voxel_draws.py (maker_problem snapshot past the recorded frames in a 4-step test store; 72-step production stores and the Mac chain unaffected). Fix (lazy snapshot) at the top of the staged chain: fidelity, closed loop, tpu-port into main, fix; pushed when the full suite is green."
@@ -10,4 +10,5 @@ metric:
   direction: down
 created: "2026-11-11 16:21 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-11 17:02 +0530"
+updated: "2026-11-11 17:20 +0530"
+result: "origin/main bdf8ed5: divergence fix, demo-store generator, fix-batch-1, MuJoCo fidelity (--outcomes mujoco_release; --demo now draws with it), closed loop, the whole TPU port, and a maker_problem test fix (main failed test_vla_voxel_draws.py from c0e7d5f until bdf8ed5; production stores unaffected). 317 tests pass. Camera frame held as instructed."
