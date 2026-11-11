@@ -11,8 +11,8 @@ metric:
   target: 5.0
 created: "2026-11-10 23:26 +0530"
 by: beebot-f7 3d push
-notes: "Queued 23:55 IST as fringewidth/beebot-think-tpu (kernel id 144250311, private, TPU v5e-8). At start it tries git clone -b tpu-port (branch not pushed: needs the user, tpu-port-push), else the private dataset beebot-src-tpu; data from private beebot-think-data (no test set). Timing on fake data, 1 chip then 8; at >= 5 ex/s on 8 chips the real 0.8B run (Mac bugcatch-08b settings) to the 9 h limit minus 25 min, checkpoints and resume.pt hourly; else exit. rvitm not queued (rvitm-token-location)."
-updated: "2026-11-10 23:55 +0530"
+notes: "fringewidth/beebot-think-tpu queued since 23:55 IST (clones tpu-port at start). Timing gate on fake data (1 then 8 chips), then the real 0.8B run if 8 chips reach 5 ex/s. Its schedule is sized for two sessions. The rvitm session continues it from the same resume.pt: after session 1 ends, the Mac downloads resume.pt (fringewidth token) and publishes it to rvitmpolicyboot/beebot-think-resume (rvitm token), then pushes the rvitm kernel (ROLE=second, which refuses to train from scratch). A CPU-kernel test settles whether attached datasets are pinned at push time; if not, the rvitm kernel can be queued before session 1 ends. The rvitm kernel queued at 07:42 is being deleted (it would have started mid-session-1 as a seed-1 run)."
+updated: "2026-11-11 07:43 +0530"
 links:
 - logs/tpu-probe.out
 kaggle: fringewidth/beebot-think-tpu
