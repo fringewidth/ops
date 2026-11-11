@@ -1,7 +1,7 @@
 title: Model harmful move failures in the voxel world
 summary: A failed climb can knock the neighbour it pivots on or leave the cube misaligned, at the MuJoCo rates (3% of convex-up moves with a neighbour behind, 9% over a lone cube); today a failure only means the cube stays.
 why: The policy must learn to recover from the failures real cubes have, not only from cubes that stay put.
-status: todo
+status: running
 parent: trk-data
 est_h: 4.0
 depends:
@@ -11,4 +11,5 @@ by: beebot-f7 3d push
 metric:
   series: grid_mujoco_outcome_gap
   direction: down
-updated: "2026-11-10 21:47 +0530"
+updated: "2026-11-11 14:58 +0530"
+notes: "2026-11-11 15:00: was never wired into the data path (nothing depended on it), so it was left open; user: it was agreed as part of the data. Now demos-v2 -> upload-demos -> kaggle-06b -> main-4b-run depend on it."
