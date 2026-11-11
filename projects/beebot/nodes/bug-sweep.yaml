@@ -8,5 +8,5 @@ metric:
   direction: up
 created: "2026-11-11 09:24 +0530"
 by: beebot-f7 3d push
-notes: "Data sweep: 11 verified bugs (B1 gravity shapes 418 eps, B2 already-done 332, B3 partial pass 368, B4 validation scene leak 59%, B5 frame turning ~1150 rows, B6 absent act vs text 2644, B7 heavy leak 374 labels, B8 build-use checks loose, B9 switch already done 27, B10 crate held-out leak 35, B11 visible counts ~72). Model sweep: XLA linear-attention inverse unstable (fixed on tpu-port 47c7884 before the queued kernel started), step loss mean of micro-batch means (fixed main and tpu-port 8f5d0ff), checkpoints in bf16, scorecard expert-arm docstring. Repros: worktrees agent-abb2a033effb9c806 and agent-a1872dd75bc12bddc."
-updated: "2026-11-11 09:59 +0530"
+notes: "Fixed and pushed (main and tpu-port): task mix (keep samplers, contrast needs a plan, mix weights: still-passable 8.9% -> 2.6%); step loss weighting; XLA linear-attention inverse; ThinkData: no steps after done (moving robots in action targets 15.6% -> 25.4%), refusals act with every robot staying (clarifications speak), validation held out by scene; quarantine runs/quarantine.json (1,156 episodes: gravity shapes 418, done at start 361, short towers 343, crate 35; 381 heavy labels). Open: B5 frame-turning word lists, B11 visible counts, B3 parallel partial passes, B8 build-use checks, bf16 checkpoints, code fixes in the makers for future draws, directions spec."
+updated: "2026-11-11 11:02 +0530"
