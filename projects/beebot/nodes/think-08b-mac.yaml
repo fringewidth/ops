@@ -15,7 +15,7 @@ status: running
 claim:
   session: beebot-f7 3d push
   host: GB-497
-  pid: 78312
-  cmd: "think_train Qwen3.5-0.8B from bugcatch step 1200: fixed loss, task mix, no idle tail, refusals act, scene-held validation; 3600 steps / 23 h"
-  started: "2026-11-11 10:43 +0530"
-  ends: "2026-11-12 09:43"
+  pid: 82657
+  cmd: "think_train Qwen3.5-0.8B from bugcatch step 1200: fixed loss, task mix, quarantine, no idle tail, refusals act, scene-held validation; 3600 steps / 23 h"
+  started: "2026-11-11 10:59 +0530"
+  ends: "2026-11-12 09:59"
