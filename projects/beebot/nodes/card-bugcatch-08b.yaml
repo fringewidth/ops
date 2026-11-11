@@ -1,0 +1,21 @@
+created: "2026-11-11 08:18 +0530"
+by: beebot-f7 3d push
+kind: run
+title: Score the bug-catch checkpoint
+summary: "Reduced 3D scorecard of the last bug-catch checkpoint: thought parse and first-sub-goal match, rollout success, shuffled gap, oracle-thought arm."
+why: Gates a (thoughts match at 0.9) and b, and the gate-after-sft rerun, all read these numbers.
+parent: trk-runs
+needs: mac-gpu
+links:
+- logs/card-bugcatch-08b.out
+metric:
+  series: scorecard3d_mean{arm="policy",split="test"}
+  direction: up
+status: running
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 40144
+  cmd: "scorecard policy_step1200: policy, shuffled, oracle, still; test + Haiku test set, 8 per family"
+  started: "2026-11-11 08:18 +0530"
+  ends: "2026-11-11 11:18"
