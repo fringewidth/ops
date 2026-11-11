@@ -1,0 +1,12 @@
+title: Integrate the agents' branches into main
+summary: Merge reviewed agent branches into main in dependency order, resolve conflicts, keep the test suite green and push.
+why: Main is what the Mac training chain runs at each 2-hour segment start; several agents change the same files.
+status: running
+kind: task
+parent: trk-ops
+notes: "16:25 delegated to subagent 'integrator'. Order: draw-divergence (merged locally, tests running), demo-store generator, then fix-batch-1, fidelity, camera-frame, closed-loop as they report."
+metric:
+  series: branches_waiting
+  direction: down
+created: "2026-11-11 16:21 +0530"
+by: beebot-f7 3d push
