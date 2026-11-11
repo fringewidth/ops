@@ -1,9 +1,11 @@
 title: Sync tpu-port and main, fit the kernel to the chip
 summary: Merge main into tpu-port and tpu-port's XLA fixes into main, and order the kernel's attempts so the first one fits a v5e chip (batch 4 fp32 per chip measured at 13.1 of 16 GB).
 why: Each out-of-memory attempt burns about 8 minutes of compile on scarce Kaggle TPU quota, and the kernel clones tpu-port at start.
-status: running
+status: done
 kind: task
 parent: trk-runs
 notes: 17:2x delegated to the integrator.
 created: "2026-11-11 16:55 +0530"
 by: beebot-f7 3d push
+result: "origin/tpu-port ab6ab31 (fast-forward to main + kernel): ATTEMPTS [(4, fp32), (4, bf16)]; runs/frame_verified.jsonl.gz regenerated (10,855 rows); quarantine from main. main's copy of think_kernel.py is older than tpu-port's."
+updated: "2026-11-11 17:20 +0530"
