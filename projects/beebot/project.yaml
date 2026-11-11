@@ -19,6 +19,6 @@ pins:
   - vultr_remaining_usd
   - vultr_machines
   - claude_limit_percent{kind="session"}
-  - haiku_items_generated
+  - kaggle_tpu_hours_left
   - disk_free_bytes
   - tool_present
