@@ -1,7 +1,7 @@
 title: Haiku thoughts that map the user's words onto the board
 summary: Haiku rewrites thoughts for direction, compass and foreign direction instructions so they first state how the user's view maps onto the board, then plan in board terms (format a).
 why: The policy never saw Haiku reason about the user's frame, so compass and relative words fail; this gives it that reasoning to learn. Stops at 50% of the 5-hour usage limit.
-status: running
+status: done
 kind: task
 notes: "Run continues past the 12:49 reset (user: '1. works'), guard stops at 50% usage. 12:28: 3,198 of 5,528 items, 96% of rows pass. ThinkData frame_dirs (0f88b76) joins them: they replace the labels of their single-instruction direction episodes, rendered from the thought's camera side with the user at its place, text as written. Later instructions (464 rows) not joined yet. Store s0 joins 117 (its items past index 715 hit the known draw divergence)."
 metric:
@@ -11,4 +11,5 @@ created: "2026-11-11 11:17 +0530"
 by: beebot-f7 3d push
 links:
 - logs/haiku-frame.out
-updated: "2026-11-11 12:29 +0530"
+updated: "2026-11-11 13:11 +0530"
+result: "10731 of 11,130 instructions verified (5,528 items x plain/casual; failures: user's words map elsewhere 336, wrong 'X is the board's Y' 69, first sub-goal 36). data/vla/haiku/frame/verified.jsonl, logs/haiku-frame.out. Session usage at the end: 3% of the new window."
