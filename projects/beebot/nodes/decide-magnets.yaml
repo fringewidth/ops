@@ -1,0 +1,8 @@
+title: Switchable magnets in the cube design
+summary: The data and MuJoCo release mode assume a cube's magnets release while it moves.
+why: Permanent magnets freeze bonded cubes (0 of 121 moved) and the data assumes otherwise.
+status: todo
+kind: decision
+parent: trk-cubes
+created: "2026-11-11 18:01 +0530"
+by: beebot-f7 3d push
