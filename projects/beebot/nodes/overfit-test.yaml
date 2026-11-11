@@ -1,0 +1,15 @@
+title: Overfit test on frame examples
+summary: Train the 0.8B on 32 fixed frame examples for up to 240 steps and watch its action loss on those same examples.
+why: If the policy cannot fit 32 examples, actions not following thoughts is a bug, not undertraining; it gates the 2-hour segments and the TPU merge.
+status: queued
+kind: task
+needs: mac-gpu
+notes: "Pass: val_action on the 32 examples below 0.1 (starts near 0.7). Runs at the ~15:01 handover inside mac_frame.sh (chain pid 48693), before the first segment."
+links:
+- logs/think-08b-overfit.out
+metric:
+  series: val_action{run="think-08b-overfit"}
+  direction: down
+  target: 0.1
+created: "2026-11-11 14:32 +0530"
+by: beebot-f7 3d push
