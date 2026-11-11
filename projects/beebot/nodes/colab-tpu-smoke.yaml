@@ -1,7 +1,7 @@
 title: TPU smoke on a Colab v5e-1
 summary: "Run scripts/kaggle_tpu/colab_smoke.py (tpu-port 5cfb769) on a free Colab v5e-1: install, linear-attention inverse vs CPU, fake-data probe, short real-data run."
 why: The Kaggle TPU session has waited in the queue since 08:40; Colab tests the merged TPU path now, so a bug is fixed before Kaggle runs it.
-status: running
+status: done
 kind: run
 notes: "15:05 delegated to subagent 'tpu-smoke'. So far: setup passes (torch 2.9.0 + torch_xla 2.9.0, 1 chip), linear-attention inverse matches the CPU reference (error < 1e-6). Fixed on tpu-port: TORCH_DEVICE_BACKEND_AUTOLOAD=0 (Colab ships torch_tpu, which refuses torch 2.9.0; applied to the Kaggle kernel too), torchvision removal, model pre-download."
 metric:
@@ -9,4 +9,5 @@ metric:
   direction: up
 created: "2026-11-11 14:49 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-11 15:04 +0530"
+updated: "2026-11-11 16:55 +0530"
+result: "All four stages passed on Colab v5e-1 (tpu-port 188f143): setup, inverse (error < 1e-6), probe 40 steps (steady 1.63 ex/s at batch 4, one chip), real 20 steps; Colab then hit its TPU usage limit. Fixed on tpu-port (head 6405310): SDPA mixed dtypes under XLA autocast, torch.xla missing for checkpointing (tpu.checkpoint), trainer hang after errors, kl_div with no XLA gradient (explicit KL), kernel gate reading a compile window (steady_window). Open: distillation effect on XLA unconfirmed; batch 4 fp32 uses 13.1/16 GB so the kernel's 16 and 8 fp32 attempts would OOM after ~8 min compiles each; ~8 min per compiled graph."
