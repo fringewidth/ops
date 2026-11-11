@@ -11,8 +11,8 @@ metric:
   target: 5.0
 created: "2026-11-10 23:26 +0530"
 by: beebot-f7 3d push
-notes: "14:30: GetKernelSessionStatus still {} (waiting in Kaggle's TPU queue since 08:40, 0 TPU hours used)."
-updated: "2026-11-11 14:28 +0530"
+notes: "15:0x: tpu-port now 285a7bf (main merged: frame thoughts via runs/frame_verified.jsonl.gz, robot-count fix, maker fixes). The queued kernel clones tpu-port at start, so it trains on these. Still waiting in Kaggle's TPU queue since 08:40."
+updated: "2026-11-11 14:41 +0530"
 links:
 - logs/tpu-probe.out
 kaggle: fringewidth/beebot-think-tpu
