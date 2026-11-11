@@ -1,7 +1,7 @@
 title: Second adversarial review
 summary: An independent agent attacks the think-then-act design with today's results.
 why: The first review was of the old design. The user wants the adversary's view before committing.
-status: running
+status: done
 parent: grant-push-3d
 est_h: 1.0
 depends:
@@ -9,4 +9,5 @@ depends:
 created: "2026-11-10 12:02 +0530"
 by: beebot-a3 3d push
 notes: "15:05 delegated to subagent 'review-two': adversarial review of today's changes on main and tpu-port."
-updated: "2026-11-11 15:04 +0530"
+updated: "2026-11-11 15:20 +0530"
+result: "6 verified bugs (repros scratchpad/review-two/): short towers inside parallel/count/conditional tasks kept (464+201+16+17 kept episodes); 'forward' means toward the user in board-frame labels but away in frame labels and basics; counted() drops 266 of 1806 refusals (only 37 reason from counts); non-English frame rows unchecked (1,178 of 10,731; one confirmed contradictory row); basics steps episodes infeasible (29 of 32 fail has_room); count stripping leaks/garbles (swarm of seventeen, 'the others robots', quoted instruction rewritten). Fixes delegated: fix-batch-1."
