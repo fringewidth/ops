@@ -1,0 +1,14 @@
+title: Demo-focused demonstration store
+summary: A store at 8-12 robots on an empty flat floor for the demo tasks, with the expert's intended (pre-jitter) actions as labels, Haiku-labelled, for a fine-tune.
+why: The demo's own instructions are nearly absent at about 10 robots (no height-4 tower under 12 robots, no letter T under 15).
+status: todo
+kind: task
+parent: trk-data
+depends:
+- decide-demo-tasks
+- harmful-failures
+metric:
+  series: demo_store_episodes
+  direction: up
+created: "2026-11-11 15:18 +0530"
+by: beebot-f7 3d push
