@@ -15,3 +15,10 @@ notes: "Chain (scratchpad mac_frame.sh, pid in logs/mac-frame-chain.out) waits f
 links:
 - logs/think-08b-mac.out
 updated: "2026-11-11 14:17 +0530"
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 44361
+  cmd: "scratchpad mac_frame.sh: waits for think-08b-mac's ~15:01 save, then 2-hour --resume segments with frame_dirs, basics eval between segments"
+  started: "2026-11-11 14:27 +0530"
+  ends: "2026-11-12 14:00"
