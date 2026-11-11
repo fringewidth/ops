@@ -19,3 +19,5 @@ claim:
   cmd: "think_train Qwen3.5-0.8B from bugcatch step 1200: fixed loss, task mix, quarantine, no idle tail, refusals act, scene-held validation; 3600 steps / 23 h"
   started: "2026-11-11 10:59 +0530"
   ends: "2026-11-12 09:59"
+notes: From 15:01 continues as 2-hour --resume segments with the frame thoughts (frame-into-training); basics eval between segments.
+updated: "2026-11-11 14:17 +0530"
