@@ -4,10 +4,10 @@ why: Main is what the Mac training chain runs at each 2-hour segment start; seve
 status: running
 kind: task
 parent: trk-ops
-notes: "Pushed to origin/main: 4816dec (draw divergence), 1d390a4 (demo-store generator), c0e7d5f (fix-batch-1; 233 tests pass). Staged: fidelity 5d14fc0 (stores without --outcomes byte-identical), closed loop d5d9e7e. The Mac chain's next segment (~18:00) runs c0e7d5f or later."
+notes: "c0e7d5f fails tests/test_vla_voxel_draws.py (maker_problem snapshot past the recorded frames in a 4-step test store; 72-step production stores and the Mac chain unaffected). Fix (lazy snapshot) at the top of the staged chain: fidelity, closed loop, tpu-port into main, fix; pushed when the full suite is green."
 metric:
   series: branches_waiting
   direction: down
 created: "2026-11-11 16:21 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-11 16:47 +0530"
+updated: "2026-11-11 17:02 +0530"
