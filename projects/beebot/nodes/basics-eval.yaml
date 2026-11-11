@@ -8,8 +8,8 @@ metric:
   direction: up
 created: "2026-11-11 12:57 +0530"
 by: beebot-f7 3d push
-notes: "15:20: baseline basics eval on policy_step574 (before frame thoughts) running in the chain (per 2, 36 episodes); the first 2-hour segment starts after it."
-updated: "2026-11-11 15:55 +0530"
+notes: "Baseline 15:57, policy_step574 (before frame thoughts, world frame): pass 0.00 in every category, score 0.139 vs standing still 0.145 (side 0.21, corner 0.11, compass 0.18, steps 0.02). Costs ~37 min of Mac GPU per checkpoint at per 2. Steps category is infeasible in 29 of 32 episodes until fix-batch-1 lands."
+updated: "2026-11-11 15:58 +0530"
 links:
 - logs/basics-think-08b-mac.out
 needs: mac-gpu
