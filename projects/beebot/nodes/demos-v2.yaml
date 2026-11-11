@@ -1,0 +1,14 @@
+title: Demonstration stores v2
+summary: Redraw the demonstration stores with the same seeds and draw options (so the Haiku labels still join) under harmful move failures and the maker fixes.
+why: Harmful failures were agreed as part of the data, and the maker fixes only take effect in new draws; the main run trains on these stores.
+status: todo
+kind: run
+depends:
+- harmful-failures
+- maker-fixes
+- fix-draw-divergence
+metric:
+  series: demos_v2_kept
+  direction: up
+created: "2026-11-11 14:57 +0530"
+by: beebot-f7 3d push
