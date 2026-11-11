@@ -1,0 +1,13 @@
+title: Train on the frame-aware thoughts
+summary: Restart think-08b-mac from its newest checkpoint with data_kwargs frame_dirs=data/vla/haiku/frame once the Haiku run ends.
+why: The running Mac job started before the frame thoughts existed and never sees them.
+status: todo
+kind: task
+needs: mac-gpu
+depends:
+- haiku-frame-thoughts
+metric:
+  series: think_val_action{run="think-08b-mac"}
+  direction: down
+created: "2026-11-11 12:29 +0530"
+by: beebot-f7 3d push
