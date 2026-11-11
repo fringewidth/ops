@@ -6,5 +6,7 @@ parent: trk-data
 est_h: 1.0
 depends:
 - full-demos
-created: 2026-11-10 12:01 +0530
+- demos-v2
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+updated: "2026-11-11 14:57 +0530"
