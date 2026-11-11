@@ -1,7 +1,7 @@
 title: End-to-end bug-catch at 0.8B
 summary: Train the full recipe on Qwen3.5-0.8B (full weights, Mac) on a sample and check that thoughts match their labels on held-out episodes.
 why: A bug found on the Mac costs nothing. Nothing runs on paid compute before this passes.
-status: todo
+status: failed
 kind: run
 parent: trk-runs
 needs: mac-gpu
@@ -12,10 +12,11 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Training finished 08:2x at step 1200 (about 19k examples; the 04:32 disk-full crash was resumed from step 767): val_loss 1.48 -> 1.04 (text 0.25, action 0.80). Checkpoints runs/bugcatch-08b/policy_step767.pt and policy_step1200.pt. The gate (thoughts parse and match at 0.9, rollouts act on them) waits on card-bugcatch-08b. The first full card attempt was too slow (about 6 min per family per arm, ~7 h) and was stopped after 2 groups: policy formation score 0.23, construction 0.25, both pass 0 (runs/bugcatch-08b/card-first-attempt.out)."
-updated: "2026-11-11 08:36 +0530"
+updated: "2026-11-11 09:59 +0530"
 metric:
   series: think_thought_match{run="bugcatch-08b"}
   direction: up
   target: 0.9
 links:
 - logs/bugcatch-08b-r1.out
+result: "Step 1200 (~19k examples, val_loss 1.04): thoughts parse 0.99-1.00 and match their first sub-goal 0.88-0.89 on the test split (Haiku test set 0.46), but actions do not follow: closed-loop score 0.21 vs 0.20 for a swarm that stands still (test, 4/family); the policy moves 0.30 of robots at step 0, then ~0.01. Likely causes, all found today: the no-op-heavy task mix (task-mix-fix), the step loss over-weighting plain steps ~3x (fixed), idle steps after the task is done (open), and few examples. runs/bugcatch-08b/card_thoughts, card_rollouts"
