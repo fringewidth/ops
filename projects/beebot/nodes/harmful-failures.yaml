@@ -11,5 +11,5 @@ by: beebot-f7 3d push
 metric:
   series: grid_mujoco_outcome_gap
   direction: down
-updated: "2026-11-11 14:58 +0530"
-notes: "2026-11-11 15:00: was never wired into the data path (nothing depended on it), so it was left open; user: it was agreed as part of the data. Now demos-v2 -> upload-demos -> kaggle-06b -> main-4b-run depend on it."
+updated: "2026-11-11 15:04 +0530"
+notes: "15:05 delegated to subagent 'fidelity' (worktree): measure MuJoCo outcome kinds per move class (knock, strayed, off; edge contacts; simultaneous moves), model them in the grid world, report grid_mujoco_outcome_gap before/after. Then demos-v2 re-draw."
