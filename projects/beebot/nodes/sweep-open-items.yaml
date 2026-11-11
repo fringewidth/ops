@@ -1,9 +1,11 @@
 title: Which open sweep items to fix
 summary: Choose among B5 frame word lists (~1,150 rows), B11 visible counts (~72), parallel partial passes (141 demos), B8 build-use checks, bf16 checkpoints, maker fixes for future draws, direction conventions plus a basics eval.
 why: Each costs time before the next training round; the user picks which are worth it.
-status: todo
+status: done
 kind: decision
 depends:
 - bug-sweep
 created: "2026-11-11 11:17 +0530"
 by: beebot-f7 3d push
+notes: "User 2026-11-11 12:3x: never state robot counts >= 10 (robot-counts), fix the makers (maker-fixes), write the basics eval (basics-eval)."
+updated: "2026-11-11 12:57 +0530"
