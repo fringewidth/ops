@@ -1,0 +1,11 @@
+title: Fix the no-op bias in the task mix
+summary: Samplers keep a drawn task and redraw only the scene (keep mode), contrast tasks need a plan, and ThinkData weighs existing episodes to the keep mix per store group (runs/task_mix.json).
+why: Tasks a still swarm passes were 9.0% of episodes (logic none/absent 62% of logic) because rejection sampling favoured tasks that fit every scene; the model learned that idling is often right.
+status: todo
+parent: trk-data
+metric:
+  series: task_mix_noop_share
+  direction: down
+  target: 0.03
+created: "2026-11-11 09:23 +0530"
+by: beebot-f7 3d push
