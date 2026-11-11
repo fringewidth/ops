@@ -11,7 +11,7 @@ links:
 metric:
   series: val_action{run="think-08b-mac"}
   direction: down
-status: running
+status: done
 claim:
   session: beebot-f7 3d push
   host: GB-497
@@ -19,5 +19,7 @@ claim:
   cmd: "think_train Qwen3.5-0.8B from bugcatch step 1200: fixed loss, task mix, quarantine, no idle tail, refusals act, scene-held validation; 3600 steps / 23 h"
   started: "2026-11-11 10:59 +0530"
   ends: "2026-11-12 09:59"
+  finished: "2026-11-11 15:09 +0530"
 notes: From 15:01 continues as 2-hour --resume segments with the frame thoughts (frame-into-training); basics eval between segments.
-updated: "2026-11-11 14:17 +0530"
+updated: "2026-11-11 15:09 +0530"
+result: "Stopped at its 15:01 save, step 574 (runs/think-08b-mac/policy_step574.pt, resume.pt): last val_action 0.68, val_text 0.35. Continues as frame-into-training after the overfit test."
