@@ -1,7 +1,7 @@
 title: Basics eval for directions
 summary: Plain direction instructions (left, toward me, north, far right corner...) from random camera sides and user places, scored by whether the swarm's centre moves the asked way on the board.
 why: Measures whether directions emerge from training instead of hand-coding them.
-status: running
+status: queued
 kind: task
 metric:
   series: basics_direction_pass
@@ -9,7 +9,7 @@ metric:
 created: "2026-11-11 12:57 +0530"
 by: beebot-f7 3d push
 notes: "Written: python -m beebot.vla.voxel.basics --checkpoint ... (18 phrases x per; categories side, corner, compass, steps). Floor/ceiling at per=2: still pass 0.00, expert 0.92 (steps 0.62). Policy arm needs mac-gpu; run on the next checkpoint."
-updated: "2026-11-11 14:27 +0530"
+updated: "2026-11-11 14:33 +0530"
 links:
 - logs/basics-think-08b-mac.out
 needs: mac-gpu
@@ -20,3 +20,5 @@ claim:
   cmd: mac_frame.sh chain (after the overfit test)
   started: "2026-11-11 14:33 +0530"
   ends: "2026-11-12 14:30"
+depends:
+- overfit-test
