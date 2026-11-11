@@ -3,7 +3,7 @@ summary: Haiku rewrites thoughts for direction, compass and foreign direction in
 why: The policy never saw Haiku reason about the user's frame, so compass and relative words fail; this gives it that reasoning to learn. Stops at 50% of the 5-hour usage limit.
 status: running
 kind: task
-notes: "Pilot 40 items (11:22): usage 25% -> 25%, 80 of 80 rows pass the checks after fixing the checker (it had misread near/far, compass compounds and bare 'toward'); a planted wrong mapping is caught. 5 hand-checked samples correct. Full run 5,528 items from 11:27, guard stops at 50% usage or 12:48 (logs/haiku-frame-guard.out). Code: src/beebot/vla/voxel/haiku_frame.py; output data/vla/haiku/frame/verified.jsonl. Next: ThinkData renders with the item's camera side and user place and uses these thoughts as written."
+notes: "Run continues past the 12:49 reset (user: '1. works'), guard stops at 50% usage. 12:28: 3,198 of 5,528 items, 96% of rows pass. ThinkData frame_dirs (0f88b76) joins them: they replace the labels of their single-instruction direction episodes, rendered from the thought's camera side with the user at its place, text as written. Later instructions (464 rows) not joined yet. Store s0 joins 117 (its items past index 715 hit the known draw divergence)."
 metric:
   series: haiku_frame_pairs_verified
   direction: up
@@ -11,4 +11,4 @@ created: "2026-11-11 11:17 +0530"
 by: beebot-f7 3d push
 links:
 - logs/haiku-frame.out
-updated: "2026-11-11 11:25 +0530"
+updated: "2026-11-11 12:29 +0530"
