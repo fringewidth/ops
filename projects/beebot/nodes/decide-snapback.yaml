@@ -1,0 +1,8 @@
+title: Off-lattice cubes in the demo
+summary: A harmful pivot can leave a cube off the lattice, after which it never moves; allow a disclosed snap-back to the nearest free cell in the demo, or show pure physics and pick seeds.
+why: At ~4% harmful per pivot and ~115 pivots per episode almost every episode hits one.
+status: todo
+kind: decision
+parent: trk-demo
+created: "2026-11-11 15:18 +0530"
+by: beebot-f7 3d push
