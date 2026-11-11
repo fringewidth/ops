@@ -1,8 +1,9 @@
 title: Accept slower pivots or stronger magnets in the cube design
-summary: Pivot speed x0.85 or magnets x1.4 more than halves harm on the worst moves in MuJoCo; the demo and data would use the changed cube.
+summary: "Recommended: climbing moves at 0.85 of calibrated speed (firmware only) halves harm to about 5.6% per pivot and keeps floor rolls; slower everything plus stronger magnets reaches 0.8-1.9% but almost nothing moves (5% reached)."
 why: It is a hardware design change the user owns, and it shapes every demo and data number after it.
 status: todo
 kind: decision
 parent: trk-cubes
 created: "2026-11-11 16:23 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-11 17:17 +0530"
