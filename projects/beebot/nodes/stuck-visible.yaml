@@ -1,0 +1,14 @@
+title: Let the policy see stuck cubes
+summary: Add the stores' stuck cells to the observation (and the rendered views) so the policy stops commanding stuck cubes and plans around them.
+why: Stuck cubes look like any robot today, so the policy cannot learn recovery.
+status: todo
+kind: task
+parent: trk-trainer
+depends:
+- camera-frame-all
+- harmful-failures
+metric:
+  series: stuck_command_share
+  direction: down
+created: "2026-11-11 16:23 +0530"
+by: beebot-f7 3d push
