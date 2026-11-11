@@ -1,10 +1,11 @@
 title: Which tasks the MuJoCo demo shows
 summary: MuJoCo hosts only an empty flat floor, so pick the demo set (for example go to or move in the user's frame, flat letters, a low tower, small builds) and its swarm size (about 10).
 why: Only 2.2% of the data (759 episodes) is an empty floor at 6-14 robots; a demo-focused store and fine-tune follow from this choice.
-status: todo
+status: done
 kind: decision
 parent: trk-demo
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
 notes: "Swarm size decided by the user 2026-11-11 ~15:40: stay at 10 cubes (can change later). Task set still open."
-updated: "2026-11-11 15:22 +0530"
+updated: "2026-11-11 15:24 +0530"
+result: "User 2026-11-11 ~15:45: the demo assumes 10 cubes; the data must represent that case plentifully and realistically. Demo task set = every task kind feasible for about 10 cubes on what MuJoCo hosts (empty flat floor, MuJoCo failure outcomes); demo-store gives it dense coverage."
