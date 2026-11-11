@@ -12,3 +12,5 @@ metric:
   direction: up
 created: "2026-11-11 16:31 +0530"
 by: beebot-f7 3d push
+notes: "Per decide-snapback: no snap-back; record many seeds per task and report the best-run and median success."
+updated: "2026-11-11 18:01 +0530"
