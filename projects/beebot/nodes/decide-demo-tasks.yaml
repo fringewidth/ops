@@ -6,3 +6,5 @@ kind: decision
 parent: trk-demo
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
+notes: "Swarm size is open too: ten came from the physical prototype plan, not a simulation limit; the data mostly has more than 14 robots (80%). The closed-loop agent measures 10/30/60 cubes (seconds per step, harmful rate) to pick the largest that fits about 1 hour per episode."
+updated: "2026-11-11 15:21 +0530"
