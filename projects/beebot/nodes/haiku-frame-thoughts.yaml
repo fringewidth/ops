@@ -1,0 +1,11 @@
+title: Haiku thoughts that map the user's words onto the board
+summary: Haiku rewrites thoughts for direction, compass and foreign direction instructions so they first state how the user's view maps onto the board, then plan in board terms (format a).
+why: The policy never saw Haiku reason about the user's frame, so compass and relative words fail; this gives it that reasoning to learn. Stops at 50% of the 5-hour usage limit.
+status: running
+kind: task
+notes: "Pilot 40 items, show the user 5, then the full run. Guard: kill Haiku at session usage >= 50% (11:17: 25%, resets 12:50); pause and ask at the reset."
+metric:
+  series: haiku_frame_pairs_verified
+  direction: up
+created: "2026-11-11 11:17 +0530"
+by: beebot-f7 3d push
