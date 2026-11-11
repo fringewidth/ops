@@ -1,7 +1,7 @@
 title: Model harmful move failures in the voxel world
 summary: A failed climb can knock the neighbour it pivots on or leave the cube misaligned, at the MuJoCo rates (3% of convex-up moves with a neighbour behind, 9% over a lone cube); today a failure only means the cube stays.
 why: The policy must learn to recover from the failures real cubes have, not only from cubes that stay put.
-status: running
+status: done
 parent: trk-data
 est_h: 4.0
 depends:
@@ -11,5 +11,6 @@ by: beebot-f7 3d push
 metric:
   series: grid_mujoco_outcome_gap
   direction: down
-updated: "2026-11-11 15:04 +0530"
+updated: "2026-11-11 16:23 +0530"
 notes: "15:05 delegated to subagent 'fidelity' (worktree): measure MuJoCo outcome kinds per move class (knock, strayed, off; edge contacts; simultaneous moves), model them in the grid world, report grid_mujoco_outcome_gap before/after. Then demos-v2 re-draw."
+result: "MuJoCo with switchable magnets (new cube_swarm release mode): store-weighted moves 0.47 reached / 0.44 stayed / 0.08 off / 0.01 knock vs grid 0.86/0.13; ten-cube scene 12.3% harmful per pivot (~11 per 115-pivot episode); off cubes never move again under the controller. Grid now replays measured MuJoCo outcomes (--outcomes mujoco_release; stuck cubes): grid_mujoco_outcome_gap 0.459 -> 0.113 held out (noise floor 0.099). Expert keeps 13 demos where it kept 38. Levers: pivot speed x0.85 or magnets x1.4 cut harm on the worst moves 0.50 -> 0.22. Branch worktree-agent-ab38543c974e6612a (1022acc, 3e5de7f, adff8d0); runs/cube_outcomes/report.txt"
