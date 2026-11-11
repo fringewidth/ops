@@ -1,0 +1,11 @@
+title: TPU smoke on a Colab v5e-1
+summary: "Run scripts/kaggle_tpu/colab_smoke.py (tpu-port 5cfb769) on a free Colab v5e-1: install, linear-attention inverse vs CPU, fake-data probe, short real-data run."
+why: The Kaggle TPU session has waited in the queue since 08:40; Colab tests the merged TPU path now, so a bug is fixed before Kaggle runs it.
+status: running
+kind: run
+notes: "Started ~14:55 in this laptop's Chrome (Colab notebook Untitled0). Pass: every stage passed=true."
+metric:
+  series: tpu_smoke_examples_per_s
+  direction: up
+created: "2026-11-11 14:49 +0530"
+by: beebot-f7 3d push
