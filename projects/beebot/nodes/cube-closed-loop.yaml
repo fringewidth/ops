@@ -1,7 +1,7 @@
 title: Closed loop between grid and physics
 summary: Map each voxel action to one pivot and re-plan from the read-back state, first with the scripted expert.
 why: Pivots fail sometimes, so open-loop replay falls apart.
-status: todo
+status: running
 parent: trk-cubes
 est_h: 6.0
 depends:
@@ -10,7 +10,8 @@ depends:
 - free-cube-rules
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-updated: "2026-11-10 21:47 +0530"
+updated: "2026-11-11 15:04 +0530"
 metric:
   series: closed_loop_success
   direction: up
+notes: "15:05 delegated to subagent 'closed-loop' (worktree): each voxel action -> one pivot (cube_swarm.plan) in the ten-cube MuJoCo scene, read back, re-plan; scripted expert first; closed_loop_success per task kind; which tasks MuJoCo can host (no cheese/terrain there); simultaneous vs one-at-a-time; seconds per step."
