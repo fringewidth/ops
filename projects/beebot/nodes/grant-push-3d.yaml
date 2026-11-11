@@ -4,5 +4,7 @@ why: The team is out of compute and needs grants to continue. A 3D demo with a p
 status: todo
 kind: goal
 parent: generalist-swarm
-created: 2026-11-10 11:54 +0530
+created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
+notes: "User 2026-11-11 ~17:30: start no new agents or tasks until tomorrow (usage); running agents finish, GPU/CPU jobs keep running (Mac training chain). Running agents: integrator (merges + tpu-port sync), cube-harm-down, camera-frame-all."
+updated: "2026-11-11 16:58 +0530"
