@@ -12,5 +12,5 @@ metric:
   direction: up
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
-notes: "Generator ready (branch worktree-agent-a9c6b936620a1a61e: d4195fc, 3406ac6, f740292): demos --demo = 8-12 robots, empty floor, swarm-scaled tasks (1-wide towers, half-size letters and wall), keep/fit, every sampler one try per scene. Feasibility at 8-12 cubes: 556/576 drawn episodes pass; infeasible on an empty floor: cheese/terrain/object/zone tasks, floating shapes. Trial 200 scenes: 429 kept (97%), builds 47%. Full draw estimate 6,000 scenes -> ~12,900 episodes, 2.7 CPU-h. Draw waits for harmful-failures (DEMO_MOVES picks up --outcomes mujoco_release when world.py has it), then Haiku labels (needs the user's yes)."
-updated: "2026-11-11 16:21 +0530"
+notes: "User 2026-11-11 ~18:00: Haiku labelling of the drawn demo store is OK in principle; give size and cost before starting. Draw with --demo --outcomes at the chosen setting (climbs x0.85, table v2) once cube-harm-down lands."
+updated: "2026-11-11 18:01 +0530"
