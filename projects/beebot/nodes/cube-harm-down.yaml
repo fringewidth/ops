@@ -1,10 +1,10 @@
 title: Cut harmful pivots below a demo-able rate
 summary: Re-measure the outcome table at slower pivots and stronger magnets, release the neighbours' facing magnets too, and give the expert a risk-aware plan (backed walls, no lone supports), reporting harm per pivot and demos kept.
 why: At 12.3% harmful per pivot almost every 10-cube episode strands cubes; the demo and demos-v2 are not viable until this drops.
-status: running
+status: todo
 kind: task
 parent: trk-cubes
-notes: "16:45 delegated to subagent 'harm-down' (worktree on the fidelity branch). Hardware parameter changes are a co-design decision: decide-cube-params."
+notes: "Paused 17:5x for the token cap; handoff scratchpad/handoff/harm-down.md, branch harm-down (fbd3c88, 5ca08a4, 4167988 WIP). Judging fixed; the 12.3% was real (12.5% re-measured). Harm per pivot store mix / ten-cube (reached): as built 0.093/0.125 (0.47); neighbour faces off 0.115/0.147 (worse); speeds x0.85 0.044/0.049 (0.20); magnets x1.4 0.042/0.051 (0.31); both 0.008/0.019 (0.05); climbs-only x0.85 0.056/0.057 (0.44). Remaining source: climbing down off a cube 0.28 harmful. Overnight CPU jobs: PID 24245 gap (runs/cube_outcomes/settings/report-climb85.txt), 24247 righting spins (right-v1.jsonl), 24249/24251 demo arms (scratchpad demo_runs/). Risk-aware expert written, not yet measured."
 depends:
 - harmful-failures
 metric:
@@ -13,3 +13,4 @@ metric:
   target: 0.02
 created: "2026-11-11 16:23 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-11 17:17 +0530"
