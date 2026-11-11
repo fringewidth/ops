@@ -1,7 +1,7 @@
 title: Qwen3.5-0.8B training speed on a Kaggle TPU
 summary: Port think_train to torch_xla (fixed length buckets, one step per mark) and time training steps of the 0.8B on one TPU v5e chip with fake data, then on all eight.
 why: The Mac trains at 0.67 examples per second because Qwen3.5's linear-attention kernels exist only for CUDA; about 40 unclaimed TPU hours this week could carry the real 0.8B run if XLA compiles the reference path well.
-status: queued
+status: running
 parent: trk-runs
 needs: kaggle-fringewidth
 est_h: 2.0
@@ -16,3 +16,10 @@ updated: "2026-11-11 08:05 +0530"
 links:
 - logs/tpu-probe.out
 kaggle: fringewidth/beebot-think-tpu
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 0
+  cmd: "queued on Kaggle since 2026-11-10 23:55 (TPU v5e-8): timing gate, then the 0.8B run"
+  started: "2026-11-11 08:40 +0530"
+  ends: "2026-11-12 23:55"
