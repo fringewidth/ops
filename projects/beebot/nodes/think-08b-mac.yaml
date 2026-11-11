@@ -1,0 +1,21 @@
+created: "2026-11-11 10:43 +0530"
+by: beebot-f7 3d push
+kind: run
+title: 0.8B continuation on the Mac (fixed pipeline)
+summary: Continue the bug-catch 0.8B from step 1200 for about 23 hours with today's fixes, checkpoints every 2 hours, the action probe on each.
+why: "Tests the bet that actions fail from under-training: if movers after step 0 rise above chance as training continues, more compute is the fix."
+parent: trk-runs
+needs: mac-gpu
+links:
+- logs/think-08b-mac.out
+metric:
+  series: val_action{run="think-08b-mac"}
+  direction: down
+status: running
+claim:
+  session: beebot-f7 3d push
+  host: GB-497
+  pid: 78312
+  cmd: "think_train Qwen3.5-0.8B from bugcatch step 1200: fixed loss, task mix, no idle tail, refusals act, scene-held validation; 3600 steps / 23 h"
+  started: "2026-11-11 10:43 +0530"
+  ends: "2026-11-12 09:43"
