@@ -1,0 +1,14 @@
+title: Closed loop with switchable magnets and the chosen cube
+summary: Re-run the expert closed loop (23 hosted kinds, 10-12 cubes) in release mode with the cube settings and risk-aware expert from cube-harm-down, with and without snap-back.
+why: The demo's real success rate is this number; today's 0.26 is with permanent magnets the design does not use.
+status: todo
+kind: run
+parent: trk-cubes
+depends:
+- cube-harm-down
+- decide-cube-params
+metric:
+  series: closed_loop_success
+  direction: up
+created: "2026-11-11 16:31 +0530"
+by: beebot-f7 3d push
