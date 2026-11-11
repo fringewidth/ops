@@ -1,0 +1,10 @@
+title: Free disk on the Mac, second pass
+summary: Deleted, at the user's choice on 2026-11-11, bug-catch leftovers, superseded models, old Kaggle run outputs verified on Kaggle, and regenerable caches.
+why: The bug-catch run died at 04:32 when the disk filled; the full-data runs and TPU handoff need room.
+status: todo
+parent: trk-runs
+metric:
+  series: disk_free_bytes
+  direction: up
+created: "2026-11-11 08:28 +0530"
+by: beebot-f7 3d push
