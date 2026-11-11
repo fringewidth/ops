@@ -7,7 +7,7 @@ why: Gate a (thoughts match at 0.9) and gate-after-sft read the thought numbers;
 parent: trk-runs
 needs: mac-gpu
 links:
-- logs/card-bugcatch-08b-thoughts.out
+- logs/card-bugcatch-08b-rollouts.out
 metric:
   series: scorecard3d_mean{arm="policy",split="test"}
   direction: up
@@ -19,3 +19,4 @@ claim:
   cmd: "scoring step 1200: thoughts only (test + Haiku test set, 8/family), then rollouts (test, 4/family, policy + still); then 2D demo recording"
   started: "2026-11-11 08:35 +0530"
   ends: "2026-11-11 10:30"
+updated: "2026-11-11 08:36 +0530"
