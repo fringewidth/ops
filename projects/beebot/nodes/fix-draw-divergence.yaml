@@ -1,7 +1,7 @@
 title: Make demos.write draw exactly what demos.draws draws
 summary: Find what the expert run changes that later object draws read, make draws independent of play, and add a test that write's attempts equal draws' tasks.
 why: Every future store must join to its labels exactly.
-status: todo
+status: running
 parent: trk-data
 mitigates: draw-divergence
 created: "2026-11-10 21:20 +0530"
@@ -10,4 +10,5 @@ metric:
   series: draw_mismatch_episodes
   direction: down
   target: 0
-updated: "2026-11-10 21:48 +0530"
+updated: "2026-11-11 15:04 +0530"
+notes: 15:05 delegated to subagent 'divergence' (worktree).
