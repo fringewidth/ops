@@ -1,10 +1,12 @@
 title: No robot counts of 10 or more in text
 summary: Thoughts, templates and Haiku prompts never state a robot count of 10 or more; counts below 10 stay.
 why: The model cannot count dozens of robots from images, so stated large counts teach it to invent numbers.
-status: running
+status: done
 kind: task
 metric:
   series: think_text_large_counts
   direction: down
 created: "2026-11-11 12:57 +0530"
 by: beebot-f7 3d push
+result: 0 of 76,601 label rows state a robot count >= 10 after think_data.visible (scripts/vla_large_counts.py); 200 count-based refusals dropped; Haiku prompts updated. Commit on main.
+updated: "2026-11-11 13:11 +0530"
