@@ -1,0 +1,8 @@
+title: Enable TPU on rvitmpolicyboot
+summary: Someone with the rvitmpolicyboot login starts one TPU session from the Kaggle web UI (or accepts the TPU prompt) so that API-pushed kernels get a TPU instead of a CPU machine.
+why: Kernels pushed to that account ran on 4-core CPU machines with 0 s of TPU time used; its 20 TPU hours stay unusable until then.
+status: todo
+kind: decision
+parent: trk-runs
+created: "2026-11-11 08:05 +0530"
+by: beebot-f7 3d push
