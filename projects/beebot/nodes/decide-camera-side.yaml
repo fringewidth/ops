@@ -1,0 +1,8 @@
+title: How the model knows the camera's board side
+summary: "Images are identical under a 90-degree turn of scene and camera (corner markers identical, top view turns with the camera), so a thought written before the voxel slots cannot know the board side: (a) a visible mark on one side of the board, (b) state the camera's side in the user turn, (c) put the grid before the thought."
+why: The frame thoughts name the board side; without a cue it is a 1-in-4 guess, which may explain chance-level movers, and more training cannot fix it.
+status: todo
+kind: decision
+parent: trk-trainer
+created: "2026-11-11 15:18 +0530"
+by: beebot-f7 3d push
