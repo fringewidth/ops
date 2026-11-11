@@ -1,0 +1,14 @@
+title: Camera frame everywhere
+summary: Turn grid observations and action codes into the camera's quarter turn in ThinkData, rollout, basics and the MuJoCo loop, with the user always at the camera and the frame thoughts rewritten deterministically into camera terms.
+why: The board's absolute side is invisible in the images, so thoughts and actions tied to it cannot be learned; the camera frame is fully observable.
+status: running
+kind: task
+parent: trk-trainer
+notes: 15:55 delegated to subagent 'camera-frame' (worktree); rebases on main after fix-batch-1 is merged. Must land before demos-v2 and demo-store training. Supersedes the 2026-11-10 decision in camera-frame.
+depends:
+- decide-camera-side
+metric:
+  series: camera_frame_tests_passing
+  direction: up
+created: "2026-11-11 15:27 +0530"
+by: beebot-f7 3d push
