@@ -1,10 +1,10 @@
 title: Overfit test on frame examples
 summary: Train the 0.8B on 32 fixed frame examples for up to 240 steps and watch its action loss on those same examples.
 why: If the policy cannot fit 32 examples, actions not following thoughts is a bug, not undertraining; it gates the 2-hour segments and the TPU merge.
-status: queued
+status: running
 kind: task
 needs: mac-gpu
-notes: "Pass: val_action on the 32 examples below 0.1 (starts near 0.7). Runs at the ~15:01 handover inside mac_frame.sh (chain pid 48693), before the first segment."
+notes: "Started 15:04 from policy_step574. Step 60 (3.7 min): train action loss 0.23-0.32 on the 32 fixed examples (from ~0.7). Throughput 1.6 ex/s at batch 2 without distillation, against 0.24 ex/s in the main run: see mac-throughput."
 links:
 - logs/think-08b-overfit.out
 metric:
@@ -20,4 +20,4 @@ claim:
   cmd: think_train --name think-08b-overfit (overfit 32, lr 1e-4, 240 steps, 40 min)
   started: "2026-11-11 14:32 +0530"
   ends: "2026-11-11 15:50"
-updated: "2026-11-11 14:32 +0530"
+updated: "2026-11-11 15:09 +0530"
