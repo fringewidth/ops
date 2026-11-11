@@ -8,3 +8,5 @@ metric:
   direction: up
 created: "2026-11-11 12:57 +0530"
 by: beebot-f7 3d push
+notes: "Written: python -m beebot.vla.voxel.basics --checkpoint ... (18 phrases x per; categories side, corner, compass, steps). Floor/ceiling at per=2: still pass 0.00, expert 0.92 (steps 0.62). Policy arm needs mac-gpu; run on the next checkpoint."
+updated: "2026-11-11 13:32 +0530"
