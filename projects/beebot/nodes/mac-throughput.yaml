@@ -1,7 +1,7 @@
 title: Why the Mac trains at 0.24 ex/s
 summary: The overfit test runs 1.6 ex/s on the same model and batch while the main Mac run gets 0.24 ex/s; find the cause (distillation's second forward, frozen-LM memory and swap, view rendering, accumulation) and the fastest safe setting.
 why: The Mac is the only training compute until Kaggle's TPU starts; a several-fold speed-up moves every gate and the main run earlier.
-status: running
+status: done
 kind: task
 parent: trk-runs
 notes: 15:10 delegated to subagent 'throughput' (read-only, CPU-side measurements; the Mac GPU stays with the overfit test and chain).
@@ -10,4 +10,5 @@ metric:
   direction: up
 created: "2026-11-11 15:09 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-11 15:09 +0530"
+updated: "2026-11-11 15:19 +0530"
+result: "No real gap: think_train counts examples inside the per-loss-key loop (lines ~349-352), so logged examples_per_s/tokens_per_s are wrong (main run 2.67x too low, overfit 3x too high). By step time: main run 0.64 ex/s (25.1 s per 16-example step), overfit 0.55 ex/s. Distillation ~15% of a step; rendering 33 ms/example; no swap effect. Keep settings; fix the counter (fix-batch-1)."
