@@ -1,7 +1,7 @@
 title: Demo-focused demonstration store
-summary: A store at 8-12 robots on an empty flat floor for the demo tasks, with the expert's intended (pre-jitter) actions as labels, Haiku-labelled, for a fine-tune.
+summary: A large store at about 10 robots (8-12) on an empty flat floor, covering every task kind feasible at that size with MuJoCo's outcomes, with the expert's intended actions as labels.
 why: The demo's own instructions are nearly absent at about 10 robots (no height-4 tower under 12 robots, no letter T under 15).
-status: todo
+status: running
 kind: task
 parent: trk-data
 depends:
@@ -12,3 +12,5 @@ metric:
   direction: up
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
+notes: "15:45 generator prep delegated to subagent 'demo-store' (worktree): task feasibility at 10 cubes, fit checks (1-wide towers, small letters), a --demo preset. The draw waits for harmful-failures (MuJoCo outcomes) and fix-draw-divergence; Haiku labelling after it needs the user's yes for the API spend."
+updated: "2026-11-11 15:24 +0530"
