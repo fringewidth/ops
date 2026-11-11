@@ -1,9 +1,9 @@
 title: Qwen3.5-0.8B training speed on a Kaggle TPU
 summary: Port think_train to torch_xla (fixed length buckets, one step per mark) and time training steps of the 0.8B on one TPU v5e chip with fake data, then on all eight.
 why: The Mac trains at 0.67 examples per second because Qwen3.5's linear-attention kernels exist only for CUDA; about 40 unclaimed TPU hours this week could carry the real 0.8B run if XLA compiles the reference path well.
-status: running
+status: queued
 parent: trk-runs
-needs: kaggle-rvitmpolicyboot
+needs: kaggle-fringewidth
 est_h: 2.0
 metric:
   series: examples_per_s{run="tpu-probe"}
@@ -11,15 +11,8 @@ metric:
   target: 5.0
 created: "2026-11-10 23:26 +0530"
 by: beebot-f7 3d push
-notes: "Session 1 moved to rvitmpolicyboot at ~07:45: a kernel pushed there at 07:42 got a TPU within a minute, while fringewidth has queued since 23:55. That 07:42 kernel was deleted 1-2 minutes in, still in setup. rvitm runs ROLE=first: timing gate, then the real 0.8B run, with a schedule sized for two sessions. fringewidth stays queued as ROLE=second: it exits at once without a resume.pt, otherwise it continues from the handoff (the Mac downloads resume.pt with rvitm's token and publishes it to fringewidth's beebot-think-resume). A CPU-kernel test settles whether datasets are pinned at push time."
-updated: "2026-11-11 07:43 +0530"
+notes: "Correction 08:10: the rvitm 'starts' at 07:42 and 07:46 were 4-core CPU machines, not TPUs (cpus=4, PJRT_DEVICE=CPU, rvitm TPU time used 0 s); rvitm likely needs one TPU session started from the Kaggle web UI before API pushes get a TPU. No TPU quota used on either account. fringewidth/beebot-think-tpu (queued since 23:55) is session 1 again (tpu-port f26b926: default role first, exits at once without TPU devices, installs torch 2.9.0 + torch_xla 2.9.0 + libtpu). Handoff when it ends: .venv/bin/python scripts/kaggle_rest.py handoff fringewidth beebot-think-tpu rvitmpolicyboot=~/.kaggle-friends/rvitm (works once rvitm can get a TPU). Pin test: fringewidth/beebot-src-tpu got a marker-v3 version after the queued push; the kernel prints its mounted files at start."
+updated: "2026-11-11 08:05 +0530"
 links:
 - logs/tpu-probe.out
-kaggle: rvitmpolicyboot/beebot-think-tpu
-claim:
-  session: beebot-f7 3d push
-  host: GB-497
-  pid: 0
-  cmd: "TPU v5e-8: timing gate then 0.8B real run (tpu-port d1c4241)"
-  started: "2026-11-11 07:46 +0530"
-  ends: "2026-11-11 16:45"
+kaggle: fringewidth/beebot-think-tpu
