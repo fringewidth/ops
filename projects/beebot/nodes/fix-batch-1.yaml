@@ -1,0 +1,12 @@
+title: Fix the review-two bugs and the trainer counters
+summary: Fix the six verified review-two bugs, the examples/tokens counter in think_train and think.load_policy loading 4B in fp32, with tests, and regenerate runs/quarantine.json.
+why: These corrupt training data (short towers, opposite meanings of forward) and evals (basics steps) that the next segments and demos-v2 use.
+status: running
+kind: task
+parent: trk-data
+notes: 15:30 delegated to subagent 'fix-batch-1' (worktree). Merging to main changes what the Mac chain's next 2-hour segment runs, so it is reviewed first.
+metric:
+  series: review_bugs_open
+  direction: down
+created: "2026-11-11 15:20 +0530"
+by: beebot-f7 3d push
