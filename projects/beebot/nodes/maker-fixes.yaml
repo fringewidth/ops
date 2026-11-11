@@ -1,10 +1,12 @@
 title: Fix the data makers
 summary: "demos.draws and the experts stop producing the quarantined bugs: gravity-off shapes under gravity, tasks done at the start, short towers, the held-out word crate."
 why: The quarantine cleans old data only; new draws would bring the bugs back.
-status: todo
+status: done
 kind: task
 metric:
   series: maker_bugs_per_1k
   direction: down
 created: "2026-11-11 12:57 +0530"
 by: beebot-f7 3d push
+result: "demos.write rejects gravity-off shapes under a rule, tasks done at the start and short towers; crate renamed chest. Test draw of 240 scenes (seed 901): 692 kept, 0 bugged kept; rejected 23 done-at-start, 11 gravity shapes, 9 short towers."
+updated: "2026-11-11 13:32 +0530"
