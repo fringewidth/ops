@@ -7,7 +7,7 @@ needs: mac-gpu
 depends:
 - overfit-test
 metric:
-  series: think_val_action{run="think-08b-mac"}
+  series: val_action{run="think-08b-mac"}
   direction: down
 created: "2026-11-11 12:29 +0530"
 by: beebot-f7 3d push
