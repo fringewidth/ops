@@ -1,7 +1,7 @@
 title: Qwen3.5-0.8B training speed on a Kaggle TPU
 summary: Port think_train to torch_xla (fixed length buckets, one step per mark) and time training steps of the 0.8B on one TPU v5e chip with fake data, then on all eight.
 why: The Mac trains at 0.67 examples per second because Qwen3.5's linear-attention kernels exist only for CUDA; about 40 unclaimed TPU hours this week could carry the real 0.8B run if XLA compiles the reference path well.
-status: running
+status: queued
 parent: trk-runs
 needs: kaggle-fringewidth
 est_h: 2.0
@@ -12,7 +12,7 @@ metric:
 created: "2026-11-10 23:26 +0530"
 by: beebot-f7 3d push
 notes: "Correction 08:10: the rvitm 'starts' at 07:42 and 07:46 were 4-core CPU machines, not TPUs (cpus=4, PJRT_DEVICE=CPU, rvitm TPU time used 0 s); rvitm likely needs one TPU session started from the Kaggle web UI before API pushes get a TPU. No TPU quota used on either account. fringewidth/beebot-think-tpu (queued since 23:55) is session 1 again (tpu-port f26b926: default role first, exits at once without TPU devices, installs torch 2.9.0 + torch_xla 2.9.0 + libtpu). Handoff when it ends: .venv/bin/python scripts/kaggle_rest.py handoff fringewidth beebot-think-tpu rvitmpolicyboot=~/.kaggle-friends/rvitm (works once rvitm can get a TPU). Pin test: fringewidth/beebot-src-tpu got a marker-v3 version after the queued push; the kernel prints its mounted files at start."
-updated: "2026-11-11 08:05 +0530"
+updated: "2026-11-11 08:40 +0530"
 links:
 - logs/tpu-probe.out
 kaggle: fringewidth/beebot-think-tpu
