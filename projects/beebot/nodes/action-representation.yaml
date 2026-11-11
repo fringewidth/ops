@@ -1,8 +1,10 @@
 title: How the model outputs actions
 summary: Each robot's move is one slot token after <tool_call>, one slot per grid cell (n^3), predicted with a separate action head and cross-entropy.
 why: It fixes what the 0.8B and 4B runs learn to emit; changing it later means retraining. Chosen by Claude as option A, built into think.py, not yet confirmed by the user.
-status: todo
+status: done
 kind: decision
 parent: trk-trainer
 created: "2026-11-10 21:50 +0530"
 by: beebot-f7 3d push
+result: "User 2026-11-11 ~08:00: patch slots, one step per forward pass (as built)."
+updated: "2026-11-11 07:55 +0530"
