@@ -1,0 +1,10 @@
+title: Full bug sweep of the pipeline
+summary: "Two independent agents hunt verified bugs: data generation through ThinkData, and model, training, rollout and scorecard."
+why: The no-op bias and the switch checker bug went unnoticed for days; the user wants the rest of the pipeline checked before more compute goes in.
+status: running
+parent: trk-data
+metric:
+  series: bugs_verified
+  direction: up
+created: "2026-11-11 09:24 +0530"
+by: beebot-f7 3d push
