@@ -1,5 +1,5 @@
-title: "Fuse: short 4B and 1.7B runs"
-summary: Run both sizes for a few hours on the real data and compare loss and thought accuracy at equal steps.
+title: "Fuse: short 4B and 2B runs"
+summary: Run Qwen3.5-4B and 2B for a few hours on the real data and compare loss and thought accuracy at equal steps.
 why: It decides the model size and catches problems before the main run.
 status: todo
 kind: run
@@ -11,8 +11,8 @@ depends:
 - upload-demos
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-notes: "User 2026-11-10: 1.7B only if time remains, so this fuse is 4B vs 0.6B at equal steps unless 1.7B is run."
-updated: "2026-11-12 11:16 +0530"
+notes: "2026-11-12: sizes moved to Qwen3.5 (0.8B, 2B, 4B); was 4B vs 1.7B."
+updated: "2026-11-12 11:24 +0530"
 metric:
   series: think_val_loss{run="fuse"}
   direction: down
