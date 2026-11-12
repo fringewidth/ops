@@ -4,7 +4,7 @@ kind: run
 title: 0.8B continuation on the Mac (fixed pipeline)
 summary: Continue the bug-catch 0.8B from step 1200 for about 23 hours with today's fixes, checkpoints every 2 hours, the action probe on each.
 why: "Tests the bet that actions fail from under-training: if movers after step 0 rise above chance as training continues, more compute is the fix."
-parent: trk-runs
+parent: grant-push-3d
 needs: mac-gpu
 links:
 - logs/think-08b-mac.out
@@ -21,5 +21,5 @@ claim:
   ends: "2026-11-12 09:59"
   finished: "2026-11-11 15:09 +0530"
 notes: From 15:01 continues as 2-hour --resume segments with the frame thoughts (frame-into-training); basics eval between segments.
-updated: "2026-11-11 15:09 +0530"
+updated: "2026-11-12 11:18 +0530"
 result: "Stopped at its 15:01 save, step 574 (runs/think-08b-mac/policy_step574.pt, resume.pt): last val_action 0.68, val_text 0.35. Continues as frame-into-training after the overfit test."
