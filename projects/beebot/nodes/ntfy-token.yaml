@@ -1,9 +1,10 @@
 title: ntfy access token for ops alerts
 summary: "The user creates a free ntfy.sh account and token and runs: cd ~/ops/worker && npx wrangler secret put NTFY_TOKEN."
 why: ntfy rejects anonymous posts from Cloudflare's shared IPs (429), so worker alerts cannot reach the phone without a token.
-status: todo
+status: dropped
 kind: decision
 parent: grant-push-3d
 created: "2026-11-12 12:29 +0530"
 by: beebot-1d manager
-updated: "2026-11-12 12:29:32 +0530"
+updated: "2026-11-12 12:44:54 +0530"
+notes: "User 2026-11-12: tabled, no ntfy account for now. The worker still evaluates alerts (GET /alerts) and its ntfy posts keep failing with 429, which is harmless. To stop the posts: cd ~/ops/worker && npx wrangler secret delete NTFY_TOPIC (needs the user; the session was denied secret-store writes)."
