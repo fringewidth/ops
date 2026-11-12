@@ -1,16 +1,15 @@
 title: Demo-focused demonstration store
 summary: A large store at about 10 robots (8-12) on an empty flat floor, covering every task kind feasible at that size with MuJoCo's outcomes, with the expert's intended actions as labels.
 why: The demo's own instructions are nearly absent at about 10 robots (no height-4 tower under 12 robots, no letter T under 15).
-status: running
+status: todo
 kind: task
 parent: trk-data
 depends:
-- decide-demo-tasks
-- harmful-failures
+- cube-harm-down
 metric:
   series: demo_store_episodes
   direction: up
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
-notes: "User 2026-11-11 ~18:00: Haiku labelling of the drawn demo store is OK in principle; give size and cost before starting. Draw with --demo --outcomes at the chosen setting (climbs x0.85, table v2) once cube-harm-down lands."
-updated: "2026-11-11 18:01 +0530"
+notes: "User 2026-11-11 ~18:00: Haiku labelling OK in principle; give size and cost before starting. Draw with --demo --outcomes at the setting cube-harm-down picks (table v3 or later, not v2) once it lands. Was marked running by mistake; nothing drawn yet."
+updated: "2026-11-12 11:10 +0530"
