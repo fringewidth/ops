@@ -3,7 +3,7 @@ summary: Train the full recipe on Qwen3.5-0.8B (full weights, Mac) on a sample a
 why: A bug found on the Mac costs nothing. Nothing runs on paid compute before this passes.
 status: failed
 kind: run
-parent: trk-runs
+parent: grant-push-3d
 needs: mac-gpu
 est_h: 4.0
 depends:
@@ -12,7 +12,7 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "Training finished 08:2x at step 1200 (about 19k examples; the 04:32 disk-full crash was resumed from step 767): val_loss 1.48 -> 1.04 (text 0.25, action 0.80). Checkpoints runs/bugcatch-08b/policy_step767.pt and policy_step1200.pt. The gate (thoughts parse and match at 0.9, rollouts act on them) waits on card-bugcatch-08b. The first full card attempt was too slow (about 6 min per family per arm, ~7 h) and was stopped after 2 groups: policy formation score 0.23, construction 0.25, both pass 0 (runs/bugcatch-08b/card-first-attempt.out)."
-updated: "2026-11-11 09:59 +0530"
+updated: "2026-11-12 11:14 +0530"
 metric:
   series: think_thought_match{run="bugcatch-08b"}
   direction: up
