@@ -3,8 +3,8 @@ summary: The TPU agent needs the folder holding rvitmpolicyboot's Kaggle access 
 why: TPU sessions can queue for up to 24 hours, so queueing on both accounts halves the wait; searching the disk for credentials is not allowed, so only the user can say where they are.
 status: done
 kind: decision
-parent: trk-runs
+parent: grant-push-3d
 created: "2026-11-10 23:31 +0530"
 by: beebot-f7 3d push
 result: "User 2026-11-11 ~07:40: rvitmpolicyboot's Kaggle token is in ~/.kaggle-friends/rvitm (path only recorded). The TPU agent queues the same kernel there; both sessions are used (20 h each), the second as a continuation or a second seed."
-updated: "2026-11-11 07:40 +0530"
+updated: "2026-11-12 11:17 +0530"
