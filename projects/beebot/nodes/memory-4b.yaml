@@ -3,8 +3,8 @@ summary: 4B full-weights training needs about 117 GB without activation checkpoi
 why: It costs roughly 30% more compute per step but avoids a second GPU. Chosen by Claude, open to the user.
 status: done
 kind: decision
-parent: trk-trainer
+parent: grant-push-3d
 created: "2026-11-10 21:51 +0530"
 by: beebot-f7 3d push
 result: "User 2026-11-11 ~08:00: 4B on one 96 GB GPU with activation checkpointing."
-updated: "2026-11-11 07:55 +0530"
+updated: "2026-11-12 11:17 +0530"
