@@ -14,7 +14,7 @@ by: beebot-f7 3d push
 notes: "Trains on the v1 stores (grid world idealised vs MuJoCo: no harmful failures). Use: proving the pipeline (overfit test, actions follow thoughts) and a start point. Switch to demos-v2 stores as soon as they exist; final checkpoints for the demo must have trained on v2."
 links:
 - logs/think-08b-mac.out
-updated: "2026-11-12 11:10 +0530"
+updated: "2026-11-12 11:20 +0530"
 claim:
   session: beebot-f7 3d push
   host: GB-497
@@ -23,3 +23,4 @@ claim:
   started: "2026-11-11 14:32 +0530"
   ends: "2026-11-12 14:30"
 mitigates: bugcatch-06b
+parent: grant-push-3d
