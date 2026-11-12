@@ -3,8 +3,8 @@ summary: The user says what may be deleted or moved; 20 GB is free.
 why: Checkpoints and data for the push need room.
 status: done
 kind: decision
-parent: trk-ops
+parent: grant-push-3d
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 result: "User chose 2026-11-10 ~19:15: deleted ~/.cache/uv, data/vla/kaggle_{capset,expert_sft,expert_sft30,tpu} (all four verified on Kaggle with matching sizes first), cached models mlx Qwen3-14B-4bit and Qwen3-4B-Instruct-2507. Free space 12 -> 28 GB (uv cache freed little: its files were APFS clones shared with .venv). Kept: Go caches, 2D play data, captions."
-updated: "2026-11-10 19:09 +0530"
+updated: "2026-11-12 11:16 +0530"
