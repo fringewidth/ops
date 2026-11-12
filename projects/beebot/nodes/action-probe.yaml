@@ -4,7 +4,7 @@ kind: run
 title: Why actions don't follow thoughts
 summary: "Per robot voxel on held-out examples, the bug-catch policy's action distribution against the expert's code, by step: does it know which robots move, and does argmax hide it?"
 why: Closed-loop the policy scores like a still swarm although its thoughts match 0.89; 84% of training action targets are STAY, so per-robot argmax may pick STAY even when the model knows who moves.
-parent: trk-runs
+parent: grant-push-3d
 needs: mac-gpu
 links:
 - logs/action-probe.out
@@ -21,4 +21,4 @@ claim:
   ends: "2026-11-11 10:54"
   finished: "2026-11-11 10:43 +0530"
 result: "bugcatch-08b step 1200 (and 767, same): after step 0 the action head is at chance for robots that should move (P(correct move) 0.03-0.04, chance 0.04; P(stay) 0.72-0.81 vs 0.90 for stayers), argmax moves ~0.5% of robots vs 9-21% for the expert; at t=0 it partly works (0.27). logs/action-probe.out, logs/action-probe-767.out"
-updated: "2026-11-11 10:43 +0530"
+updated: "2026-11-12 11:14 +0530"
