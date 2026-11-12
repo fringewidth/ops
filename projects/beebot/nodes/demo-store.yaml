@@ -13,5 +13,5 @@ metric:
   direction: up
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
-notes: "User 2026-11-11 ~18:00: Haiku labelling OK in principle; give size and cost before starting. Draw with --demo --outcomes at the setting cube-harm-down picks (table v3 or later, not v2) once it lands. Was marked running by mistake; nothing drawn yet."
-updated: "2026-11-12 16:25:56 +0530"
+notes: "User 2026-11-11 ~18:00: Haiku labelling OK in principle; give size and cost before starting. Draw with --demo --outcomes mujoco_hinge_v1 (the default since hinge-adopt, with the overhang rule). Nothing drawn yet."
+updated: "2026-11-12 17:01:08 +0530"
