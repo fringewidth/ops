@@ -2,9 +2,10 @@ title: Visitor command log
 summary: Record command text and outcome, and say so on the page.
 why: Real visitors' success rate is cheap evidence for the report.
 status: todo
-parent: trk-demo
+parent: grant-push-3d
 est_h: 1.0
 depends:
 - server-3d
-created: 2026-11-10 12:01 +0530
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+updated: "2026-11-12 11:19 +0530"
