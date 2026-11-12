@@ -2,11 +2,11 @@ title: Causal stream policy for 3D
 summary: Finish src/beebot/vla/voxel/stream.py so that all five layout tests pass.
 why: It removes the custom attention mask that keeps the language side blind to the scene.
 status: done
-parent: trk-trainer
+parent: grant-push-3d
 est_h: 2.0
 links:
 - src/beebot/vla/voxel/stream.py
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 result: "Committed 2713fdc: src/beebot/vla/voxel/stream.py, 5 of 5 tests pass"
-updated: "2026-11-10 12:28 +0530"
+updated: "2026-11-12 11:18 +0530"
