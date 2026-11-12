@@ -2,7 +2,7 @@ title: Thought labels from the expert
 summary: Turn each episode's sub-goal records, scene facts and plain instruction into the text the model should write.
 why: Every line of a thought can be generated from ground truth, so no human labelling is needed.
 status: done
-parent: trk-trainer
+parent: grant-push-3d
 est_h: 3.0
 depends:
 - thought-format
@@ -10,4 +10,4 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 result: "Done as think_data.py (merged a929b1f): Haiku labels where verified, templates otherwise, user frame, memory turn"
-updated: "2026-11-10 21:48 +0530"
+updated: "2026-11-12 11:18 +0530"
