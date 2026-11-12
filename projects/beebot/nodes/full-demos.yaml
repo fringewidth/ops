@@ -2,7 +2,7 @@ title: Full 3D demonstration set
 summary: Generate about 30,000 episodes with cube moves, any swarm size, failures and sub-goal records.
 why: The sample has 875 episodes and the 2D model needed 30,000.
 status: done
-parent: trk-data
+parent: grant-push-3d
 est_h: 2.0
 depends:
 - compact-store
@@ -14,7 +14,7 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: Restarted 2026-11-10 ~20:05 with --failure 0.10,up_over=0.23 (failure-rates); the first start at ~19:57 used a flat 0.15 placeholder and was discarded. 8 CPU processes, seeds 0-7, data/vla/voxel_full/s{0..7}, 1200 scenes each, --cube --rule switch_cube --counts log --coverage 0.3 --objects 1.0 --chunk 24 --compact (same draw as the Haiku export; labels join by (seed, index)). Build family not included (separate store after build-objects merges). Regenerate once harmful-failures lands.
-updated: "2026-11-10 20:51 +0530"
+updated: "2026-11-12 11:16 +0530"
 links:
 - logs/full-demos-s0.out
 metric:
