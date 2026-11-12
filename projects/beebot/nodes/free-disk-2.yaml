@@ -2,11 +2,11 @@ title: Free disk on the Mac, second pass
 summary: Deleted, at the user's choice on 2026-11-11, bug-catch leftovers, superseded models, old Kaggle run outputs verified on Kaggle, and regenerable caches.
 why: The bug-catch run died at 04:32 when the disk filled; the full-data runs and TPU handoff need room.
 status: done
-parent: trk-runs
+parent: grant-push-3d
 metric:
   series: disk_free_bytes
   direction: up
 created: "2026-11-11 08:28 +0530"
 by: beebot-f7 3d push
 result: "10 GB to 52 GB free. Deleted: runs/bugcatch-08b steps 153-1068 except 767, resume.pt and both smoke folders; HF Qwen3-4B, Qwen3-1.7B, Qwen3-Embedding-0.6B, e5-small (12.9 GB of blobs); runs/kaggle sft-final, size-a/b, swarm-text-fixes, train-b1/b2, train-smoke (each verified on Kaggle); go-build, goimports, claude-cli-nodejs caches. Kept for the 2D demo: runs/kaggle/beebot-sft-long and Qwen3-0.6B. Kept unverified (403 on Kaggle): beebot-sft-30k, beebot-vox-gen1. Two finished agent worktrees are locked by the harness (1 GB)."
-updated: "2026-11-11 08:28 +0530"
+updated: "2026-11-12 11:15 +0530"
