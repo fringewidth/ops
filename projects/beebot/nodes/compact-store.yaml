@@ -2,11 +2,11 @@ title: Compact demonstration store and suite fixes
 summary: An agent packs the store about eight times smaller and removes impossible tasks.
 why: A full dataset would not fit on the Mac's free disk in today's format.
 status: done
-parent: trk-data
+parent: grant-push-3d
 est_h: 3.0
 depends:
 - cube-demos
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 result: "Merged efdd18d: store 39x smaller (30k episodes about 0.6 GB), identical batches verified; demos --compact, --counts log, --fit"
-updated: "2026-11-10 12:28 +0530"
+updated: "2026-11-12 11:15 +0530"
