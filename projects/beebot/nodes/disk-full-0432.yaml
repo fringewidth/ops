@@ -3,6 +3,7 @@ summary: At 04:32 the 6 GB resume.pt plus 1 GB hourly checkpoints (runs/bugcatch
 why: About 45 minutes of GPU lost; the run resumed at 05:25 from the intact resume.pt with resume saves off, after clearing the Go build and pip caches (8.8 GB, regenerable).
 status: failed
 kind: failure
-parent: trk-runs
+parent: grant-push-3d
 created: "2026-11-11 05:21 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-12 11:15 +0530"
