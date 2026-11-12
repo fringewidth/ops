@@ -1,7 +1,7 @@
 title: Better herding expert
 summary: Raise the scripted herding expert from about a third success or drop herding from the headline.
 why: The expert is the limit there in every mode. Low priority.
-status: todo
+status: dropped
 parent: grant-push-3d
 est_h: 4.0
 created: "2026-11-10 12:01 +0530"
@@ -9,4 +9,5 @@ by: beebot-a3 3d push
 metric:
   series: expert_success{family="herd"}
   direction: up
-updated: "2026-11-12 11:16 +0530"
+updated: "2026-11-12 11:21 +0530"
+notes: "2026-11-12 cleanup: dropped; the user chose to ship herding without a fix (Ship without)."
