@@ -3,11 +3,11 @@ summary: Choose whether the 0.6B/1.7B/4B 3D runs train all weights or a LoRA ada
 why: A fixed-rank LoRA confounds the scaling figure (the trained share changes with size), and full training may learn the new modality better at 4B data volume. LoRA matched full on 2D 0.6B on 2026-11-06, but at far less data.
 status: done
 kind: decision
-parent: trk-trainer
+parent: grant-push-3d
 notes: "Measure in bugcatch-06b: 0.6B full vs LoRA r64, about 1.5 h each on the Mac, validation loss at equal wall-clock. If full >= LoRA: full at every size; 4B full only fits the GH200 (~64 GB + activations); 1.7B full needs rented hours (~27 GB); 0.6B full fits a T4. Budget redone after. Owed by the user after the measurement."
 depends:
 - bugcatch-06b
 created: "2026-11-10 14:54 +0530"
 by: beebot-f7 3d push
 result: "User 2026-11-10 15:3x: full weights ('1.3x is worth it'). Sizes: 0.6B and 4B, 1.7B last only if time."
-updated: "2026-11-10 15:18 +0530"
+updated: "2026-11-12 11:17 +0530"
