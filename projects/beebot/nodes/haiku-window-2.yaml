@@ -3,7 +3,7 @@ summary: Label the new families (build, objects, zones, reasoning) with the same
 why: Tonight's window labels the current world only.
 status: done
 kind: task
-parent: trk-language
+parent: grant-push-3d
 notes: "Running since 2026-11-10 ~20:50 on the second account (the user said continue): (1) objects, blocks, zones and reasoning were already in the first window's export (--objects 1.0); (2) build family: data/vla/haiku/build-s{0,1}, 1500 tasks each from --only build draws, generating then verifying (scratchpad haiku_build.sh, logs/haiku-build-s*.out); (3) run-s1..s7: finishing verification and generating the rest (haiku_resume.sh). Guard stops all Haiku at 95% session or weekly usage."
 depends:
 - build-objects
@@ -12,7 +12,7 @@ created: "2026-11-10 15:55 +0530"
 by: beebot-f7 3d push
 links:
 - logs/haiku-build-s0.out
-updated: "2026-11-10 23:15 +0530"
+updated: "2026-11-12 11:16 +0530"
 metric:
   series: haiku_pairs_verified{window="2026-11-10"}
   direction: up
