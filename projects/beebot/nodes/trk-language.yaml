@@ -1,8 +1,10 @@
 title: Training language
 summary: Wide instruction wording, open slot words and fixed held-out sets for 3D.
 why: The 3D suite has 2 to 5 templates per intent. Held-out sets must be fixed before training to make the generalisation claim checkable.
-status: todo
+status: dropped
 kind: goal
 parent: grant-push-3d
-created: 2026-11-10 12:00 +0530
+created: "2026-11-10 12:00 +0530"
 by: beebot-a3 3d push
+notes: "2026-11-12: track boxes removed at the user's request (cluttered the UI); children moved to grant-push-3d."
+updated: "2026-11-12 11:19 +0530"
