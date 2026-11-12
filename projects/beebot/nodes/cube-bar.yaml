@@ -1,0 +1,13 @@
+title: Cube meets the reliability bar
+summary: Per commanded move (firmware retries allowed within one grid step), reached >= 0.80 and harmful <= 0.03 on raw moves of 10-cube MuJoCo walks, 3 seeds, no planner help; also report stranded cubes per episode.
+why: "User 2026-11-12: the bar is the bare minimum for industrializing this; go back to the drawing board if needed. m14-sel reaches 0.50 at 0.058."
+status: todo
+kind: goal
+parent: grant-push-3d
+metric:
+  series: cube_move_reached{setting="best"}
+  direction: up
+  target: 0.8
+created: "2026-11-12 13:23 +0530"
+by: beebot-1d manager
+updated: "2026-11-12 13:23:41 +0530"
