@@ -1,0 +1,8 @@
+title: Cube redesign study
+summary: Survey actuation designs for lattice modules with measured move reliability (ballistic pivots vs controlled pivots, edge electromagnets, sliding, wheel+pivot hybrids), pick candidates for a New Year prototype, and model the top one in MuJoCo against cube-bar.
+why: If no control scheme meets the bar with a flywheel-flip cube, the actuation itself must change before the policy's data is frozen.
+status: running
+parent: cube-bar
+created: "2026-11-12 13:23 +0530"
+by: beebot-1d manager
+updated: "2026-11-12 13:23:47 +0530"
