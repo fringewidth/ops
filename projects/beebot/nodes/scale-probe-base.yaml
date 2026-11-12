@@ -1,0 +1,13 @@
+title: Untrained size curve on held-out thoughts
+summary: Few-shot, untrained Qwen3.5 0.8B, 2B and 4B write the first thought for the 508 frozen test instructions with scene renders; score with haiku.same_task (4B was 0.62 on 239 pairs).
+why: Scaling is a core funding thesis and no size comparison on our own task exists yet; this one needs no training.
+status: todo
+parent: grant-push-3d
+needs: mac-gpu
+notes: User approved the 2B download 2026-11-12 (logs/download-qwen35-2b.out). The gate-4b script lived in the wiped /tmp scratchpad, so the probe needs rebuilding (agent, next token budget); run it in a gap of the Mac chain (one GPU job at a time).
+metric:
+  series: restate_acc{model=~"qwen35-.*"}
+  direction: up
+created: "2026-11-12 15:41 +0530"
+by: beebot-1d manager
+updated: "2026-11-12 15:41:08 +0530"
