@@ -3,7 +3,7 @@ summary: Fix the six verified review-two bugs, the examples/tokens counter in th
 why: These corrupt training data (short towers, opposite meanings of forward) and evals (basics steps) that the next segments and demos-v2 use.
 status: done
 kind: task
-parent: trk-data
+parent: grant-push-3d
 notes: 15:30 delegated to subagent 'fix-batch-1' (worktree). Merging to main changes what the Mac chain's next 2-hour segment runs, so it is reviewed first.
 metric:
   series: review_bugs_open
@@ -11,4 +11,4 @@ metric:
 created: "2026-11-11 15:20 +0530"
 by: beebot-f7 3d push
 result: "All 8 fixed on worktree-agent-a3214e81cfecba2f8 (6 commits on d9c6f39; 209 tests pass): short towers in any task (quarantine short_tower 343 -> 937; 1,734 episodes total), forward/backward wrong uses 617 -> 0 (forward = away from the user), refusals dropped 266 -> 18, count leaks/garbles 154 -> 0 (audit 0 of 76,874), quotes never rewritten (41 -> 0), non-English frame rows checked (verified 10,731 -> 10,855; unchecked 1,178 -> 9), basics feasible (expert pass 0.86 -> 1.00, steps 0.375 -> 1.0), trainer counters per micro-batch, load_policy honours dtype. Merge pending (integrator)."
-updated: "2026-11-11 16:25 +0530"
+updated: "2026-11-12 11:15 +0530"
