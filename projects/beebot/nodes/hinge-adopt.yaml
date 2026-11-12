@@ -1,0 +1,14 @@
+title: Make the hinge cube the world sim's robot
+summary: Merge cube-redesign; fit the hinge cube's outcome table (pooled stores + walks) as the demo default replacing mujoco_release_v3; planner rule against leaving a cube held up only by the mover; closed_loop drives HingeSwarm.
+why: Demo data, the closed-loop numbers and the demo itself must use the cube that meets the bar.
+status: todo
+parent: grant-push-3d
+notes: Agent task on the 2026-11-13 token budget.
+depends:
+- decide-hinge-cube
+metric:
+  series: cube_harm_per_pivot{setting="hinge"}
+  direction: down
+created: "2026-11-12 16:25 +0530"
+by: beebot-1d manager
+updated: "2026-11-12 16:25:47 +0530"
