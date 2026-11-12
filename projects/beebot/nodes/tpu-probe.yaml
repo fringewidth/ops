@@ -11,8 +11,8 @@ metric:
   target: 5.0
 created: "2026-11-10 23:26 +0530"
 by: beebot-f7 3d push
-notes: "15:10: if Kaggle starts it before demos-v2, it trains on the v1 Kaggle dataset (idealised grid world): useful as a TPU throughput run and a start point, not as the demo policy. tpu-port is being hardened by the colab-tpu-smoke subagent (TORCH_DEVICE_BACKEND_AUTOLOAD fix already applies to the kernel)."
-updated: "2026-11-12 11:18 +0530"
+notes: "User 2026-11-12: expect it to stay queued on Kaggle for a couple of days; if it never starts, fall back to another option or a teammate's Kaggle account (rvitmpolicyboot needs TPU enabled: rvitm-tpu-enable). A v5e-8 (8 x 16 GB HBM) could also carry the 4B if no rented GPU appears. Earlier: if it starts before demos-v2 it trains on the v1 (idealised) dataset: a throughput run and start point, not the demo policy."
+updated: "2026-11-12 11:24 +0530"
 links:
 - logs/tpu-probe.out
 kaggle: fringewidth/beebot-think-tpu
