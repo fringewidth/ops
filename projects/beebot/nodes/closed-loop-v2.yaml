@@ -6,10 +6,11 @@ kind: run
 parent: grant-push-3d
 depends:
 - cube-harm-down
+- cube-bar
 metric:
   series: closed_loop_success
   direction: up
 created: "2026-11-11 16:31 +0530"
 by: beebot-f7 3d push
 notes: "Per decide-snapback: no snap-back; record many seeds per task and report the best-run and median success. 2026-11-12: run at m14-sel (magnets x1.4 + plans-m14-sel.json kick plan); closed_loop does not run kick plans yet, so that must be added first. Grid prediction to compare: risk-aware expert 0.021 harm/pivot, 55% tasks pass on the demo preset."
-updated: "2026-11-12 13:21:25 +0530"
+updated: "2026-11-12 13:24:00 +0530"
