@@ -3,11 +3,11 @@ summary: "Choose the base for the 3D runs: rendered views plus voxel action slot
 why: Switching costs one to two days of engineering and about 2-4x longer sequences; it is worth it only if the probe shows the visual prior transfers.
 status: done
 kind: decision
-parent: trk-trainer
+parent: grant-push-3d
 notes: "Implemented views differ from this result: views.py renders an oblique perspective view and a top-down view (see views-layout)."
 depends:
 - vlm-probe
 created: "2026-11-10 16:00 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 21:51 +0530"
+updated: "2026-11-12 11:14 +0530"
 result: "User 2026-11-10 ~20:30: vision. Base Qwen/Qwen3.5-4B (vision-language): two scene renders per step (top-down with height shading, isometric) in the user turn; actions stay voxel slots after the act marker. think-model and think-data agents redirected the same evening. To check: smaller Qwen3.5 sizes for the size comparison (not cached; download needs the user's yes), flash-linear-attention and causal-conv1d on the training GPU."
