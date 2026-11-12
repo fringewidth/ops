@@ -2,7 +2,7 @@ title: Measure slow climbs + strong magnets
 summary: MuJoCo harm and reach for climbs at 0.85 kick with magnets 1.4x and 1.2x (floor moves at full kick), 10-cube layouts and store replays.
 why: The user wants slower climbs plus stronger magnets; the measured all-moves-slow + 1.4x magnets setting barely moves (reach 0.05-0.07), so this checks the climbs-only version.
 status: done
-parent: cube-harm-down
+parent: grant-push-3d
 notes: "queue: worktree agent-a31c50503803b318d runs/cube_outcomes/settings/queue3.sh, log queue3.log; read with cube_outcomes compare. ~25 min CPU."
 metric:
   series: cube_harm_per_pivot{setting=~"climb85-mag.*"}
@@ -10,4 +10,4 @@ metric:
 created: "2026-11-12 10:37 +0530"
 by: beebot-1d cube-settings
 result: "10-cube harm/reached: climb85 0.057/0.43, climb85-mag12 0.031/0.35, climb85-mag14 0.019/0.21 (stores 0.019/0.33 and 0.014/0.24); magnets kill climbs (convex up reach 0.27 -> 0.08 -> 0.07). Rows in harm-down worktree runs/cube_outcomes/settings"
-updated: "2026-11-12 11:02 +0530"
+updated: "2026-11-12 11:14 +0530"
