@@ -1,26 +1,26 @@
 title: Train on the frame-aware thoughts
 summary: Restart think-08b from its newest checkpoint on camera-frame thoughts (data/vla/haiku/frame-camera) via scripts/mac_chain.sh once camera-frame-all merges.
 why: The running Mac job started before the frame thoughts existed and never sees them.
-status: queued
+status: running
 kind: task
 needs: mac-gpu
 depends:
 - camera-frame-all
 metric:
-  series: val_action{run="think-08b-mac"}
+  series: val_action{run="think-08b-cam"}
   direction: down
 created: "2026-11-11 12:29 +0530"
 by: beebot-f7 3d push
-notes: "Trains on the v1 stores (grid world idealised vs MuJoCo: no harmful failures). Use: proving the pipeline (overfit test, actions follow thoughts) and a start point. Switch to demos-v2 stores as soon as they exist; final checkpoints for the demo must have trained on v2."
+notes: "Started 2026-11-12 ~12:10 from think-08b-mac step-724 weights with a fresh optimizer and warmup (action codes are now camera-frame, so not --resume). ~0.65 ex/s, 15.5 GB. Still the v1 idealised stores: pipeline proof and start point; demo-finetune trains on MuJoCo-matched stores. Basics results logs/basics-think-08b-cam.jsonl."
 links:
-- logs/think-08b-mac.out
+- logs/think-08b-cam.out
 updated: "2026-11-12 11:20 +0530"
 claim:
-  session: beebot-f7 3d push
+  session: beebot-1d manager
   host: GB-497
-  pid: 48693
-  cmd: mac_frame.sh chain (after the overfit test)
-  started: "2026-11-11 14:32 +0530"
-  ends: "2026-11-12 14:30"
+  pid: 92210
+  cmd: INIT=runs/think-08b-mac/resume.pt nohup caffeinate -i scripts/mac_chain.sh think-08b-cam (2 h segments + basics --arms policy, to step 3600)
+  started: "2026-11-12 11:43 +0530"
+  ends: "2026-11-13 18:00"
 mitigates: bugcatch-06b
 parent: grant-push-3d
