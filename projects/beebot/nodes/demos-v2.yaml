@@ -12,8 +12,8 @@ metric:
   direction: up
 created: "2026-11-11 14:57 +0530"
 by: beebot-f7 3d push
-notes: "Order (user 2026-11-12): after hinge-adopt. Must include: expert's intended (pre-jitter) action as the label; the hinge cube's outcome table (mujoco_hinge_v1, default since 0cdcec0); tower fit check allowing 1-wide towers; same seeds and draw options so Haiku labels still join (draw_digest). Started 2026-11-12 ~17:15 (Sonnet subagent): code changes, then a one-seed check of the Haiku label join rate, then the full redraw into new dirs (data/vla/*_v2; the running trainer reads the old stores), at most 3 seeds at once because memory is tight. Pure CPU; no Haiku spend unless the drop rate is large (ask the user first)."
-updated: "2026-11-12 17:23:04 +0530"
+notes: "Order (user 2026-11-12): after hinge-adopt. Must include: expert's intended (pre-jitter) action as the label; the hinge cube's outcome table (mujoco_hinge_v1, default since 0cdcec0); tower fit check allowing 1-wide towers; same seeds and draw options so Haiku labels still join (draw_digest). Started 2026-11-12 ~17:15 (Sonnet subagent): code changes, then a one-seed check of the Haiku label join rate, then the full redraw into new dirs (data/vla/*_v2; the running trainer reads the old stores), at most 3 seeds at once because memory is tight. Pure CPU; no Haiku spend unless the drop rate is large (ask the user first). 2026-11-12 ~19:15: first full-s0 v2 draw (6400 s) dropped 1132 of 1135 labelled episodes (old store: 229 of 1355): the width-1 tower rule shifted the random stream from attempt 1 on; hinge outcomes alone keep all 198 of 198 checked attempts aligned. Fix in progress: width-1 towers without shifting the stream, subset join check, then all 10 stores from a detached runner (logs/demos-v2-all.out). Training (frame-into-training) stays paused until the draws finish, per the user."
+updated: "2026-11-12 19:22:16 +0530"
 parent: grant-push-3d
 links:
 - /Users/hrishik/beebot/logs/demos-v2.out
