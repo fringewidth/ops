@@ -2,12 +2,12 @@ title: Task suite covering everything a user can ask
 summary: Add stop/stay, subset selectors (smaller swarm, left group, three of you), multi-group scenes, go/gather/spread/split/climb and mid-episode redirects, each with an expert and a score, plus canonical_record and scene_summary for the Haiku pipeline.
 why: User wants 100% coverage of things the swarm can do; Haiku can only label tasks whose canonical form and expert exist.
 status: done
-parent: trk-data
+parent: grant-push-3d
 est_h: 6.0
 notes: "Checkpoint merged to main (fbdfd2a): families motion, subset, switch via S.sample_coverage and demos/haiku --coverage F; coverage draw pinned by digest. Expert score/pass on 96 fresh scenes, cube | switch_cube: motion 0.93/0.85 | 0.91/0.86, subset 0.84/0.77 | 0.80/0.77, switch 0.92/0.89 | 0.93/0.91. Weak: spread, eat by a selected group, climb, switch-then-spread. Perch dropped (0/9 under switch_cube)."
 depends:
 - cube-demos
 created: "2026-11-10 14:42 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 15:40 +0530"
+updated: "2026-11-12 11:18 +0530"
 result: "Merged (d5c1113 via main): families motion, subset, switch; expert passed share on 144 fresh scenes under cube+switch_cube: motion 0.92, subset 0.88, switch 0.92. Weak (dropped by demos): switch-then-spread 0.33, big swarms climbing, eat by a selected group. Out of scope with reasons in src/beebot/vla/voxel/README.md 'Coverage'; rows runs/coverage/expert.{txt,jsonl}"
