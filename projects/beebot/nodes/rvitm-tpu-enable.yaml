@@ -3,6 +3,7 @@ summary: Someone with the rvitmpolicyboot login starts one TPU session from the 
 why: Kernels pushed to that account ran on 4-core CPU machines with 0 s of TPU time used; its 20 TPU hours stay unusable until then.
 status: todo
 kind: decision
-parent: trk-runs
+parent: grant-push-3d
 created: "2026-11-11 08:05 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-12 11:17 +0530"
