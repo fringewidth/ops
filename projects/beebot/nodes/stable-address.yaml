@@ -3,8 +3,8 @@ summary: The user provides a domain so the site keeps one link.
 why: The quick tunnel's link dies whenever the laptop is offline.
 status: todo
 kind: decision
-parent: trk-ops
+parent: grant-push-3d
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "The public demo should not be hosted from the managed Mac: its security tool removed the tunnel program on 2026-11-10. Options: rented hours on Vultr while the post is live, or a personal machine."
-updated: "2026-11-10 13:01 +0530"
+updated: "2026-11-12 11:17 +0530"
