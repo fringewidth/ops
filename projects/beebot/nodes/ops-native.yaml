@@ -1,0 +1,11 @@
+title: Make the harness native with ops
+summary: Worker-side silence/dead-claim/idle-GPU alerts to ntfy, a session-start hook with the board and reboot check, a launch guard that requires an ops node for tracked jobs, and read-before-write (ops set --expect) in the CLI.
+why: The Mac sat idle 16 h unnoticed after a shutdown, and ops bookkeeping drifted; these make ops state hard to miss or skip.
+status: running
+parent: grant-push-3d
+notes: User 2026-11-12 approved items 1-4. Subagent; touches ~/ops (worker, ops.py, README) and beebot .claude/settings.json + hook scripts. No LaunchAgent, nothing reads credentials.
+metric:
+  series: ops_alerts_sent
+  direction: down
+created: "2026-11-12 12:02 +0530"
+by: beebot-1d manager
