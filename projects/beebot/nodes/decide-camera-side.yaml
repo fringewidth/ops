@@ -3,8 +3,8 @@ summary: "Images are identical under a 90-degree turn of scene and camera (corne
 why: The frame thoughts name the board side; without a cue it is a 1-in-4 guess, which may explain chance-level movers, and more training cannot fix it.
 status: done
 kind: decision
-parent: trk-trainer
+parent: grant-push-3d
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
 result: "User 2026-11-11 ~15:55: the user always stands at the camera, and everything is in the camera's frame. Grid observation and action codes are turned into the camera's quarter turn (images identical under a joint turn, so absolute board sides are unobservable); thoughts and instructions use camera-frame words; execution turns actions back with the known camera pose. No user-position text."
-updated: "2026-11-11 15:26 +0530"
+updated: "2026-11-12 11:15 +0530"
