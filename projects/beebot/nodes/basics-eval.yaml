@@ -1,7 +1,7 @@
 title: Basics eval for directions
 summary: Plain direction instructions (left, toward me, north, far right corner...) from random camera sides and user places, scored by whether the swarm's centre moves the asked way on the board.
 why: Measures whether directions emerge from training instead of hand-coding them.
-status: running
+status: failed
 kind: task
 metric:
   series: basics_direction_pass
@@ -9,7 +9,7 @@ metric:
 created: "2026-11-11 12:57 +0530"
 by: beebot-f7 3d push
 notes: "Baseline 15:57, policy_step574 (before frame thoughts, world frame): pass 0.00 in every category, score 0.139 vs standing still 0.145 (side 0.21, corner 0.11, compass 0.18, steps 0.02). Costs ~37 min of Mac GPU per checkpoint at per 2. Steps category is infeasible in 29 of 32 episodes until fix-batch-1 lands."
-updated: "2026-11-11 15:58 +0530"
+updated: "2026-11-12 11:02 +0530"
 links:
 - logs/basics-think-08b-mac.out
 needs: mac-gpu
@@ -20,5 +20,7 @@ claim:
   cmd: mac_frame.sh chain (after the overfit test)
   started: "2026-11-11 14:33 +0530"
   ends: "2026-11-12 14:30"
+  finished: "2026-11-12 11:02 +0530"
 depends:
 - overfit-test
+result: "laptop shut down 2026-11-11 19:01 (reboot 23:24): trainer died at step ~785; chain script and handoff note lived in the /private/tmp scratchpad and were wiped; last basics step 724 pass 0.0 score 0.153 (still 0.145). Mac GPU idle 19:01 -> 11:00"
