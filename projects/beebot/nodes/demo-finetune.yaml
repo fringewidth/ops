@@ -1,0 +1,13 @@
+title: Fine-tune the demo policy
+summary: Fine-tune the 0.8B think-then-act policy on the Haiku-labelled demo store plus demos-v2 (MuJoCo outcomes, stuck cubes visible), on the Mac or Kaggle.
+why: The demo policy must be trained on data that shows what MuJoCo shows; the 4B is optional and the 0.8B is the fallback demo policy.
+status: todo
+parent: grant-push-3d
+needs: mac-gpu
+depends:
+- frame-into-training
+- demo-store
+- demos-v2
+- stuck-visible
+created: "2026-11-12 11:20 +0530"
+by: beebot-1d ops-cleanup
