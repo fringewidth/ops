@@ -1,7 +1,7 @@
 title: Train on the frame-aware thoughts
 summary: Restart think-08b from its newest checkpoint on camera-frame thoughts (data/vla/haiku/frame-camera) via scripts/mac_chain.sh once camera-frame-all merges.
 why: The running Mac job started before the frame thoughts existed and never sees them.
-status: queued
+status: running
 kind: task
 needs: mac-gpu
 depends:
@@ -14,13 +14,13 @@ by: beebot-f7 3d push
 notes: "Paused 2026-11-12 13:42 at the user's OK (laptop out of memory: swap 17 of 18 GB): saved runs/think-08b-cam/resume.pt and policy_step196.pt; chain and its basics eval stopped. Resume tonight after the untrained 0.8B/2B/4B scaling comparison: OPS_NODE=frame-into-training nohup caffeinate -i scripts/mac_chain.sh think-08b-cam > logs/mac-chain-think-08b-cam.out 2>&1 & (it resumes from resume.pt). Still the v1 idealised stores: pipeline proof and start point."
 links:
 - logs/think-08b-cam.out
-updated: "2026-11-12 13:43:21 +0530"
+updated: "2026-11-12 15:41:05 +0530"
 claim:
   session: beebot-1d manager
   host: GB-497
-  pid: 92210
-  cmd: INIT=runs/think-08b-mac/resume.pt nohup caffeinate -i scripts/mac_chain.sh think-08b-cam (2 h segments + basics --arms policy, to step 3600)
-  started: "2026-11-12 11:43 +0530"
-  ends: "2026-11-13 18:00"
+  pid: 60363
+  cmd: OPS_NODE=frame-into-training nohup caffeinate -i scripts/mac_chain.sh think-08b-cam (resumed from step 196)
+  started: "2026-11-12 15:41 +0530"
+  ends: "2026-11-14 06:00"
 mitigates: bugcatch-06b
 parent: grant-push-3d
