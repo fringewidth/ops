@@ -3,7 +3,7 @@ summary: Produce the scaling curve, pretrained versus from-scratch, layer probes
 why: Reviewers need evidence that the approach scales and generalises. A demo alone does not show that.
 status: todo
 kind: task
-parent: trk-demo
+parent: grant-push-3d
 needs: mac-gpu
 est_h: 6.0
 depends:
@@ -12,6 +12,6 @@ depends:
 - kaggle-17b
 - scratch-ablation
 - scorecard-3d
-created: 2026-11-10 11:54 +0530
+created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: 2026-11-10 12:02 +0530
+updated: "2026-11-12 11:18 +0530"
