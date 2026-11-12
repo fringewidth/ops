@@ -2,7 +2,7 @@ title: Closed loop between grid and physics
 summary: Map each voxel action to one pivot and re-plan from the read-back state, first with the scripted expert.
 why: Pivots fail sometimes, so open-loop replay falls apart.
 status: done
-parent: trk-cubes
+parent: grant-push-3d
 est_h: 6.0
 depends:
 - cube-swarm-scene
@@ -10,7 +10,7 @@ depends:
 - free-cube-rules
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-updated: "2026-11-11 16:31 +0530"
+updated: "2026-11-12 11:15 +0530"
 metric:
   series: closed_loop_success
   direction: up
