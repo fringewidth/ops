@@ -3,7 +3,7 @@ summary: Re-run the expert closed loop (23 hosted kinds, 10-12 cubes) in release
 why: The demo's real success rate is this number; today's 0.26 is with permanent magnets the design does not use.
 status: todo
 kind: run
-parent: trk-cubes
+parent: grant-push-3d
 depends:
 - cube-harm-down
 metric:
@@ -12,4 +12,4 @@ metric:
 created: "2026-11-11 16:31 +0530"
 by: beebot-f7 3d push
 notes: "Per decide-snapback: no snap-back; record many seeds per task and report the best-run and median success."
-updated: "2026-11-12 11:10 +0530"
+updated: "2026-11-12 11:15 +0530"
