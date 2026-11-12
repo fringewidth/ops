@@ -3,7 +3,7 @@ summary: "Execute the policy's moves with the MuJoCo pivoting-cube sim: replay, 
 why: It shows the policy driving a physical model of the robots. This is the centrepiece for the grant.
 status: todo
 kind: task
-parent: trk-cubes
+parent: grant-push-3d
 needs: mac-gpu
 est_h: 6.0
 depends:
@@ -12,7 +12,7 @@ depends:
 - demo-store
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-11 15:18 +0530"
+updated: "2026-11-12 11:17 +0530"
 metric:
   series: mujoco_demo_success
   direction: up
