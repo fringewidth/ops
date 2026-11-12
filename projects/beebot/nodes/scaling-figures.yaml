@@ -1,5 +1,5 @@
 title: Evidence figures
-summary: Produce the scaling curve, pretrained versus from-scratch, layer probes and held-out scores.
+summary: Produce the size curve (Qwen3.5 0.8B, 2B, 4B), pretrained versus from-scratch, layer probes and held-out scores.
 why: Reviewers need evidence that the approach scales and generalises. A demo alone does not show that.
 status: todo
 kind: task
@@ -14,4 +14,5 @@ depends:
 - scorecard-3d
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-12 11:18 +0530"
+updated: "2026-11-12 11:24 +0530"
+notes: "User 2026-11-12: scaling must be shown; the size curve stays."
