@@ -6,11 +6,11 @@ kind: run
 parent: grant-push-3d
 est_h: 15.0
 depends:
-- bugcatch-06b
+- frame-into-training
 - upload-demos
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 metric:
   series: scorecard3d_mean{run="scratch"}
   direction: up
-updated: "2026-11-12 11:18 +0530"
+updated: "2026-11-12 11:21 +0530"
