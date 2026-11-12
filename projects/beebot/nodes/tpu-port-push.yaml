@@ -3,8 +3,8 @@ summary: The queued TPU kernel tries to git clone branch tpu-port from the publi
 why: TPU sessions queue for up to 24 hours and re-queuing loses the place; only the user can allow the push.
 status: done
 kind: decision
-parent: trk-runs
+parent: grant-push-3d
 created: "2026-11-10 23:55 +0530"
 by: beebot-f7 3d push
 result: "User 2026-11-11 ~07:40: pushing code is allowed. Pushed the agent's branch (cab1409) as tpu-port after a secret check; the queued kernel clones it at start."
-updated: "2026-11-11 07:39 +0530"
+updated: "2026-11-12 11:18 +0530"
