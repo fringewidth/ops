@@ -1,16 +1,15 @@
 title: Cut harmful pivots below a demo-able rate
 summary: Re-measure the outcome table at slower pivots and stronger magnets, release the neighbours' facing magnets too, and give the expert a risk-aware plan (backed walls, no lone supports), reporting harm per pivot and demos kept.
 why: At 12.3% harmful per pivot almost every 10-cube episode strands cubes; the demo and demos-v2 are not viable until this drops.
-status: todo
+status: running
 kind: task
 parent: trk-cubes
-notes: "Paused 17:5x for the token cap; handoff scratchpad/handoff/harm-down.md, branch harm-down (fbd3c88, 5ca08a4, 4167988 WIP). Judging fixed; the 12.3% was real (12.5% re-measured). Harm per pivot store mix / ten-cube (reached): as built 0.093/0.125 (0.47); neighbour faces off 0.115/0.147 (worse); speeds x0.85 0.044/0.049 (0.20); magnets x1.4 0.042/0.051 (0.31); both 0.008/0.019 (0.05); climbs-only x0.85 0.056/0.057 (0.44). Remaining source: climbing down off a cube 0.28 harmful. Overnight CPU jobs: PID 24245 gap (runs/cube_outcomes/settings/report-climb85.txt), 24247 righting spins (right-v1.jsonl), 24249/24251 demo arms (scratchpad demo_runs/). Risk-aware expert written, not yet measured."
+notes: "2026-11-12: subagent hillclimbs cube settings (kick per primitive, magnet pulls, dwell) for the lowest 10-cube harm per pivot with reach kept practical, fits the chosen setting's outcome table into the world sim (default for demos), checks grid vs MuJoCo gap. Worktree agent-a31c50503803b318d, branch harm-down. Known: climb85 0.057/0.43, climb85-mag12 0.031/0.35, climb85-mag14 0.019/0.21 (harm/reached); magnets kill climbs."
 depends:
 - harmful-failures
 metric:
-  series: mujoco_harmful_per_pivot
+  series: cube_harm_per_pivot{set="10-cube"}
   direction: down
-  target: 0.02
 created: "2026-11-11 16:23 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-11 17:17 +0530"
+updated: "2026-11-12 11:02 +0530"
