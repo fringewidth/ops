@@ -3,9 +3,9 @@ summary: Merge main into tpu-port and tpu-port's XLA fixes into main, and order 
 why: Each out-of-memory attempt burns about 8 minutes of compile on scarce Kaggle TPU quota, and the kernel clones tpu-port at start.
 status: done
 kind: task
-parent: trk-runs
+parent: grant-push-3d
 notes: 17:2x delegated to the integrator.
 created: "2026-11-11 16:55 +0530"
 by: beebot-f7 3d push
 result: "origin/tpu-port ab6ab31 (fast-forward to main + kernel): ATTEMPTS [(4, fp32), (4, bf16)]; runs/frame_verified.jsonl.gz regenerated (10,855 rows); quarantine from main. main's copy of think_kernel.py is older than tpu-port's."
-updated: "2026-11-11 17:20 +0530"
+updated: "2026-11-12 11:18 +0530"
