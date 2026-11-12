@@ -2,7 +2,7 @@ title: Scene questions in the stream layout
 summary: Train the model to answer what is in the scene, with answers read off the store.
 why: A model that talks about what it sees is one of the three things the page must show.
 status: todo
-parent: trk-trainer
+parent: grant-push-3d
 est_h: 3.0
 depends:
 - stream-trainer
@@ -11,4 +11,4 @@ by: beebot-a3 3d push
 metric:
   series: scene_qa_acc
   direction: up
-updated: "2026-11-10 21:47 +0530"
+updated: "2026-11-12 11:17 +0530"
