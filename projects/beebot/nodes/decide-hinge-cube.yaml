@@ -1,9 +1,10 @@
 title: Adopt the hinge cube as the demo robot
 summary: The latched-edge servo pivot cube (chamfered edges, latch-floor, 0.15-0.3 N m motor) is the simulated robot for the demo and its data.
 why: "It is the only design that meets the reliability bar in simulation (3 seeds: 0.850 reached / 0.024 harm); flywheel control tops out at 0.77 / 0.088."
-status: todo
+status: done
 kind: decision
 parent: cube-bar
 created: "2026-11-12 16:25 +0530"
 by: beebot-1d manager
-updated: "2026-11-12 16:25:36 +0530"
+updated: "2026-11-12 16:25:40 +0530"
+result: "User 2026-11-12 ~16:00: yes. Mechanism at 5 cm stays a bench-prototype question in parallel; the demo is the simulated hinge cube."
