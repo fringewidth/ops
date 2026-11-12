@@ -3,7 +3,7 @@ summary: One rerun or continuation of the main run, only if it fails or clearly 
 why: A week leaves room for one correction.
 status: todo
 kind: run
-parent: trk-runs
+parent: grant-push-3d
 needs: rented-gpu
 est_h: 20.0
 depends:
@@ -13,4 +13,4 @@ by: beebot-a3 3d push
 metric:
   series: scorecard3d_mean{run="reserve"}
   direction: up
-updated: "2026-11-10 21:47 +0530"
+updated: "2026-11-12 11:17 +0530"
