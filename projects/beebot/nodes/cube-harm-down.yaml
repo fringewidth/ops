@@ -4,7 +4,7 @@ why: At 12.3% harmful per pivot almost every 10-cube episode strands cubes; the 
 status: running
 kind: task
 parent: trk-cubes
-notes: "2026-11-12: subagent hillclimbs cube settings (kick per primitive, magnet pulls, dwell) for the lowest 10-cube harm per pivot with reach kept practical, fits the chosen setting's outcome table into the world sim (default for demos), checks grid vs MuJoCo gap. Worktree agent-a31c50503803b318d, branch harm-down. Known: climb85 0.057/0.43, climb85-mag12 0.031/0.35, climb85-mag14 0.019/0.21 (harm/reached); magnets kill climbs."
+notes: "2026-11-12: user: 27% climb success / 2/3 stayed is not acceptable; asked for Pareto. Subagent widened: (1) per-class kick tables (firmware), (2) escalating-kick retries scored per completed move, (3) full Pareto table of every setting, mechanical vs firmware labelled; then fit winner into world sim. Known global settings (10-cube harm/reached): v1 0.125/0.52, climb85 0.057/0.43, climb85-mag12 0.031/0.35, climb85-mag14 0.019/0.21; speed85 and speed85-mag14 dominated. Handoff runs/handoff/harm-down.md."
 depends:
 - harmful-failures
 metric:
@@ -12,4 +12,4 @@ metric:
   direction: down
 created: "2026-11-11 16:23 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-12 11:02 +0530"
+updated: "2026-11-12 11:06 +0530"
