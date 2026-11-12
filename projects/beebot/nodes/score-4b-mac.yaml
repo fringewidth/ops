@@ -2,7 +2,7 @@ title: Score a 4B on the Mac
 summary: Run one scorecard of the base 4B to the end on the Mac, in 16-bit or with the site stopped.
 why: Evaluations must not run on the paid GPU.
 status: todo
-parent: trk-trainer
+parent: grant-push-3d
 needs: mac-gpu
 est_h: 1.0
 depends:
@@ -12,4 +12,4 @@ by: beebot-a3 3d push
 metric:
   series: scorecard3d_mean{run="base-4b"}
   direction: up
-updated: "2026-11-10 21:47 +0530"
+updated: "2026-11-12 11:17 +0530"
