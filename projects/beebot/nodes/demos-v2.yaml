@@ -1,7 +1,7 @@
 title: Demonstration stores v2
 summary: Redraw the demonstration stores with the same seeds and draw options (so the Haiku labels still join) under harmful move failures and the maker fixes.
 why: Harmful failures were agreed as part of the data, and the maker fixes only take effect in new draws; the main run trains on these stores.
-status: todo
+status: running
 kind: run
 depends:
 - cube-harm-down
@@ -12,6 +12,8 @@ metric:
   direction: up
 created: "2026-11-11 14:57 +0530"
 by: beebot-f7 3d push
-notes: "Order (user 2026-11-12): after hinge-adopt. Must include: expert's intended (pre-jitter) action as the label; the hinge cube's outcome table; tower fit check allowing 1-wide towers; same seeds and draw options so Haiku labels still join (draw_digest)."
-updated: "2026-11-12 16:26:04 +0530"
+notes: "Order (user 2026-11-12): after hinge-adopt. Must include: expert's intended (pre-jitter) action as the label; the hinge cube's outcome table (mujoco_hinge_v1, default since 0cdcec0); tower fit check allowing 1-wide towers; same seeds and draw options so Haiku labels still join (draw_digest). Started 2026-11-12 ~17:15 (Sonnet subagent): code changes, then a one-seed check of the Haiku label join rate, then the full redraw into new dirs (data/vla/*_v2; the running trainer reads the old stores), at most 3 seeds at once because memory is tight. Pure CPU; no Haiku spend unless the drop rate is large (ask the user first)."
+updated: "2026-11-12 17:23:04 +0530"
 parent: grant-push-3d
+links:
+- /Users/hrishik/beebot/logs/demos-v2.out
