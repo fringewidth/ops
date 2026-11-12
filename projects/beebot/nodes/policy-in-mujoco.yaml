@@ -3,7 +3,7 @@ summary: "The closed loop with the policy as actor: our renderer's views of the 
 why: Nothing connects the policy to MuJoCo or the viewer yet; this is the demo itself.
 status: todo
 kind: task
-parent: trk-cubes
+parent: grant-push-3d
 depends:
 - cube-closed-loop
 - camera-frame-all
@@ -13,4 +13,4 @@ metric:
   direction: up
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-11 15:27 +0530"
+updated: "2026-11-12 11:17 +0530"
