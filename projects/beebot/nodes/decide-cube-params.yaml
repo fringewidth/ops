@@ -3,8 +3,8 @@ summary: "Recommended: climbing moves at 0.85 of calibrated speed (firmware only
 why: It is a hardware design change the user owns, and it shapes every demo and data number after it.
 status: done
 kind: decision
-parent: trk-cubes
+parent: grant-push-3d
 created: "2026-11-11 16:23 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-11 18:01 +0530"
+updated: "2026-11-12 11:15 +0530"
 result: "User 2026-11-11 ~18:00: yes, climbing moves at 0.85 of calibrated speed (firmware) for now. Data and demo use the matching outcome table (mujoco_release_v2 once fitted)."
