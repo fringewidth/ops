@@ -3,7 +3,7 @@ summary: Train the 4B policy with the plain causal layout on rented compute.
 why: The grant demo needs the strongest model we can afford. One big run is planned, with one rerun in reserve.
 status: todo
 kind: task
-parent: trk-runs
+parent: grant-push-3d
 needs: rented-gpu
 est_h: 20.0
 depends:
@@ -17,7 +17,7 @@ depends:
 - base-model-choice
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-11 14:33 +0530"
+updated: "2026-11-12 11:17 +0530"
 notes: "2026-11-11 14:45: not scheduled. Blocked on gate-act-follows-thought and gate-after-sft (Haiku test-set thought match 0.46, needs 0.9) and on compute (gpu-access: Vultr shows no GPUs; fuse-4b-17b, kaggle-06b open). Order agreed with the user: overfit test -> first 2-hour Mac segment as proof run -> merge into tpu-port -> main run. Gate at the first checkpoint: stop if loss or thoughts look wrong after about one hour. No evaluations on the paid GPU; destroy the machine after the run. Size (4B or 1.7B) is decided by the fuse."
 metric:
   series: scorecard3d_mean{run="main-4b"}
