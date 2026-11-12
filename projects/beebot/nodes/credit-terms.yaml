@@ -3,6 +3,7 @@ summary: The user confirms expiry, stock, billing when stopped and how the sessi
 why: The benchmark cannot start without it.
 status: todo
 kind: decision
-parent: trk-ops
-created: 2026-11-10 12:01 +0530
+parent: grant-push-3d
+created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
+updated: "2026-11-12 11:15 +0530"
