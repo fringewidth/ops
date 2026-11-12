@@ -45,17 +45,21 @@ order: 10           # sort order among siblings
 
 ```sh
 ops board                     # read before using a shared resource: running (with PID liveness), queue, ready, messages, log
-ops show [id] [--all]         # the open tree, or one node in full
+ops show [id] [--all]         # the open tree, or one node in full; for one node it pulls first and ends with its `updated` stamp
 ops add <id> --title .. --summary .. --why .. [--parent --depends a,b --needs --est-h --metric .. --direction up|down --target .. --status queued --link ..]
-ops set <id> key=value ...    # any field; dotted keys nest (metric.target=1.1); `key=` deletes; flags from `add` work too
-ops claim <id> --pid <pid> --cmd "<command>" --ends "2026-11-10 17:00" [--needs mac-gpu]   # marks running; creates the node if new (then give title/summary/why)
-ops done <id> --result "<what happened, where the output is>" [--failed | --dropped]
+ops set <id> key=value ... [--expect <updated>]   # any field; dotted keys nest (metric.target=1.1); `key=` deletes; flags from `add` work too
+ops claim <id> --pid <pid> --cmd "<command>" --ends "2026-11-10 17:00" [--needs mac-gpu] [--expect <updated>|new]   # marks running; creates the node if new (then give title/summary/why)
+ops done <id> --result "<what happened, where the output is>" [--failed | --dropped] [--expect <updated>]
 ops msg "<text>" [--to <session>]    # ops msg --rm <message-id> once it has been acted on
 ops push 'name{k="v"} 1.23' ...      # push numbers (or pipe lines on stdin)
 ops tail <log> [--label run=x]       # follow a log and push every number in its JSON lines
 ops rm-series <id|name{k="v"}>... [--stale-hours H] [--dry-run]   # delete series (worker DELETE /series); until the worker is redeployed it hides them via hidden-series.json, and a hidden series that reports again comes back
 ops check                            # validate every project
 ```
+
+## Read before you write
+
+Several sessions edit the same nodes. Before `ops set`, `ops claim` or `ops done` on an existing node, read it with `ops show <id>` and pass the `updated` stamp it prints as `--expect '<updated>'` (`--expect new` when claiming a node that does not exist yet). If anyone changed the node since, the write is refused with a diff of what changed: read it again, then decide. Without `--expect` the write still goes through and prints a reminder. Every write sets `updated` to the second.
 
 ## Rules for shared resources
 
@@ -75,6 +79,7 @@ Line format: `name{label="value",...} value [unix_ms]`. Each distinct name plus 
 1. Push from a script with `ops push`, `ops tail`, or plain HTTP: `curl -X POST $OPS_WORKER/push -H "Authorization: Bearer $OPS_TOKEN" --data-binary @lines.txt`. A Kaggle kernel or a VPS pushes the same way. Send `User-Agent` other than Python's default, which Cloudflare blocks.
 1. Pull: the Worker scrapes any public URL serving Prometheus text format every minute. Register one with `curl -X POST $OPS_WORKER/targets -H "Authorization: Bearer $OPS_TOKEN" -d '{"url":"https://host/metrics","labels":{"box":"vps1"}}'`.
 1. Collectors: `ops agent` runs every executable in `collectors/` (all machines) and `~/.config/ops/collectors/` (this machine only) once a minute. It pushes what they print and adds `host=<hostname>`. To add a provider, write an executable that prints lines. Test it with `ops agent --once`. On the user's Mac, run the agent as a plain process (`nohup ops agent > ~/Library/Logs/ops-agent.log 2>&1 &`), never as a LaunchAgent: the Mac's endpoint security removed the launchd service on 2026-11-10, along with uv, brew and cloudflared. Collectors must never read credentials (keychain, tokens, cookies).
+1. Alerts: every minute the Worker posts to the user's ntfy topic (the `NTFY_TOPIC` secret) when the Mac's heartbeat (`gpu_util_percent` on the Mac) has been silent 30 minutes, when a running node's `ops_claim_alive` reports 0 for 3 minutes, or when the Mac GPU has stayed below 10% for 30 minutes while a running, queued or ready node needs `mac-gpu`. Each alert fires once and again when it clears; the open ones live in D1 and `GET $OPS_WORKER/alerts` shows them with the conditions as they are now. Node state comes from the site's `state.json`. Messages carry node ids and durations only. `ops_alerts_sent` counts the posts. ntfy limits anonymous posts per IP and Cloudflare's shared IPs hit that limit, so the Worker sends the `NTFY_TOKEN` secret (an ntfy.sh access token) when it is set.
 1. Read: `GET $OPS_WORKER/series[?q=substr]` returns every series with its last value. `GET $OPS_WORKER/points?id=1,2&since=<unix_ms>&max=<n>` returns the points, averaged into at most n buckets.
 
 Existing collectors:

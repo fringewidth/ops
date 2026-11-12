@@ -10,6 +10,7 @@ See README.md for the schema.
 import argparse
 import contextlib
 import datetime as dt
+import difflib
 import fcntl
 import json
 import os
@@ -462,12 +463,50 @@ def set_path(node, dotted, value):
         target[keys[-1]] = value
 
 
+def version(node):
+    """The stamp `ops show` prints and --expect compares: when the node last changed."""
+    if not node:
+        return "new"
+    return str(node.get("updated") or node.get("created") or "never")
+
+
+def node_path(project, node_id):
+    return project_dir(project) / "nodes" / f"{node_id}.yaml"
+
+
+def expect_unchanged(args, nodes):
+    """Refuse with a diff when the node changed since the reader saw `--expect`; without it, print a reminder."""
+    node = nodes.get(args.id)
+    if args.expect is None:
+        print(f"ops: reminder: read before you write: `ops show {args.id}`, then pass --expect '{version(node)}'", file=sys.stderr)
+        return
+    if version(node) == args.expect:
+        return
+    path = node_path(args.project, args.id)
+    seen = None
+    log = git("log", "-n", "60", "--format=%H", "--", str(path.relative_to(HOME)), check=False).stdout.split()
+    for commit in log:
+        text = git("show", f"{commit}:{path.relative_to(HOME)}", check=False).stdout
+        if text and version(yaml_load(text) or {}) == args.expect:
+            seen = text
+            break
+    lines = [f"ops: refused: {args.id} changed since {args.expect} (now {version(node)}); read it again with `ops show {args.id}`"]
+    if seen is not None and path.exists():
+        diff = list(difflib.unified_diff(seen.splitlines(), path.read_text().splitlines(), "as you read it", "now", lineterm="", n=0))
+        lines += diff[2:42] + (["  ..."] if len(diff) > 42 else [])
+    sys.exit("\n".join(lines))
+
+
 def mutate(args, change, message):
     """Pull, apply change(nodes) -> list of node ids touched, validate, commit, push."""
     with locked():
         pull()
         nodes = load_nodes(args.project)
+        if hasattr(args, "expect"):
+            expect_unchanged(args, nodes)
         touched = change(nodes)
+        for node_id in touched:
+            nodes[node_id]["updated"] = stamp()
         errors = [p for p in problems(nodes) if p.split(":")[0] in touched or "cycle" in p]
         if errors:
             git("checkout", "--", "projects", check=False)
@@ -517,7 +556,6 @@ def cmd_set(args):
                 sys.exit(f"ops: expected key=value, got {pair}")
             key, value = pair.split("=", 1)
             set_path(node, key, parse_value(value))
-        node["updated"] = now()
         return [args.id]
     mutate(args, change, f"set {args.id} {' '.join(args.pairs)}".strip())
 
@@ -551,7 +589,6 @@ def cmd_done(args):
             node["result"] = args.result
         if node.get("claim"):
             node["claim"]["finished"] = now()
-        node["updated"] = now()
         return [args.id]
     mutate(args, change, f"{'fail' if args.failed else 'drop' if args.dropped else 'finish'} {args.id}")
 
@@ -599,6 +636,9 @@ def cmd_board(args):
 
 
 def cmd_show(args):
+    if args.id:
+        with locked():
+            pull()
     nodes = load_nodes(args.project)
     if args.id:
         if args.id not in nodes:
@@ -607,6 +647,7 @@ def cmd_show(args):
         children = [n["id"] for n in nodes.values() if n.get("parent") == args.id]
         if children:
             print("children:", ", ".join(children))
+        print(f"updated: {version(nodes[args.id])}   (write with --expect '{version(nodes[args.id])}')")
         return
     show_all = args.all
 
@@ -793,6 +834,11 @@ def now():
     return dt.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %z")
 
 
+def stamp():
+    """`updated`: to the second, so --expect tells apart two writes in one minute."""
+    return dt.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %z")
+
+
 def default_project():
     top = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True, text=True)
     return Path(top.stdout.strip()).name if top.returncode == 0 and Path(top.stdout.strip()) != HOME else None
@@ -836,6 +882,7 @@ def main():
     command = sub.add_parser("set", help="change fields: flags or key=value (dotted keys nest, empty value deletes)")
     command.add_argument("id")
     command.add_argument("pairs", nargs="*")
+    command.add_argument("--expect", help="the `updated` stamp `ops show <id>` printed; refuse if the node changed since")
     node_options(command)
     command.set_defaults(func=cmd_set)
 
@@ -844,6 +891,7 @@ def main():
     command.add_argument("--pid", type=int)
     command.add_argument("--cmd")
     command.add_argument("--ends", help="expected end, e.g. '2026-11-10 17:00'")
+    command.add_argument("--expect", help="the `updated` stamp `ops show <id>` printed; refuse if the node changed since")
     node_options(command)
     command.set_defaults(func=cmd_claim)
 
@@ -852,6 +900,7 @@ def main():
     command.add_argument("--result", help="one line: what happened and where the output is")
     command.add_argument("--failed", action="store_true")
     command.add_argument("--dropped", action="store_true")
+    command.add_argument("--expect", help="the `updated` stamp `ops show <id>` printed; refuse if the node changed since")
     command.set_defaults(func=cmd_done)
 
     command = sub.add_parser("msg", help="leave a message on the board")

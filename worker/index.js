@@ -5,8 +5,10 @@
 // GET  /series          every series with its last value (?q= filters by substring of name or labels).
 // DELETE /series?id=1,2 removes those series and all their points (token).
 // GET  /points?id=1,2   points per series (?since=unix_ms, ?max=N buckets, averaged).
+// GET  /alerts          open alerts and the conditions as evaluated now (read-only; see alerts below).
 // GET  /targets         scrape targets; POST {url, labels} adds one; DELETE ?url= removes one (token).
-// Cron (every minute)   GETs each target URL and stores what it serves; drops points older than RETAIN_DAYS.
+// Cron (every minute)   GETs each target URL and stores what it serves; drops points older than RETAIN_DAYS;
+//                       posts alerts to ntfy (see alerts below).
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -107,6 +109,131 @@ async function scrape(env) {
   }
 }
 
+// ---------- alerts ----------
+// Every minute the cron evaluates three conditions and posts to ntfy (topic: the NTFY_TOPIC secret) when one starts
+// and when it clears. Open alerts live in the D1 table `alerts`, so each fires once.
+//   mac-silent        the Mac's heartbeat series (HEARTBEAT on MAC_HOST) has not reported for SILENT_MIN minutes
+//   dead:<proj>/<id>  a running node's ops_claim_alive series reports 0 (fresh, for the last 3 minutes)
+//   gpu-idle          the heartbeat stayed below IDLE_PCT for IDLE_MIN minutes while a running, queued or ready node needs mac-gpu
+// The worker has no copy of the plan, so node state comes from the published site's state.json (STATE_URL).
+// SILENT_MIN, IDLE_MIN, IDLE_PCT, MAC_HOST, HEARTBEAT and ALERT_NOTE (a prefix, for tests) are optional vars.
+// ntfy.sh limits anonymous publishing per IP and Cloudflare's shared egress IPs hit that daily quota (429), so set
+// the NTFY_TOKEN secret (an ntfy.sh access token) for per-account limits. A failed post is retried every minute.
+// Messages carry node ids and durations only: ntfy topics are readable by anyone who knows the name.
+
+const MINUTE = 60000;
+const OPEN = new Set(["todo", "queued", "running"]);
+
+function setting(env, key, fallback) {
+  const value = Number(env[key]);
+  return Number.isFinite(value) && env[key] !== undefined && env[key] !== "" ? value : fallback;
+}
+
+async function heartbeat(env) {
+  const labels = canonical({ host: env.MAC_HOST || "GB-497" });
+  return env.DB.prepare("SELECT id, last_t FROM series WHERE name = ? AND labels = ?").bind(env.HEARTBEAT || "gpu_util_percent", labels).first();
+}
+
+function ready(nodes, node) {
+  const byId = new Map(nodes.map((n) => [n.id, n]));
+  return (
+    ["todo", "queued"].includes(node.status || "todo") &&
+    (node.depends || []).every((d) => byId.get(d)?.status === "done") &&
+    !nodes.some((child) => child.parent === node.id && OPEN.has(child.status || "todo"))
+  );
+}
+
+// Returns {active: Map key -> message, judged: prefixes it could evaluate}.
+async function conditions(env, now) {
+  const active = new Map();
+  const judged = ["mac-silent"];
+  const silentMin = setting(env, "SILENT_MIN", 30);
+  const idleMin = setting(env, "IDLE_MIN", 30);
+  const beat = await heartbeat(env);
+  if (beat && now - beat.last_t >= silentMin * MINUTE) {
+    active.set("mac-silent", `mac silent ${Math.round((now - beat.last_t) / MINUTE)} min (training, collectors or the Mac are down)`);
+  }
+
+  let state;
+  try {
+    const response = await fetch(`${env.STATE_URL || "https://hrishik.me/ops/state.json"}?${now}`, { signal: AbortSignal.timeout(10000) });
+    state = await response.json();
+  } catch (error) {
+    return { active, judged };
+  }
+  judged.push("dead:", "gpu-idle");
+  const projects = Object.entries(state.projects || {});
+
+  const { results: claims } = await env.DB.prepare("SELECT id, labels, last_t, last_v FROM series WHERE name = 'ops_claim_alive' AND last_t >= ?").bind(now - 10 * MINUTE).all();
+  for (const row of claims) {
+    if (row.last_v !== 0) continue;
+    const labels = JSON.parse(row.labels);
+    const nodes = state.projects?.[labels.project]?.nodes || [];
+    if (!nodes.some((n) => n.id === labels.node && n.status === "running")) continue;
+    const recent = await env.DB.prepare("SELECT COUNT(*) AS n, MAX(v) AS top FROM points WHERE series_id = ? AND t >= ?").bind(row.id, now - 3 * MINUTE).first();
+    if (recent.n >= 2 && recent.top === 0) active.set(`dead:${labels.project}/${labels.node}`, `${labels.node}: process gone`);
+  }
+
+  if (beat) {
+    const window = await env.DB.prepare("SELECT COUNT(*) AS n, MAX(v) AS top FROM points WHERE series_id = ? AND t >= ?").bind(beat.id, now - idleMin * MINUTE).first();
+    if (window.n >= idleMin / 2 && window.top < setting(env, "IDLE_PCT", 10)) {
+      const waiting = { running: [], queued: [], ready: [] };
+      for (const [, project] of projects) {
+        for (const node of project.nodes || []) {
+          if (node.needs !== "mac-gpu") continue;
+          if (node.status === "running") waiting.running.push(node.id);
+          else if (ready(project.nodes, node)) waiting.ready.push(node.id);
+          else if (node.status === "queued") waiting.queued.push(node.id);
+        }
+      }
+      const parts = Object.entries(waiting).filter(([, ids]) => ids.length).map(([kind, ids]) => `${kind}: ${ids.slice(0, 3).join(", ")}${ids.length > 3 ? ", ..." : ""}`);
+      if (parts.length) active.set("gpu-idle", `mac-gpu idle ${idleMin}+ min; ${parts.join("; ")}`);
+    }
+  }
+  return { active, judged };
+}
+
+async function notify(env, message, recovered) {
+  const response = await fetch(`https://ntfy.sh/${env.NTFY_TOPIC}`, {
+    method: "POST",
+    body: env.ALERT_NOTE ? `[${env.ALERT_NOTE}] ${message}` : message,
+    headers: {
+      Title: recovered ? "ops: recovered" : "ops alert",
+      Tags: recovered ? "white_check_mark" : "warning",
+      Priority: recovered ? "3" : "4",
+      "User-Agent": "ops-worker/1",
+      ...(env.NTFY_TOKEN ? { Authorization: `Bearer ${env.NTFY_TOKEN}` } : {}),
+    },
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!response.ok) throw new Error(`ntfy ${response.status}: ${(await response.text()).slice(0, 200)}`);
+}
+
+async function alerts(env, now) {
+  if (!env.NTFY_TOPIC) return;
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS alerts (key TEXT PRIMARY KEY, message TEXT NOT NULL, since INTEGER NOT NULL)").run();
+  const { active, judged } = await conditions(env, now);
+  const { results: open } = await env.DB.prepare("SELECT key, message, since FROM alerts").all();
+  const known = new Set(open.map((row) => row.key));
+  let sent = 0;
+  for (const [key, message] of active) {
+    if (known.has(key)) continue;
+    await notify(env, message, false);
+    await env.DB.prepare("INSERT INTO alerts (key, message, since) VALUES (?, ?, ?)").bind(key, message, now).run();
+    sent += 1;
+  }
+  for (const row of open) {
+    if (active.has(row.key) || !judged.some((prefix) => row.key.startsWith(prefix))) continue;
+    await notify(env, `${row.message}; cleared after ${Math.round((now - row.since) / MINUTE)} min`, true);
+    await env.DB.prepare("DELETE FROM alerts WHERE key = ?").bind(row.key).run();
+    sent += 1;
+  }
+  if (sent) {
+    const last = await env.DB.prepare("SELECT last_v FROM series WHERE name = 'ops_alerts_sent' AND labels = '{}'").first();
+    await store(env, [{ name: "ops_alerts_sent", labels: "{}", value: (last?.last_v || 0) + sent, t: now }]);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -174,11 +301,18 @@ export default {
       }
     }
 
-    if (url.pathname === "/") return reply("ops metrics: /push /series /points /targets");
+    if (url.pathname === "/alerts") {
+      const open = await env.DB.prepare("SELECT * FROM alerts").all().catch(() => ({ results: [] }));
+      const { active } = await conditions(env, Date.now());
+      return reply({ open: open.results, now: Object.fromEntries(active) });
+    }
+
+    if (url.pathname === "/") return reply("ops metrics: /push /series /points /targets /alerts");
     return reply("not found", 404);
   },
 
   async scheduled(event, env, ctx) {
     ctx.waitUntil(scrape(env));
+    ctx.waitUntil(alerts(env, Date.now()).catch((error) => console.log(`alerts: ${error}`)));
   },
 };

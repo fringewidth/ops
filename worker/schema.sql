@@ -16,3 +16,8 @@ CREATE TABLE IF NOT EXISTS targets (
   url TEXT PRIMARY KEY,
   labels TEXT
 );
+CREATE TABLE IF NOT EXISTS alerts (
+  key TEXT PRIMARY KEY,
+  message TEXT NOT NULL,
+  since INTEGER NOT NULL
+);
