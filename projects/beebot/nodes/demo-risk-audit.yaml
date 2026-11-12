@@ -3,7 +3,7 @@ summary: Trace the demo end to end (typed instruction, policy, grid actions, MuJ
 why: The grant rests on the MuJoCo demo; risks found late cost a training cycle. The user asked for the big picture first.
 status: done
 kind: task
-parent: trk-demo
+parent: grant-push-3d
 notes: "15:05 delegated to subagent 'risk-audit' (read-only). Known so far: grid world idealised vs MuJoCo (harmful failures, edge contacts, simultaneous moves); no cheese or terrain in MuJoCo."
 metric:
   series: demo_risks_open
@@ -11,4 +11,4 @@ metric:
 created: "2026-11-11 15:04 +0530"
 by: beebot-f7 3d push
 result: "7 risks (ranked): demo-sized data scarce; MuJoCo permanent magnets freeze bonded movers + harmful failures compound per episode; camera side invisible to the thought; no policy-to-MuJoCo/viewer path; decoding freezes or jitters (labels carry the expert's 10% random moves); 4B latency + load_policy fp32 bug; schedule. Scripts: scratchpad/risk-audit/. Nodes and decisions added."
-updated: "2026-11-11 15:18 +0530"
+updated: "2026-11-12 11:15 +0530"
