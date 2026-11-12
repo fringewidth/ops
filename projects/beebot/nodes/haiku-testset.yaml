@@ -2,9 +2,10 @@ title: Frozen held-out Haiku test set
 summary: 300 tasks phrased only with held-out words and categories, verified, frozen in data/vla/haiku/test.
 why: "The number reviewers look at: success on phrasings the model never trained on."
 status: done
-parent: trk-language
+parent: grant-push-3d
 notes: Built 18:35-18:40 with the pre-fix matcher, so its few motion/subset/switch items were checked by exact fields.
 depends:
 - haiku-rewrites
 created: "2026-11-10 18:54 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-12 11:16 +0530"
