@@ -1,7 +1,7 @@
 title: Control beyond kicks
 summary: "In MuJoCo: in-move control (gyro-triggered brake, flywheel trim in flight), per-magnet schedules, easing the floor pull, and planner bans on lone-support and held moves, measured against cube-bar."
 why: Kick strength alone sits on one reach-for-harm line; changing how a move is executed can break it.
-status: running
+status: done
 parent: cube-bar
 depends:
 - cube-harm-down
@@ -10,4 +10,5 @@ metric:
   direction: down
 created: "2026-11-12 13:23 +0530"
 by: beebot-1d manager
-updated: "2026-11-12 13:23:44 +0530"
+updated: "2026-11-12 14:30:16 +0530"
+result: "Bar not met. Best: C-esc2 (flywheel trim, hinge-only magnets + metered brake on descents, neighbours loosen pair magnets, escalating held-roll retries) 0.77 reached / 0.088 harm per move on 10-cube walks (3 seeds); with lone-support and crowd convex-down banned 0.81 / 0.037. Crowd floor rolls 0.07 -> 0.70 reached. Binding constraint: half turns near cubes (crowd convex down 0.33 harmful, convex up onto lone support 0.43): corner sweeps sqrt(2)L and stalls at ~105 deg; motor ~0.4 of gravity torque. Neighbours squeeze a mover 15-20 N via their diagonal magnets (layout, not MuJoCo). Branch cube-control (6144d61), HARDWARE.md 'Control within a move'. Not merged, nothing default."
