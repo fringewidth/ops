@@ -1,8 +1,10 @@
 title: Training runs
 summary: Free runs first on the Mac and Kaggle, then the paid run on rented credits.
 why: Rented compute is the scarce resource. Every paid step must already have worked for free at 0.6B.
-status: todo
+status: dropped
 kind: goal
 parent: grant-push-3d
-created: 2026-11-10 12:00 +0530
+created: "2026-11-10 12:00 +0530"
 by: beebot-a3 3d push
+notes: "2026-11-12: track boxes removed at the user's request (cluttered the UI); children moved to grant-push-3d."
+updated: "2026-11-12 11:19 +0530"
