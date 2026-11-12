@@ -3,8 +3,8 @@ summary: "One causal sequence: images and instruction in the user turn, then <th
 why: No packing because Qwen3.5's linear attention carries state along the row. Chosen by Claude in think.py, following the user's plain-causal-layout call.
 status: done
 kind: decision
-parent: trk-trainer
+parent: grant-push-3d
 created: "2026-11-10 21:51 +0530"
 by: beebot-f7 3d push
 result: Follows the user's plain-causal-layout call; no objection raised 2026-11-11.
-updated: "2026-11-11 07:55 +0530"
+updated: "2026-11-12 11:18 +0530"
