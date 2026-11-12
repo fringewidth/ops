@@ -3,11 +3,11 @@ summary: Instructions and thoughts use world directions; a user means directions
 why: A wrong frame makes every direction word in the data wrong for the vision model.
 status: done
 kind: decision
-parent: trk-trainer
+parent: grant-push-3d
 notes: "Proposed: the camera stays on the user's side with small pose jitter. Owed by the user."
 depends:
 - base-model-choice
 created: "2026-11-10 20:28 +0530"
 by: beebot-f7 3d push
 result: "User 2026-11-10 ~20:45: randomize the camera fully, and tell the model where the user stands relative to the camera; directions in instructions and thoughts are in the user's frame."
-updated: "2026-11-10 20:53 +0530"
+updated: "2026-11-12 11:15 +0530"
