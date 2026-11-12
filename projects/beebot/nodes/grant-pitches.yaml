@@ -1,9 +1,12 @@
 title: Quick compute-grant pitches
-summary: Draft short pitches for the quick compute grants using the current demo; the user sends them.
-why: Decisions take 5 to 10 days, so they must go out this week.
+summary: Draft short pitches for the compute grants from the finished demo, video and report; the user sends them.
+why: "User 2026-11-12: pitches go out after everything else is done, with the finished demo, video and report."
 status: todo
 parent: grant-push-3d
 est_h: 2.0
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-updated: "2026-11-12 11:16 +0530"
+updated: "2026-11-12 11:24 +0530"
+depends:
+- video
+- report
