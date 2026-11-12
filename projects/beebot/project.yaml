@@ -21,4 +21,3 @@ pins:
   - claude_limit_percent{kind="session"}
   - kaggle_tpu_hours_left
   - disk_free_bytes
-  - tool_present

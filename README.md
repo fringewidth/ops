@@ -83,7 +83,6 @@ Existing collectors:
 1. `claims`: `ops_claim_alive{project,node}`.
 1. `kaggle`: `kaggle_kernel_status{slug}` for running nodes. Kaggle has no quota API, so update `kaggle_gpu_hours_left{account}` by hand with `ops push` after reading it on the site.
 1. `disk`: `disk_free_bytes`, `disk_total_bytes` of the home volume.
-1. `tools`: `tool_present{tool}` for the command-line tools the projects rely on (`OPS_TOOLS`, else uv, git, brew, cloudflared, node).
 1. `http`: `http_up{project,node,url}` and `http_seconds` for every http link of a running node.
 1. `vultr`: `vultr_credit_usd`, `vultr_pending_usd`, `vultr_remaining_usd` and `vultr_machines` every 5 minutes, when `VULTR_API_KEY` is set in `~/.config/ops/env`. The collector only sends GET requests, over IPv4 (the key's access control lists IPv4 addresses).
 1. `vultr_gpu`: `vultr_gpu_regions{plan}`, the regions where each GPU plan can be ordered, every 5 minutes from Vultr's public catalogue (no key). It sends one ntfy notice to `OPS_NTFY_TOPIC` when a plan comes into stock, and never orders.

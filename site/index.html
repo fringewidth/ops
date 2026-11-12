@@ -488,13 +488,15 @@ async function insights() {
     if (ends && ends < Date.now() - 15 * 60000) out.push({ node: n.id, text: `<b>${esc(n.title)}</b> was expected to finish ${span(Date.now() - ends)} ago.` });
   }
   for (const [name, r] of Object.entries(P().meta.resources || {})) {
-    const busy = nodes().filter((n) => status(n) === "running" && n.needs === name).length;
-    const waiting = ready.filter((n) => n.needs === name);
+    // a queued node with a claim is already submitted (e.g. waiting in Kaggle's queue): it holds the resource
+    const holds = (n) => n.needs === name && (status(n) === "running" || (status(n) === "queued" && n.claim));
+    const busy = nodes().filter(holds).length;
+    const waiting = ready.filter((n) => n.needs === name && !holds(n));
     const cap = r.capacity || 1;
     if (busy < cap && waiting.length) out.push({ node: waiting[0].id, text: `<b>${esc(name)}</b> is free and ${waiting.length} task${waiting.length > 1 ? "s are" : " is"} ready, starting with <b>${esc(waiting[0].title)}</b>.` });
     if (busy > cap) out.push({ bad: true, text: `<b>${esc(name)}</b> has ${busy} jobs claimed but room for ${cap}.` });
     if (r.busy_series && !busy) {
-      const v = matching(r.busy_series)[0]?.last_v;
+      const b = matching(r.busy_series)[0], v = b && Date.now() - b.last_t < 15 * 60000 ? b.last_v : null;  // a stale reading says nothing about now
       if (v != null && v > 50) out.push({ text: `<b>${esc(name)}</b> is busy (${fmtValue(r.busy_series, v)}) with nothing claimed on it.` });
     }
   }
