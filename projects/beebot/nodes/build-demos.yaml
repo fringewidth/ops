@@ -2,7 +2,7 @@ title: Build-family demo store
 summary: Build-only demos (--only build, 144 steps) for seeds 0-1, matching the build-family Haiku export.
 why: Building by name needs its own episodes; build-only draws keep the Haiku join exact.
 status: done
-parent: trk-data
+parent: grant-push-3d
 notes: "Started 2026-11-10 ~20:50: data/vla/voxel_build/s{0,1}, 1600 scenes each, --cube --rule switch_cube --counts log --compact --build 1.0 --only build --steps 144 --failure 0.10,up_over=0.23. Haiku export: data/vla/haiku/build-s{0,1}, 1500 items each, same options."
 depends:
 - build-objects
@@ -11,7 +11,7 @@ links:
 - logs/build-demos-s0.out
 created: "2026-11-10 20:51 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 22:31 +0530"
+updated: "2026-11-12 11:14 +0530"
 metric:
   series: demos_kept{run="voxel_build"}
   direction: up
