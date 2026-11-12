@@ -1,0 +1,9 @@
+title: Chain keeps only its last two checkpoints
+summary: scripts/mac_chain.sh deletes all but the newest two policy_step*.pt of its run after each segment's basics eval.
+why: Each 2 h segment adds a 1 GB checkpoint; disk fell to 9.6 GB free on 2026-11-12 and filled once before (disk-full-0432).
+status: todo
+parent: grant-push-3d
+notes: "2026-11-12: the user freed ~10 GB by hand (old think-08b-mac resume.pt and early checkpoints, bugcatch step767, overfit step240)."
+created: "2026-11-12 16:47 +0530"
+by: beebot-1d manager
+updated: "2026-11-12 16:47:10 +0530"
