@@ -2,8 +2,8 @@ title: Remove stale metrics from the dashboard
 summary: Numbers tab hides series not reported for 2 h (toggle to show), pins prefer fresh series over stale duplicates, beebot pins updated; worker gains DELETE /series?id= for real removal.
 why: The user asked to remove stale metrics; 58 of 88 series had stopped reporting.
 status: done
-parent: trk-ops
+parent: grant-push-3d
 notes: "Implemented 'ops rm-series <id|selector>... [--stale-hours H] [--dry-run]' (ops 7a9805a and after): deletes through the worker's DELETE /series once worker/ is redeployed; until then it hides the series (hidden-series.json, carried in state.json; the site filters them; a hidden series that reports again comes back). 2026-11-10 ~20:00: removed 59 series (every series silent for 2 h except the manual Kaggle hours, plus the watcher's duplicate usage numbers). Numbers tab checked in Chrome: 35 series, no console errors."
 created: "2026-11-10 19:47 +0530"
 by: beebot-f7 3d push
-updated: "2026-11-10 19:51 +0530"
+updated: "2026-11-12 11:18 +0530"
