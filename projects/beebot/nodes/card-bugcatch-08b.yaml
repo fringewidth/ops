@@ -4,7 +4,7 @@ kind: run
 title: Score the bug-catch checkpoint
 summary: Thought parse and first-sub-goal match on the test split and the Haiku test set (one step), then closed-loop rollouts on the test split, for the bug-catch's step-1200 checkpoint.
 why: Gate a (thoughts match at 0.9) and gate-after-sft read the thought numbers; the rollouts show whether actions follow.
-parent: trk-runs
+parent: grant-push-3d
 needs: mac-gpu
 links:
 - logs/card-bugcatch-08b-rollouts.out
@@ -20,5 +20,5 @@ claim:
   started: "2026-11-11 08:35 +0530"
   ends: "2026-11-11 10:30"
   finished: "2026-11-11 11:17 +0530"
-updated: "2026-11-11 11:17 +0530"
+updated: "2026-11-12 11:14 +0530"
 result: "Step 1200: thoughts parse 0.99-1.00, first-sub-goal match 0.88-0.89 (test split), 0.46 on the Haiku test set (parallel 0, subset 0, herd 0.12); rollouts policy 0.21 vs standing still 0.20: actions do not follow thoughts (action probe: P(stay) 0.72-0.81 for robots that should move). runs/bugcatch-08b/card_thoughts/card.md, logs/card-bugcatch-08b-rollouts.out"
