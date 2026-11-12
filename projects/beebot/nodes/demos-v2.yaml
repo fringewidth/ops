@@ -4,13 +4,11 @@ why: Harmful failures were agreed as part of the data, and the maker fixes only 
 status: todo
 kind: run
 depends:
-- harmful-failures
-- maker-fixes
-- fix-draw-divergence
+- cube-harm-down
 metric:
   series: demos_v2_kept
   direction: up
 created: "2026-11-11 14:57 +0530"
 by: beebot-f7 3d push
 notes: "Must include (risk audit 15:20): expert's intended (pre-jitter) action recorded as the label (the stored actions carry controller.JITTER_PROB 10% random moves); MuJoCo-measured outcomes in release-bonds mode; tower fit check allowing 1-wide towers."
-updated: "2026-11-11 15:18 +0530"
+updated: "2026-11-12 11:10 +0530"
