@@ -1,8 +1,10 @@
 title: Demo, report and funding
 summary: A 3D page with visible thoughts, a one-minute video and a four-figure report.
 why: This is what a grant reviewer will actually look at.
-status: todo
+status: dropped
 kind: goal
 parent: grant-push-3d
-created: 2026-11-10 12:00 +0530
+created: "2026-11-10 12:00 +0530"
 by: beebot-a3 3d push
+notes: "2026-11-12: track boxes removed at the user's request (cluttered the UI); children moved to grant-push-3d."
+updated: "2026-11-12 11:19 +0530"
