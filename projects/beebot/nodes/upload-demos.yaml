@@ -7,6 +7,7 @@ est_h: 1.0
 depends:
 - full-demos
 - demos-v2
+- demo-store
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
-updated: "2026-11-12 11:18 +0530"
+updated: "2026-11-12 11:21 +0530"
