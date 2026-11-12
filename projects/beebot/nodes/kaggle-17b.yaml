@@ -3,7 +3,7 @@ summary: Train the same recipe at 1.7B for the size curve.
 why: Today's probes put the 1.7B close to the 4B, so it may be the better buy.
 status: todo
 kind: run
-parent: trk-runs
+parent: grant-push-3d
 needs: kaggle-rvitmpolicyboot
 est_h: 30.0
 depends:
@@ -12,7 +12,7 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "User 2026-11-10: 1.7B is last and only if time remains; 0.6B and 4B are the size curve. Full weights do not fit a T4 at 1.7B (~27 GB), so this needs rented hours or LoRA."
-updated: "2026-11-10 21:48 +0530"
+updated: "2026-11-12 11:16 +0530"
 metric:
   series: scorecard3d_mean{run="kaggle-2b"}
   direction: up
