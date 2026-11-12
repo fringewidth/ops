@@ -8,12 +8,12 @@ needs: mac-gpu
 est_h: 6.0
 depends:
 - policy-in-mujoco
-- main-4b-run
-- demo-store
+- demo-finetune
+- closed-loop-v2
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-updated: "2026-11-12 11:17 +0530"
+updated: "2026-11-12 11:20 +0530"
 metric:
   series: mujoco_demo_success
   direction: up
-notes: "4B may be too slow live (est. 3-5 s/step): record offline; treat 4B as optional, 0.8B as the fallback demo policy."
+notes: "4B may be too slow live (est. 3-5 s/step): record offline; treat 4B as optional, 0.8B as the fallback demo policy. 2026-11-12 cleanup: no longer blocked on main-4b-run (no GPU available); depends on the 0.8B demo-finetune; swap in the 4B if main-4b-run lands."
