@@ -3,8 +3,9 @@ summary: In the ten-cube scene a cube with any second face bond never moved (0 o
 why: Permanent magnets hold it in shear. The voxel world lets any robot move, so a policy trained there asks for moves real cubes cannot make.
 status: failed
 kind: failure
-parent: trk-cubes
+parent: grant-push-3d
 links:
 - runs/cube_swarm/mixed.jsonl
 created: "2026-11-10 12:31 +0530"
 by: beebot-f7 3d push
+updated: "2026-11-12 11:14 +0530"
