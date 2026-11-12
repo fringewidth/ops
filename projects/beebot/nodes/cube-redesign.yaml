@@ -1,9 +1,10 @@
 title: Cube redesign study
 summary: Survey actuation designs for lattice modules with measured move reliability (ballistic pivots vs controlled pivots, edge electromagnets, sliding, wheel+pivot hybrids), pick candidates for a New Year prototype, and model the top one in MuJoCo against cube-bar.
 why: If no control scheme meets the bar with a flywheel-flip cube, the actuation itself must change before the policy's data is frozen.
-status: running
+status: done
 parent: cube-bar
 created: "2026-11-12 13:23 +0530"
 by: beebot-1d manager
-updated: "2026-11-12 15:27:59 +0530"
+updated: "2026-11-12 16:25:44 +0530"
 notes: "Hinge cube (latched-edge servo pivot, 5 cm, 0.3 N m, as-built magnets): 10-cube walks over 3 seeds 0.850 reached / 0.024 harm (s0 0.822/0.021, s1000 0.866/0.031, s2000 0.863/0.021); harm is mostly knocks, ~0.014 an overhang the grid allows. Side-by-side video (tower script, seed 0): flywheel 5/20 then harmful, hinge 20/20: worktree runs/cube_redesign/video/side-by-side-s0.mp4. Idealisations: dropped edge/corner contacts (stands in for chamfers), perfect angle sensing, no mechanism mass/backlash/compliance, latch capture 3 mm (0.06 L), floor latch features. Stress sweep running (runs/cube_redesign/stress.sh): torque 0.15/0.1, no floor latch, catch 0.03, square edges. User 2026-11-12: 10 cm too big."
+result: "Hinge cube meets the bar in sim: 3 seeds 0.850/0.024 (s1000 0.031). Stress (seed 0): torque 0.15 0.755/0.016, 0.10 0.626/0.016; no floor latch 0.520/0.021; catch 1.5 mm 0.819/0.021; square edges ~0.71/0.021 (partial). Harm stays ~2% under every stress; reach needs motor, chamfers and the latch floor. Survey + ranking in HARDWARE.md 'Redesign options' (branch cube-redesign 03b37ef); video runs/cube_redesign/video/side-by-side-s0.mp4 in the worktree."
