@@ -3,7 +3,7 @@ summary: Run both sizes for a few hours on the real data and compare loss and th
 why: It decides the model size and catches problems before the main run.
 status: todo
 kind: run
-parent: trk-runs
+parent: grant-push-3d
 needs: rented-gpu
 est_h: 5.0
 depends:
@@ -12,7 +12,7 @@ depends:
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "User 2026-11-10: 1.7B only if time remains, so this fuse is 4B vs 0.6B at equal steps unless 1.7B is run."
-updated: "2026-11-10 21:48 +0530"
+updated: "2026-11-12 11:16 +0530"
 metric:
   series: think_val_loss{run="fuse"}
   direction: down
