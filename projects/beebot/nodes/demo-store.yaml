@@ -6,10 +6,11 @@ kind: task
 parent: grant-push-3d
 depends:
 - cube-harm-down
+- cube-bar
 metric:
   series: demo_store_episodes
   direction: up
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
 notes: "User 2026-11-11 ~18:00: Haiku labelling OK in principle; give size and cost before starting. Draw with --demo --outcomes at the setting cube-harm-down picks (table v3 or later, not v2) once it lands. Was marked running by mistake; nothing drawn yet."
-updated: "2026-11-12 11:15 +0530"
+updated: "2026-11-12 13:23:51 +0530"
