@@ -1,0 +1,15 @@
+title: Physics and observation randomization
+summary: Opt-in per-episode failure-rate multipliers, weak and broken cubes, imperfect cube poses in the picture and dropped or late commands, applied per live draw.
+why: "User 2026-11-13: proper domain randomization including what it sees and world parameters ('do that'); a grid-to-MuJoCo transfer failure would be detrimental."
+status: running
+kind: task
+parent: grant-push-3d
+notes: "Sonnet agent started 2026-11-13 ~17:00. Visual randomization already extensive (views.py: camera, lighting, style, materials, sensor); outcome rates fixed per pivot class across episodes before this. Handoff runs/handoff/domain-randomization.md."
+depends:
+- reverse-loader
+metric:
+  series: transfer_gap
+  direction: down
+created: "2026-11-13 16:42 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 16:42:33 +0530"
