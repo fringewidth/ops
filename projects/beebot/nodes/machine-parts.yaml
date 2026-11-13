@@ -1,7 +1,7 @@
 title: Machine part datasets with functional labels
 summary: Download machine/part datasets with human-friendly functional labels (Fusion 360 Gallery assemblies and joints, Mechanical Components Benchmark), break machines into labelled constituent parts, spec each part (function, loads, joints) and voxelise it to the beebot grid.
 why: "User 2026-11-13: prefers downloads for diversity; 'get a machine, break it down into constituents, spec that and model it... we won't expect the full machine, just the constituents.'"
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "User 2026-11-13: 'i'd prefer downloads, gives us diversity. get a machine, break it down into constituents, spec that and model it. for this you'll need good enough datasets with human friendly functional labels. but we won't expect the full machine, just the constituents. this will likely need a physics revision. we'll have to brainstorm that as well upon inspecting the data.' Candidates (manager survey): Fusion 360 Gallery Assembly (8,251 assemblies, 154,468 parts; licence non-commercial research) and Assembly-Joint (32,148 joints with types rigid/revolute/slider/cylindrical/pin-slot/planar/ball, ~2.8 GB); MCB (58,696 parts, 68 expert-annotated classes on the ICS taxonomy; licence unstated, project page may be down); PartNet-Mobility (articulated objects, joints, part labels; needs a sign-up and terms, so the user does that); ABC (1M models, no labels, too big for the disk). Starts when an agent slot and disk free up (goal-library downloads first; 24 GB free)."
@@ -10,6 +10,7 @@ metric:
   direction: up
 created: "2026-11-13 09:16 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 10:29:27 +0530"
+updated: "2026-11-13 13:52:13 +0530"
 links:
 - logs/machine-parts.out
+result: "Commit f069b4a (10 tests pass, checked): 48,870 part variants up to 800 cells in data/machine_parts (Fusion 360 archive 04: 751 assemblies, 3,008 parts voxelised, 1,843 joints; MCB set A: 5,335 parts in 68 classes). Joints 69% rigid, 21% revolute, 6% slider; 8.5% of bodies have a free joint. Names human for 38% of Fusion bodies; MCB dominated by pins and rivets. Renders: MCB ~12/15 recognisable at ~250 cells, Fusion ~18/30, whole assemblies 2/6. Fusion is non-commercial research only: data stays out of the repo. Handoff runs/handoff/machine-parts.md (physics questions section)."
