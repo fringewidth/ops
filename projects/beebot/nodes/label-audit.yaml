@@ -1,0 +1,9 @@
+title: Label audit of 100 per dataset (Haiku)
+summary: Haiku judged 100 labels per dataset as good, weak or bad; verdicts keep, fix or drop per dataset.
+why: The label sets decide what the policy is taught by words. The verdicts set which datasets enter the mix.
+status: done
+kind: task
+parent: data-audit
+created: "2026-11-13 23:18 +0530"
+by: beebot-1d audit
+updated: "2026-11-13 23:18:23 +0530"
