@@ -1,0 +1,15 @@
+title: Picture-to-cube training formats
+summary: "Opt-in training example kinds: goal given as a second image from another camera, a mark on one cube in the picture, viewer-relative instructions across cameras, and text predictions of what an action changes."
+why: User 2026-11-13 approved all four ways to tie the cubes in the picture to the cubes the policy controls ('works').
+status: running
+kind: task
+parent: grant-push-3d
+notes: Opus agent started 2026-11-13 ~13:20. Every change opt-in with a byte-identical test for today's default examples (the think-08b-cam chain restarts from main every segment). Two-image examples may need trainer changes (collator, bucketing, vision budget); measured with the processor only, no LM on CPU. Handoff runs/handoff/grounding-formats.md.
+depends:
+- goal-grounding
+metric:
+  series: grounding_kinds_ready
+  direction: up
+created: "2026-11-13 13:36 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 13:36:14 +0530"
