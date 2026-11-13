@@ -6,4 +6,5 @@ kind: task
 parent: data-audit
 created: "2026-11-13 23:18 +0530"
 by: beebot-1d audit
-updated: "2026-11-13 23:18:23 +0530"
+updated: "2026-11-13 23:18:27 +0530"
+result: "runs/label_audit/report.md (samples runs/label_audit/samples.json): KEEP stabletext2brick, gen_simple, gen_medium, gen_complex, gen_ground, mcb (caveat); FIX text2shape, objaverse_cap3d; DROP oga_vox, itch_vox, fusion360, live zone rewordings"
