@@ -1,0 +1,15 @@
+title: Demonstrations generated backwards from a goal
+summary: Script an ordered goal state (any voxel shape, object placement), take it apart with moves whose reverse is legal for n steps, and train on the reversed recording (disorder to goal).
+why: Every episode then ends exactly in the stated goal, so passes are unambiguous by construction, and variety becomes a list of goal shapes instead of a hand-written planner and judge per task (user's idea, 2026-11-13).
+status: todo
+kind: task
+parent: grant-push-3d
+notes: "User 2026-11-13: 'we reverse the order. the goal state is almost always something ordered (some exceptions for diversity). we start by scripting a desired goal state... then we describe a perfect process that increases the net entropy... up to n steps. the data is trained in reverse.' Open design points (manager): the scramble must use predecessor moves (whose forward reverse is legal under the rule table, gravity and the overhang rule), not forward physics: falls, pushes (reverse is a pull) and eating (reverse is a cheese appearing) do not reverse; reversed random walks meander, so the scramble should move away from the goal each step; failures and recoveries (MuJoCo harm) are not in reversed data; start states must look like natural scenes. Prototype pending the user's go."
+depends:
+- hinge-adopt
+metric:
+  series: reverse_demo_replay_ok
+  direction: up
+created: "2026-11-13 07:34 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 07:34:43 +0530"
