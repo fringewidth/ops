@@ -1,0 +1,15 @@
+title: Grid vs MuJoCo transfer gap per checkpoint
+summary: The same checkpoint plays a fixed subset of basics episodes in the grid world and through the MuJoCo driver after every training segment; the score gap is tracked.
+why: "User 2026-11-13: sim-to-sim transfer failure would be detrimental; measure it from now on."
+status: running
+kind: task
+parent: grant-push-3d
+notes: Sonnet agent started 2026-11-13 ~17:00; runs via the new mac_chain.sh hook runs/<name>/extra_eval.sh (commit 29d546d), budget 30-40 min per segment on the Mac GPU. Handoff runs/handoff/transfer-gap.md.
+links:
+- logs/extra-eval-think-08b-cam.out
+metric:
+  series: transfer_gap
+  direction: down
+created: "2026-11-13 16:42 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 16:42:38 +0530"
