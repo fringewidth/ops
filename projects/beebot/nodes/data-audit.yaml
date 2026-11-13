@@ -1,0 +1,13 @@
+title: "Data audit: unambiguous passes, plain words, trick questions"
+summary: Tighten each task judge until every pass is obvious on video, rewrite instructions in a stranger's words, and add trick questions and task variety before demo-store is drawn.
+why: The user browsed v2 episodes and found passes that only technically meet the goal (split with no split, a 7-robot 'filled' trench, a blob counted as a tower) and wording that assumes the sim's nouns. The model learns what the judge accepts.
+status: todo
+kind: task
+parent: grant-push-3d
+notes: "User 2026-11-13: 'the data is really subpar. more unambiguous tasks. MORE diversity. MORE trick questions. also we are assuming the user knows about cheese and stripes.' Seen: parallel region+tower with tower inside the region (9 of 81 passes in s3); fill = 60% of robots in the trench (suite.py judge); conditional eat_tower@else s5-e1178 passed with a 6-high blob; eating in 11% of episodes (runner, eat_thing, catch) but vanishes in one frame. Browse page: scratchpad browse/index.html (true object cells, two views). Plan pending the user's answers."
+metric:
+  series: audit_clear_pass_share
+  direction: up
+created: "2026-11-13 07:28 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 07:28:35 +0530"
