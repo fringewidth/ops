@@ -1,0 +1,15 @@
+title: Goal shapes from public block datasets
+summary: StableText2Brick, IGLU, CraftAssist and Hack337 structures re-voxelised to 16^3 goals of 4-115 cells connected to the floor, with source text.
+why: "User 2026-11-13: take thousands of shapes from public block and Minecraft datasets and revoxelise them to our grid."
+status: running
+kind: task
+parent: grant-push-3d
+notes: "Checked by the manager 2026-11-13 10:30: commit dd7e32b, 28 goal tests pass, library 119 MB in data/goal_library, raw 2.7 GB in data/goal_sources, 21 GB free. Quality problems seen in the 60-goal render sample (browse page, section Goal library): (1) heavy downscaling turns objects into blobs (a 10-cell chair, a 7-cell house, a 34-cell slab of a car); the source text no longer describes the shape. (2) Any rescale breaks counts in the text (IGLU '2x2 red square' scaled x2.83 becomes a 27-cell cube; 'columns of 2' become single cubes). (3) IGLU colours are dropped though its instructions name colours. (4) Reversal works up to ~31 cells and is 0 from 64 cells (old reverse code, 96-step cap); the recognisable shapes are the big ones. (5) Hack337 is tagged MIT by the repackager but its descriptions carry 'Copyright Abfielder Ltd ... All rights reserved' (scraped site text): research use only, keep out of any release (7,957 goals). Next: re-run reversal with the reverse-v2 code (big structures by extraction), keep text only where it still describes the shape (scale 1 for counted text, Moondream yes/no check), colours kept where the world has colour. Handoff runs/handoff/goal-library.md."
+links:
+- logs/goal-library.out
+metric:
+  series: goal_library_accepted
+  direction: up
+created: "2026-11-13 10:27 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 10:27:23 +0530"
