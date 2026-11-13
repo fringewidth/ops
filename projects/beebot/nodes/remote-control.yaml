@@ -1,10 +1,11 @@
 title: Live logs and a stop switch for remote runs
 summary: Kaggle and rented-GPU runs stream their metric lines to a local log the dashboard follows, and can be stopped cleanly (checkpoint, then exit) by the manager.
 why: "User 2026-11-13: the Kaggle dry run should export logs so the manager can monitor it and cancel a run when something goes wrong (a network check if direct cancel is not possible)."
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "Sonnet agent started 2026-11-13 ~17:30. scripts/kaggle_rest.py logs already reads a running session's log; direct cancel of a running session is untested (delete drops a queued one); testing on a tiny CPU kernel on fringewidth (no GPU quota). Fallback: trainer polls a per-run random ntfy control topic every ~5 min (stop = checkpoint and exit, save = checkpoint now), topic never in the repo, opt-in flag so the Mac chain is unaffected. Handoff runs/handoff/remote-control.md."
 created: "2026-11-13 17:01 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 17:01:58 +0530"
+updated: "2026-11-13 17:23:50 +0530"
+result: "Commit c877a35 (control and follower tests pass, checked; trainer change reviewed: off unless --control_url or BEEBOT_CONTROL_URL). Live logs: scripts/kaggle_follow.py polls a running session's log into logs/<run>.out. Direct cancel: DeleteKernel stops a running session but deletes its output (last resort); CancelKernelSession is denied for our token. Kill switch: think_train polls a per-run random ntfy topic every 5 min (stop = final validation, checkpoint, exit; save = checkpoint), topic kept in ~/.config/beebot/runs (never in the repo), injected at push; verified end to end on a CPU Kaggle kernel, not yet on a GPU run (send 'save' once at the start of the next real run). Handoff runs/handoff/remote-control.md"
