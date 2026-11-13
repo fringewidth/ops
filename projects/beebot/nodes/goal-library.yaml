@@ -1,0 +1,15 @@
+title: End states written by language-model agents
+summary: Haiku/Sonnet/Opus agents (by difficulty) write many ordered end states (voxel structures, object placements) with stranger-worded instructions; each is accepted only if it is at rest and the reversal takes it to a random-looking start.
+why: "User 2026-11-13: variety comes from agents writing end states ('it's not hard to do a statue of liberty with blocks'), and the reversal turns each into unlimited randomized demos, like diffusion."
+status: todo
+kind: task
+parent: grant-push-3d
+notes: "User 2026-11-13: 'we spawn haiku agents or opus agents or sonnet agents or whatever based on the complexity to generate a bunch of end states... we then run the reversal algorithm to attain a randomized configuration (akin to diffusion)'. Needs: the user's yes and a cost figure before any Haiku/API or agent spend; reversal made long (start as spread as a natural scene) and able to take apart overhangs (statue's raised arm) with lookahead. World is 16x16x16 with up to ~115 robots."
+depends:
+- reverse-demos
+metric:
+  series: goal_library_accepted
+  direction: up
+created: "2026-11-13 08:21 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 08:21:39 +0530"
