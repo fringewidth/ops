@@ -1,7 +1,7 @@
 title: Physics and observation randomization
 summary: Opt-in per-episode failure-rate multipliers, weak and broken cubes, imperfect cube poses in the picture and dropped or late commands, applied per live draw.
 why: "User 2026-11-13: proper domain randomization including what it sees and world parameters ('do that'); a grid-to-MuJoCo transfer failure would be detrimental."
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "Sonnet agent started 2026-11-13 ~17:00. Visual randomization already extensive (views.py: camera, lighting, style, materials, sensor); outcome rates fixed per pivot class across episodes before this. Handoff runs/handoff/domain-randomization.md."
@@ -12,4 +12,5 @@ metric:
   direction: down
 created: "2026-11-13 16:42 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 16:42:33 +0530"
+updated: "2026-11-13 17:49:07 +0530"
+result: "Commit 874561c (default-path and randomize tests pass, checked; suite 895): opt-in ThinkData(live={'physics': {...}}): failure-rate multiplier 0.5-2x of the MuJoCo table, harmful aftermaths, 1-4 weak cubes, broken (stuck) cubes, per-cube command drop 0.04 and late 0.03, cubes rendered off-grid (up to 0.1 cell, yaw up to 5 deg); strength 0.3 by default (most draws nominal). Episodes stay valid: failed moves redone, anything else re-planned by guided walk (rejoin 3-6 steps ahead, else the goal; 200 steps / 10 s budget). Drops: 4% at default, 29% with everything at full strength (cause: a harmful outcome strands a cube where the goal has none). Extra cost ~1 s per live episode (nominal 1.9 s). Policy sees no history (current frame plus its own thoughts). Not measured above 40 robots. Handoff runs/handoff/domain-randomization.md"
