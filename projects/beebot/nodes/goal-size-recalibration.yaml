@@ -1,7 +1,7 @@
 title: Goal sizes spread across 4-256 robots
 summary: Dataset sources re-converted at kept sizes 8-256 into data/goal_library_v3 and the simple/medium generators widened up to 256 robots, so every size bin is well populated.
 why: "User 2026-11-13: '4-15, 16-31, 32-63 is underrepresented. do a proper recalibration on these.'"
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "Before: dataset sources nearly all 64-256 (StableText2Brick 16 / 303 / 8,783 / 55,666 / 29,321 / 22,018 in bins 4-15 .. 192-256), generators nearly all under 64. Same Sonnet agent as the 256 cap; small sizes of complex objects may not read as their text and go to the Moondream filter."
@@ -12,4 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 18:29 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 18:29:09 +0530"
+updated: "2026-11-13 19:58:47 +0530"
+result: "ab89bef: cap 256 (G.MAX_CELLS, loaders drop larger), data/goal_library_v3 with all six bins 4-256 populated (total 551k entries; 4-15 142k, 16-31 106k, 32-63 111k, 64-127 102k, 128-191 53k, 192-256 37k). text2shape (raw zip gone, 404) and objaverse not redone; small dataset sizes may be blobs. Handoff runs/handoff/goal-library.md"
