@@ -1,7 +1,7 @@
 title: Picture-to-cube training formats
 summary: "Opt-in training example kinds: goal given as a second image from another camera, a mark on one cube in the picture, viewer-relative instructions across cameras, and text predictions of what an action changes."
 why: User 2026-11-13 approved all four ways to tie the cubes in the picture to the cubes the policy controls ('works').
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "Opus agent started 2026-11-13 ~13:20. Every change opt-in with a byte-identical test for today's default examples (the think-08b-cam chain restarts from main every segment). Two-image examples may need trainer changes (collator, bucketing, vision budget); measured with the processor only, no LM on CPU. Handoff runs/handoff/grounding-formats.md. Interim 14:10: four kinds implemented in think_ground.py, opt-in via think_data ground={dirs, shares}; no trainer change needed (several images already share one <IMAGES> place; checked with the processor and get_rope_index on meta); ~163-310 tokens per example. Uncommitted until tests pass; the chain must not restart on an untested think_data.py. Decisions for the user listed in the coming handoff (shares, randomized vs clean goal picture, text between images, rollout scorer)."
@@ -12,4 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 13:36 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 13:58:29 +0530"
+updated: "2026-11-13 14:36:41 +0530"
+result: "Commit aa6274c (think_ground tests 14 pass incl. byte-identical defaults, checked; full suite 845 pass, 3 stale-cap failures fixed in the next commit): goal_image (321 tokens), point (244-253), views (292-300), predict moved/where (163/101); no trainer change; opt-in via data_kwargs ground={dirs, shares}; ground store data/vla/ground/v0 (222 goal episodes, 320 one-robot moves). Weak: views has 39 sayable moves; 8 decisions for the user in runs/handoff/grounding-formats.md."
