@@ -1,7 +1,7 @@
 title: More goal shapes from small voxel sources
 summary: CC0 voxel art packs, Objaverse objects with Cap3D captions and Text2Shape converted into 16^3 goals with text, plus a terms survey of Minecraft build sites.
 why: "User 2026-11-13: Moondream is a good filter, Minecraft is a really good source with plenty online, and we want sources with few voxels."
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "Sonnet agent started 2026-11-13 ~13:00. Scraping Minecraft sites waits for the user after the terms survey. Licences kept: CC0, CC-BY, CC-BY-SA (no NC/ND). Disk floor 10 GB."
@@ -14,4 +14,5 @@ metric:
   direction: up
 created: "2026-11-13 13:08 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 13:08:02 +0530"
+updated: "2026-11-13 13:53:28 +0530"
+result: "Commit 1277340 (tests pass, checked): 117,590 goals in data/goal_library_v2: Text2Shape 72,271 (coloured chairs/tables, ~11/12 read; ShapeNet terms, research only), Objaverse+Cap3D 42,140 (CC-BY/SA, grey, ~7/12 read), OpenGameArt .vox 2,302 and itch.io 877 (CC0/CC-BY, coloured, ~9-11/12 read). Minecraft survey: no site permits bulk or ML reuse (GrabCraft personal use only; Planet Minecraft and minecraft-schematics.com behind Cloudflare); scraping is the user's call. Handoff runs/handoff/goal-sources-more.md"
