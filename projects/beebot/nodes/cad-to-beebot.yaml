@@ -9,9 +9,11 @@ depends:
 - goal-library
 - reverse-v2
 - joint-strength
+- machine-parts
+- physics-revision
 metric:
   series: cad_designs_accepted
   direction: up
 created: "2026-11-13 08:44 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 08:49:42 +0530"
+updated: "2026-11-13 09:16:20 +0530"
