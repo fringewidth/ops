@@ -7,4 +7,5 @@ metric:
   direction: up
 created: "2026-11-13 19:59 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 19:59:24 +0530"
+updated: "2026-11-13 20:01:45 +0530"
+notes: "Sources: 18 beebot transcripts (incl. 4 started from the home folder; origin session 2026-10-25), condensed to user+assistant text (3.3 MB) in the session scratchpad, split into 6 date ranges; 6 Sonnet agents extract entries (question, setup, result, decision, pointers), then an Opus writer merges into EXPERIMENTS.md (public repo: no secrets, account names or security details). Existing JOURNAL.md / HILLCLIMB.md cover 10-25..11-03 and are the backbone for that span."
