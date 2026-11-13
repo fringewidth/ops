@@ -1,0 +1,19 @@
+title: Exotic data mix ready before training
+summary: "Everything the main training data needs is built first: unambiguous demos, the agent and dataset goal library with vision-checked captions, the reversal (long, overhangs, guided, edits), joint-strength checks, CAD conversion, and online generation."
+why: "User 2026-11-13: 'we're gonna have an exotic, legendary data mix and it's gonna generalize so good. we'll build everything that we need to before training.'"
+status: todo
+kind: goal
+parent: grant-push-3d
+depends:
+- data-audit
+- goal-library
+- reverse-v2
+- joint-strength
+- cad-to-beebot
+- reverse-loader
+metric:
+  series: data_mix_ready
+  direction: up
+created: "2026-11-13 08:44 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 08:44:57 +0530"
