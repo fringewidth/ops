@@ -1,7 +1,7 @@
 title: Moondream check of goal shapes
 summary: Moondream 2 on the Mac GPU captions rendered goal shapes and answers whether each still looks like its text, with wrong-text controls to measure its false yes rate.
 why: "User 2026-11-13: label each goal with a small vision model and make sure it still looks how it should; 'if you can get moondream running on the mac gpu go for it'."
-status: queued
+status: running
 kind: task
 parent: grant-push-3d
 needs: mac-gpu
@@ -15,4 +15,11 @@ metric:
   direction: up
 created: "2026-11-13 11:04 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 11:04:58 +0530"
+updated: "2026-11-13 12:48:16 +0530"
+claim:
+  session: beebot-1d manager
+  host: GB-497
+  pid: 57554
+  cmd: scripts/goals_label.py (Moondream 2, mps)
+  started: "2026-11-13 12:48 +0530"
+  ends: "2026-11-13 15:45 +0530"
