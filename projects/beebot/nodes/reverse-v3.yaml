@@ -1,7 +1,7 @@
 title: Reversal for big goals and edits
 summary: reverse.py takes apart thick and 150-800 robot goals, lets the guided walk move shared robots, fills low enclosed cells first and supports do-nothing episodes.
 why: The robot cap was lifted to 800 and no goal above 150 robots closed; a third of edits stall.
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: Opus agent started 2026-11-13 11:45; gaps from runs/handoff/goal-gen-complex.md; before/after by size bin 4-115/116-250/251-500/501-800; handoff runs/handoff/reverse-v3.md.
@@ -13,4 +13,5 @@ metric:
   direction: up
 created: "2026-11-13 11:32 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 11:32:04 +0530"
+updated: "2026-11-13 15:06:33 +0530"
+result: "Commit 1dd2ee4 (34 reverse tests pass, checked; suite 848): ok 4-115 12/15->15/15, 116-250 0/10->7/10, 251-500 0/10->8/10, 501-800 0/10->1/10; swarm moves 5-9 robots per step, 3-10x faster; enclosed fills by local take-apart and rebuild; do-nothing holds. Still failing: natural starts above 500 robots (start just out of band), guided edits above 115 robots (0/8). Manager's look: at 300-600 robots the start is a carpet covering the 16x16 floor; the big library goals in the sample (CraftAssist 'roof', 'window' slab) are poor goals. Handoff runs/handoff/reverse-v3.md"
