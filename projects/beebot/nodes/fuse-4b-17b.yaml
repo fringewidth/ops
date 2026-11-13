@@ -10,10 +10,11 @@ depends:
 - rented-benchmark
 - upload-demos
 - training-optimization
+- remote-control
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "2026-11-12: sizes moved to Qwen3.5 (0.8B, 2B, 4B); was 4B vs 1.7B."
-updated: "2026-11-13 16:59:25 +0530"
+updated: "2026-11-13 17:02:20 +0530"
 metric:
   series: think_val_loss{run="fuse"}
   direction: down
