@@ -1,0 +1,16 @@
+title: Training throughput and cost before the main run
+summary: The 4B trainer is profiled and tuned (fast kernels, precision, batching, packing, image tokens, checkpointing) and benchmarked so the main run fits its dollar cap with no idle GPU time.
+why: "User 2026-11-13: 'we can't afford bottlenecks. i only have 255$ of compute and the project has gotten very ambitious as of late.'"
+status: todo
+kind: task
+parent: grant-push-3d
+notes: "Levers to measure, each with before/after examples per second and GPU utilisation: (1) fast kernels: every Mac log shows Qwen3.5's linear-attention layers falling back to the slow reference path (causal_conv1d and flash-linear-attention not installed); on CUDA install both (likely the largest single win); (2) bf16 with TF32, fused AdamW, torch.compile where it is stable; (3) batch size and accumulation sized to memory, gradient checkpointing only if memory binds; (4) sequence bucketing/packing (exists) and the image budget (256 px = 64 tokens per image; grounding kinds use 2-3 images); (5) LoRA vs full fine-tune (LoRA r64 >= full on 0.6B, 2026-11-06) and frozen vision encoder; (6) data pipeline never starves the GPU (data-throughput); (7) no in-run evals (CLAUDE.md), checkpoints with resume so a preempted or stopped machine loses little; (8) stop rules: stop when validation loss plateaus, not at a fixed step count. Benchmark on the Mac and a Kaggle T4 first; then a short timed benchmark on the rented GPU (rented-benchmark) before the main run. Output: a cost model (examples/s, hours, dollars) for the fuse and main runs within credit-budget's caps (main run 90, rerun 60). Any rented machine needs the user's explicit yes at launch."
+depends:
+- data-throughput
+- credit-budget
+metric:
+  series: train_examples_per_dollar
+  direction: up
+created: "2026-11-13 16:59 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 16:59:14 +0530"
