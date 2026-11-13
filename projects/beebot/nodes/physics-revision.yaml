@@ -12,4 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 09:16 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 09:16:12 +0530"
+updated: "2026-11-13 10:41:08 +0530"
+notes: " Input from joint-strength (2026-11-13): today's cubes hold cantilevers of 4-9, a side-loaded column of 6; the steel floor is the weakest joint. Ranked augmentations: floor latch (column 6 -> 18), ~270 N mechanical face latches (cantilever 4 -> 10; a shelf with 2 kg needs 400 N), x1.7 magnets (small gains), bolted lattice (~1 kN, 1 m cantilevers). Open gap: the check says beams wedged between fixed supports never fail, MuJoCo says they fail at ~290/w^2 g; trench crossings in the reverse demos need the MuJoCo check before data freeze."
