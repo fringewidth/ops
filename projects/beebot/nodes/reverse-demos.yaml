@@ -1,10 +1,10 @@
 title: Demonstrations generated backwards from a goal
 summary: Script an ordered goal state (any voxel shape, object placement), take it apart with moves whose reverse is legal for n steps, and train on the reversed recording (disorder to goal).
 why: Every episode then ends exactly in the stated goal, so passes are unambiguous by construction, and variety becomes a list of goal shapes instead of a hand-written planner and judge per task (user's idea, 2026-11-13).
-status: todo
+status: running
 kind: task
 parent: grant-push-3d
-notes: "User 2026-11-13: 'we reverse the order. the goal state is almost always something ordered (some exceptions for diversity). we start by scripting a desired goal state... then we describe a perfect process that increases the net entropy... up to n steps. the data is trained in reverse.' Eating stays out (user: it 'violates perfect causality'; the existing eat episodes are enough). Pushes: propose-and-verify predecessors (manager, 2026-11-13): each take-apart step proposes an earlier state (a push is proposed as the robot and object stepping back together) and keeps it only if the real forward world step from it gives exactly the current state; so every recorded step is forward-causal under the real rules (friction, multi-robot pushes, gravity, overhang rule), and irreversible events (falls, eating) never verify. Steps chosen to move away from the goal so the reversed demo makes progress each step. Open: failures and recoveries (not in reversed data), natural-looking start states. Prototype pending the user's go."
+notes: "User 2026-11-13: 'we reverse the order. the goal state is almost always something ordered (some exceptions for diversity). we start by scripting a desired goal state... then we describe a perfect process that increases the net entropy... up to n steps. the data is trained in reverse.' Eating stays out (user: it 'violates perfect causality'; the existing eat episodes are enough). Pushes: propose-and-verify predecessors (manager, 2026-11-13): each take-apart step proposes an earlier state (a push is proposed as the robot and object stepping back together) and keeps it only if the real forward world step from it gives exactly the current state; so every recorded step is forward-causal under the real rules (friction, multi-robot pushes, gravity, overhang rule), and irreversible events (falls, eating) never verify. Steps chosen to move away from the goal so the reversed demo makes progress each step. Open: failures and recoveries (not in reversed data), natural-looking start states. Prototype pending the user's go. User 2026-11-13 (later): keep the existing eat episodes; the take-apart must never take a step whose forward version eats (the forward check rejects it). Goal: a very large generator of ordered goal states, and a take-apart fast enough to run inside training (online, no stored episodes: unlimited data). Prototype started 2026-11-13 by an Opus subagent of beebot-1d (handoff runs/handoff/reverse-demos.md); CPU only."
 depends:
 - hinge-adopt
 metric:
@@ -12,4 +12,4 @@ metric:
   direction: up
 created: "2026-11-13 07:34 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 07:35:59 +0530"
+updated: "2026-11-13 07:44:23 +0530"
