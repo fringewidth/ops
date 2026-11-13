@@ -11,10 +11,10 @@ metric:
   direction: down
 created: "2026-11-11 12:29 +0530"
 by: beebot-f7 3d push
-notes: " Resumed 05:51 2026-11-13 by the watcher after the draws. Basics on step367 (144 episodes): score 0.156, pass 0 (gate not met: pass must be > 0). Segment 3 at step 505 by 06:47."
+notes: "Paused 2026-11-12 13:42 (laptop out of memory), resumed 15:39 from step 196 via scripts/mac_chain.sh. Still the v1 idealised stores: pipeline proof and start point. Gate (set 2026-11-12): the basics directions eval (36 episodes) beats the parent think-08b-mac step 724: score > 0.153 and pass > 0 (parent passed 0 of 36; its thoughts get the camera frame wrong, e.g. 'your left is the board's right'). val_action must not rise above the parent's 0.6595. val_text is not comparable: the text targets are the new frame-aware thoughts. Paused again 2026-11-12 ~18:10 at the user's request: segment 2 ended at step 367 (saved); chain (pid 60363) and its basics eval on step367 (pid 96214) suspended with SIGSTOP. Auto-resume: watcher pid 37121 sent kill -CONT after the demos-v2 runner exited (log logs/resume-after-demos-v2.out). Resumed 05:51 2026-11-13. Basics on step367 (144 episodes): score 0.156, pass 0 (gate not met: pass must be > 0). Segment 3 at step 505 by 06:47."
 links:
 - logs/think-08b-cam.out
-updated: "2026-11-13 06:52:02 +0530"
+updated: "2026-11-13 06:52:16 +0530"
 claim:
   session: beebot-1d manager
   host: GB-497
