@@ -1,0 +1,15 @@
+title: Bigger dataset shapes with a better voxeliser
+summary: Dataset goals rebuilt with the robot cap lifted from 115 to 800 cells and a voxeliser that searches threshold and grid phase per item to keep thin parts and silhouettes.
+why: "User 2026-11-13: 'the dataset ones are practically useless... why are we shy on using more robots?' and 'our voxelliser sucks'."
+status: running
+kind: task
+parent: grant-push-3d
+notes: "Tables, chairs and sofas read clearly at 230-760 robots in the same 16^3 grid (manager test). The 115 cap was a convention from the demo generator (demos.py --robots 6 115), not a limit: the action head emits per-voxel codes in one shot. Costs of more robots to measure: reversal steps and CPU time (235 steps at ~100 robots), episode horizon at evaluation, joint strength of heavy builds (the floor joint is the weakest). Sonnet agent: KEEP_TARGETS 100/250/500/800, MAX_CELLS 800, voxeliser scored by projection IoU and surviving parts, output data/goal_library_v2, reversal at 116-800 cells with a 2000-step cap. Machine-parts and the Opus goal agent were told to allow up to 800."
+depends:
+- goal-datasets
+metric:
+  series: goal_voxel_projection_iou
+  direction: up
+created: "2026-11-13 11:12 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 11:12:57 +0530"
