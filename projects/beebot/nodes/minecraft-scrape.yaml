@@ -1,0 +1,10 @@
+title: Scrape Minecraft build sites
+summary: Whether to scrape Minecraft build sites (GrabCraft, Planet Minecraft, minecraft-schematics.com) for small named builds despite terms that do not grant bulk or ML use.
+why: "User 2026-11-13: Minecraft is a good source; tabled, not skipped: 'i need to think about this.'"
+status: todo
+kind: decision
+parent: grant-push-3d
+notes: "Survey in runs/handoff/goal-sources-more.md: GrabCraft terms personal use only and no bot accounts; Planet Minecraft and minecraft-schematics.com behind Cloudflare (terms unread). User: 'they didn't stop from scraping reddit.' Waiting for the user."
+created: "2026-11-13 15:20 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 15:20:00 +0530"
