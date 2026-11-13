@@ -8,10 +8,11 @@ depends:
 - cube-harm-down
 - cube-bar
 - hinge-adopt
+- data-audit
 metric:
   series: demo_store_episodes
   direction: up
 created: "2026-11-11 15:18 +0530"
 by: beebot-f7 3d push
 notes: "User 2026-11-11 ~18:00: Haiku labelling OK in principle; give size and cost before starting. Draw with --demo --outcomes mujoco_hinge_v1 (the default since hinge-adopt, with the overhang rule) and --thin_towers (width-1 towers for small swarms; added in demos-v2, off by default there to keep old labels aligned). Nothing drawn yet."
-updated: "2026-11-12 19:42:16 +0530"
+updated: "2026-11-13 07:28:43 +0530"
