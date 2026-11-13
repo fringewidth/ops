@@ -1,0 +1,16 @@
+title: Reversal for big goals and edits
+summary: reverse.py takes apart thick and 150-800 robot goals, lets the guided walk move shared robots, fills low enclosed cells first and supports do-nothing episodes.
+why: The robot cap was lifted to 800 and no goal above 150 robots closed; a third of edits stall.
+status: running
+kind: task
+parent: grant-push-3d
+notes: Opus agent started 2026-11-13 11:45; gaps from runs/handoff/goal-gen-complex.md; before/after by size bin 4-115/116-250/251-500/501-800; handoff runs/handoff/reverse-v3.md.
+depends:
+- reverse-v2
+- goal-library
+metric:
+  series: reverse_ok_large
+  direction: up
+created: "2026-11-13 11:32 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 11:32:04 +0530"
