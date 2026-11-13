@@ -4,10 +4,10 @@ why: The user browsed v2 episodes and found passes that only technically meet th
 status: todo
 kind: task
 parent: grant-push-3d
-notes: "User 2026-11-13: 'the data is really subpar. more unambiguous tasks. MORE diversity. MORE trick questions. also we are assuming the user knows about cheese and stripes.' Seen: parallel region+tower with tower inside the region (9 of 81 passes in s3); fill = 60% of robots in the trench (suite.py judge); conditional eat_tower@else s5-e1178 passed with a 6-high blob; eating in 11% of episodes (runner, eat_thing, catch) but vanishes in one frame. Browse page: scratchpad browse/index.html (true object cells, two views). Plan pending the user's answers. User 2026-11-13 15:30: the old forward-generated episodes can be skipped; keep their Haiku labels and regenerate the tasks by reversal (reverse-loader). The audit now applies to the reversed data: pristine, obvious in our grey world, drop anything that does not read as its text."
+notes: "User 2026-11-13: 'the data is really subpar. more unambiguous tasks. MORE diversity. MORE trick questions. also we are assuming the user knows about cheese and stripes.' Seen: parallel region+tower with tower inside the region (9 of 81 passes in s3); fill = 60% of robots in the trench (suite.py judge); conditional eat_tower@else s5-e1178 passed with a 6-high blob; eating in 11% of episodes (runner, eat_thing, catch) but vanishes in one frame. Browse page: scratchpad browse/index.html (true object cells, two views). Plan pending the user's answers. User 2026-11-13 15:30: the old forward-generated episodes can be skipped; keep their Haiku labels and regenerate the tasks by reversal (reverse-loader). The audit now applies to the reversed data: pristine, obvious in our grey world, drop anything that does not read as its text. Label audit 2026-11-13 (Haiku, 100 labels per dataset, runs/label_audit/report.md), good/weak/bad: KEEP stabletext2brick 87/13/0, gen_simple 92/8/0, gen_medium 81/18/1, gen_complex 84/16/0, gen_ground 83/17/0, mcb 11/54/3 (class names only); FIX text2shape 45/49/6 (colour-led captions), objaverse_cap3d 32/53/15 (brands, tags); DROP oga_vox 19/42/39 and itch_vox 8/53/39 (file names), fusion360 1/37/62, live zone/zone_line rewordings (meaning kept ~0.12). 14 generator wording bugs in the report (e.g. 'each one one cube taller', 'Finish it.' with no target)."
 metric:
   series: audit_clear_pass_share
   direction: up
 created: "2026-11-13 07:28 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 15:19:54 +0530"
+updated: "2026-11-13 19:59:14 +0530"
