@@ -1,7 +1,7 @@
 title: "Grounding tasks: complete the picture, point at cubes"
 summary: "Goals that tie cubes in the image to cubes the policy controls: complete a structure with 1 to 8 missing blocks, move a uniquely described cube, match or copy what is visible, and answer questions about the picture."
 why: "User 2026-11-13: 'complete the picture with a singular extra block, i want it to learn associating an image's cube with something it can control. then make that two blocks, then three.'"
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "Sonnet agent started 2026-11-13 ~13:10: src/beebot/vla/voxel/goal_gen_ground.py, completions must be unambiguous from the start picture (symmetry, pattern, face, missing step), 20,000 goals to data/goal_library/gen_ground. Further ideas offered to the user: goal given as a picture (build what is in this image, from another camera), pointing at a cube by a mark on the image, the same scene from several cameras, predicting the next picture."
@@ -12,4 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 13:31 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 13:31:37 +0530"
+updated: "2026-11-13 14:35:13 +0530"
+result: "Commit 60ec395 (27 tests pass, checked): 17 generators, 20,000 goals in data/goal_library/gen_ground (complete 9,932 with k=1..8: 3857/2628/1712/919/472/189/92/63; refer 4,059; match 3,819; questions 2,190). Completions obvious from the start picture in 8 of 11 samples (weak: big k on simple/medium shapes, walls with windows). Guided walk: refer/match 3/3 each, completions 18/24 up to 100 robots; enclosed fills stall (reverse-v3 gaps)."
