@@ -1,7 +1,7 @@
 title: Physics revision for machine parts
 summary: Brainstorm with the user, after inspecting the part data and the joint-strength results, what beebot physics (and cube hardware) must change to represent the parts' functions.
 why: "User 2026-11-13: 'this will likely need a physics revision. we'll have to brainstorm that as well upon inspecting the data.'"
-status: running
+status: todo
 kind: decision
 parent: grant-push-3d
 depends:
@@ -12,5 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 09:16 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 15:19:57 +0530"
-notes: " Input from joint-strength (2026-11-13): today's cubes hold cantilevers of 4-9, a side-loaded column of 6; the steel floor is the weakest joint. Ranked augmentations: floor latch (column 6 -> 18), ~270 N mechanical face latches (cantilever 4 -> 10; a shelf with 2 kg needs 400 N), x1.7 magnets (small gains), bolted lattice (~1 kN, 1 m cantilevers). Open gap: the check says beams wedged between fixed supports never fail, MuJoCo says they fail at ~290/w^2 g; trench crossings in the reverse demos need the MuJoCo check before data freeze. User 2026-11-13 15:30: brainstorm yes; 'recognisable must be with physics!! the function must be the same, even if it doesn't look as is'; more degrees of freedom or cube v3 allowed; 'no colour, no LEDs. we're not building art. engineering function matters.' Opus agent started 15:35 to write the options memo (runs/handoff/physics-options.md) for the brainstorm."
+updated: "2026-11-13 15:58:52 +0530"
+notes: " Input from joint-strength (2026-11-13): today's cubes hold cantilevers of 4-9, a side-loaded column of 6; the steel floor is the weakest joint. Ranked augmentations: floor latch (column 6 -> 18), ~270 N mechanical face latches (cantilever 4 -> 10; a shelf with 2 kg needs 400 N), x1.7 magnets (small gains), bolted lattice (~1 kN, 1 m cantilevers). Open gap: the check says beams wedged between fixed supports never fail, MuJoCo says they fail at ~290/w^2 g; trench crossings in the reverse demos need the MuJoCo check before data freeze. User 2026-11-13 15:30: brainstorm yes; 'recognisable must be with physics!! the function must be the same, even if it doesn't look as is'; more degrees of freedom or cube v3 allowed; 'no colour, no LEDs. we're not building art. engineering function matters.' Opus agent started 15:35 to write the options memo (runs/handoff/physics-options.md) for the brainstorm. Options memo ready 2026-11-13 16:15: runs/handoff/physics-options.md (commit 1f9a0bc; rig script scripts/physics_rig.py). Rigs on 600 part variants: as a span 76-77% pass with today's joints, as a cantilever 29-35% (60-76% with ~270 N face latches). Options: rigid only; group pivot (a hinge cube turns the body bonded to it: swing hinges, no new hardware); load-rated latches; passive swivel cube; mixed swarm; rotating face (continuous rotation, 75% of Fusion's non-rigid joints); sliding joint (not recommended); v3 cube. Recommendation: rigid only + group pivot now in software/MuJoCo; bench-test the edge latch's holding force; decide continuous rotation after MuJoCo tests M4-M6. Waiting for the user's brainstorm."
