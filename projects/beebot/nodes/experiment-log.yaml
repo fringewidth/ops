@@ -1,11 +1,12 @@
 title: Experiment log since the first commit
 summary: "One dated narrative of every experiment from the neural CA (2026-10-25) to now: question, setup, numbers, decision, built from git, ops, handoffs and the raw session transcripts."
 why: The user wants to bring teammates up to speed; several compactions lost the story.
-status: running
+status: done
 metric:
   series: experiment_log_entries
   direction: up
 created: "2026-11-13 19:59 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 20:01:45 +0530"
+updated: "2026-11-13 20:18:07 +0530"
 notes: "Sources: 18 beebot transcripts (incl. 4 started from the home folder; origin session 2026-10-25), condensed to user+assistant text (3.3 MB) in the session scratchpad, split into 6 date ranges; 6 Sonnet agents extract entries (question, setup, result, decision, pointers), then an Opus writer merges into EXPERIMENTS.md (public repo: no secrets, account names or security details). Existing JOURNAL.md / HILLCLIMB.md cover 10-25..11-03 and are the backbone for that span."
+result: "EXPERIMENTS.md (untracked, awaiting the lead's read before commit): 19.7k words, story in 7 phases + hardware track, 90 entries merged from 254 extracted, 35 standing rules, open threads. Built from 18 transcripts + git + ops + handoffs."
