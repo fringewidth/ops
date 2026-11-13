@@ -1,7 +1,7 @@
 title: Reversed demos generated inside training
 summary: ThinkData draws an end state from the library, takes it apart (to random, to another structure, or an edit) in loader workers, and trains on the reversed recording; no stored episodes.
 why: "Unlimited data at training time (user 2026-11-13: 'infinite data')."
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 depends:
@@ -12,5 +12,6 @@ metric:
   direction: up
 created: "2026-11-13 08:44 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 15:19:51 +0530"
+updated: "2026-11-13 16:16:39 +0530"
 notes: " User 2026-11-13 15:30: the basic families must come back through reversal: 'put all cubes in corner, diffuse, reverse with label \"move to corner\" but with labelled corner, variety there... then iterate with randomness in the world, and diffusion must be random that each run we get a new training example. we can generate these live during training.' And: 'the old forward generated episodes can be skipped. we can keep the haiku labels, then map each event to certain configurations, then run backwards diffusion. this is arguably better and is free data.' Opus agent started 15:35: map each Haiku-labelled instruction family (directions, corners, gather, split, regions, towers, bridges, objects) to end-state samplers, random diffusion per draw, live in loader workers."
+result: "Commit 0f5fcd8 (9 tests pass incl. byte-identical defaults, checked): 15 basic families (goto, gather, groups, spread, line, move, stay, climb, split_regions, split_tower, tower, bridge, zone, zone_line, push) generated per draw by reversal with strict start/end checks, opt-in ThinkData(live={share, workers}); reuses Haiku rewordings whose spec matches exactly (filtered for sim nouns, counts, unstated places); 1.9 CPU s per episode, 1 worker keeps up with the Mac, 4 workers give ~2 episodes/s for Kaggle with a refill cache; 360/360 replay. Left out: fill-trench, herd, subsets, eat/logic, follow/approach. Handoff runs/handoff/reverse-loader.md"
