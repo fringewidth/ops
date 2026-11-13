@@ -1,7 +1,7 @@
 title: Bigger dataset shapes with a better voxeliser
 summary: Dataset goals rebuilt with the robot cap lifted from 115 to 800 cells and a voxeliser that searches threshold and grid phase per item to keep thin parts and silhouettes.
 why: "User 2026-11-13: 'the dataset ones are practically useless... why are we shy on using more robots?' and 'our voxelliser sucks'."
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "Tables, chairs and sofas read clearly at 230-760 robots in the same 16^3 grid (manager test). The 115 cap was a convention from the demo generator (demos.py --robots 6 115), not a limit: the action head emits per-voxel codes in one shot. Costs of more robots to measure: reversal steps and CPU time (235 steps at ~100 robots), episode horizon at evaluation, joint strength of heavy builds (the floor joint is the weakest). Sonnet agent: KEEP_TARGETS 100/250/500/800, MAX_CELLS 800, voxeliser scored by projection IoU and surviving parts, output data/goal_library_v2, reversal at 116-800 cells with a 2000-step cap. Machine-parts and the Opus goal agent were told to allow up to 800."
@@ -12,4 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 11:12 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 11:12:57 +0530"
+updated: "2026-11-13 12:02:34 +0530"
+result: "Commit 8395d3f (18 tests pass, checked): voxeliser searches threshold and grid phase, reconnects legs, keeps interiors hollow, fixed a crop-before-grounding bug; silhouette IoU 0.92 -> 0.99 (StableText2Brick), 0.84 -> 0.95 (houses), floor contacts kept 0.86 -> 0.96. data/goal_library_v2 245k goals up to 800 cells. Only ~13 of 48 renders read as their text (sources' text is weak: Hack337 titles, 'house', dialogues); reversal 0 of 9 above 115 cells (stalls, 5-12 CPU min each) -> reverse-v3."
