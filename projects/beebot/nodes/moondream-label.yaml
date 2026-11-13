@@ -1,7 +1,7 @@
 title: Moondream check of goal shapes
 summary: Moondream 2 on the Mac GPU captions rendered goal shapes and answers whether each still looks like its text, with wrong-text controls to measure its false yes rate.
 why: "User 2026-11-13: label each goal with a small vision model and make sure it still looks how it should; 'if you can get moondream running on the mac gpu go for it'."
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 needs: mac-gpu
@@ -15,7 +15,7 @@ metric:
   direction: up
 created: "2026-11-13 11:04 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 13:36:53 +0530"
+updated: "2026-11-13 15:20:09 +0530"
 claim:
   session: beebot-1d manager
   host: GB-497
@@ -23,3 +23,5 @@ claim:
   cmd: scripts/goals_label.py (Moondream 2, mps)
   started: "2026-11-13 12:48 +0530"
   ends: "2026-11-13 15:45 +0530"
+  finished: "2026-11-13 15:20 +0530"
+result: "Commit 89a0f9f: 4,351 goals labelled in 2 h 37 min of GPU (released 15:17); own-text yes 0.64 vs wrong-text yes 0.49 overall; separates only on gen_medium (0.78/0.31), gen_simple, stabletext2brick; none on CraftAssist, Hack337, IGLU. Agent's own check: yes right 7/8, no right 2/5. Not worth labelling the whole library (80-200 GPU h). Handoff runs/handoff/moondream-label.md"
