@@ -5,7 +5,7 @@ status: running
 kind: task
 parent: grant-push-3d
 needs: mac-gpu
-notes: "GPU window: the user stopped the training chain loop 11:04 2026-11-13 (kill 60363); segment 4 of think-08b-cam (pid 17814) finishes about 12:35 and saves; labelling starts after it exits, budget up to 3 h, then the chain restarts from runs/think-08b-cam/resume.pt. Sample first: speed test, then a stratified sample of library sources and generator tiers. Controls: the same question with another goal's text gives the false yes rate."
+notes: "GPU window: the user stopped the training chain loop 11:04 2026-11-13 (kill 60363); segment 4 of think-08b-cam (pid 17814) finishes about 12:35 and saves; labelling starts after it exits, budget up to 3 h, then the chain restarts from runs/think-08b-cam/resume.pt. Sample first: speed test, then a stratified sample of library sources and generator tiers. Controls: the same question with another goal's text gives the false yes rate. Interim 13:36: 0.73 s/caption, 0.17 s/yes-no, 5 GB mps. Calibration (own text yes vs wrong text yes, 4-way multiple choice, chance 0.25): gen_medium 0.78/0.31, MC 0.54 (500); gen_simple 0.81/0.49, MC 0.54 (500); stabletext2brick 0.68/0.35, MC 0.48 (40); IGLU single 0.65/0.48; CraftAssist houses 0.78/0.83, parts 0.45/0.75, Hack337 0.43/0.63 (no signal: their texts do not describe the shapes). A weak per-item filter: a yes is weak evidence, a no on own text is better evidence."
 depends:
 - goal-datasets
 links:
@@ -15,7 +15,7 @@ metric:
   direction: up
 created: "2026-11-13 11:04 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 12:48:16 +0530"
+updated: "2026-11-13 13:36:53 +0530"
 claim:
   session: beebot-1d manager
   host: GB-497
