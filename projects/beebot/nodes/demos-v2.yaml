@@ -1,7 +1,7 @@
 title: Demonstration stores v2
 summary: Redraw the demonstration stores with the same seeds and draw options (so the Haiku labels still join) under harmful move failures and the maker fixes.
 why: Harmful failures were agreed as part of the data, and the maker fixes only take effect in new draws; the main run trains on these stores.
-status: running
+status: done
 kind: run
 depends:
 - cube-harm-down
@@ -13,7 +13,8 @@ metric:
 created: "2026-11-11 14:57 +0530"
 by: beebot-f7 3d push
 notes: "Order (user 2026-11-12): after hinge-adopt. Includes: expert's intended (pre-jitter) action stored beside the executed one (intended.bin; train on it with --data_kwargs '{\"intended\": true}', v2 stores only); the hinge cube's outcome table (mujoco_hinge_v1); same seeds and draw options so Haiku labels still join. Width-1 towers cannot go in these stores (they shift every later draw: 1132 of 1135 labels dropped), so they are the opt-in flag --thin_towers for demo-store. Code: main dfebe6e (641 tests pass). Subset check, 168 scenes of s0: 430 labelled, 0 dropped (old store drops 17%). Draw: detached runner scripts/draw_demos_v2_all.sh, 4 at a time (MAX=4), relaunched 21:50 after the first launch started all 10 at once at nice 20 (crawling); about 6.7 s per scene per store, roughly 7 h for all 10. Per-store results append to logs/demos-v2.out. Training (frame-into-training) stays paused until the draws finish, per the user."
-updated: "2026-11-12 21:55:35 +0530"
+updated: "2026-11-13 06:51:59 +0530"
 parent: grant-push-3d
 links:
 - /Users/hrishik/beebot/logs/demos-v2.out
+result: "All 10 stores drawn by 04:28 2026-11-13 (data/vla/voxel_full_v2/s0-s7, voxel_build_v2/s0-s1): 29,163 episodes; Haiku labels 15,018 of 16,326 join (1,308 dropped, 8%: s1 367, s2 384, s4 379, s7 173, build 5; others 0). Drops are object families (things/zones/blocks/reasoning) where the draw stream slips by one attempt mid-store (e.g. s4 from attempt 602), likely --fit redrawing differently under hinge outcomes; old stores dropped 894. Per-store lines in logs/demos-v2.out."
