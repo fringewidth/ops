@@ -3,7 +3,7 @@ summary: scripts/mac_chain.sh deletes all but the newest two policy_step*.pt of 
 why: Each 2 h segment adds a 1 GB checkpoint; disk fell to 9.6 GB free on 2026-11-12 and filled once before (disk-full-0432).
 status: todo
 parent: grant-push-3d
-notes: "2026-11-12: the user freed ~10 GB by hand (old think-08b-mac resume.pt and early checkpoints, bugcatch step767, overfit step240)."
+notes: "2026-11-12: the user freed ~10 GB by hand (old think-08b-mac resume.pt and early checkpoints, bugcatch step767, overfit step240). 2026-11-13 12:45: disk at 7.2 GB free after segment 4; the user approved deleting think-08b-cam policy_step196.pt and policy_step367.pt (both evals recorded) by hand. The chain script still keeps every checkpoint: each segment needs ~7.2 GB free (resume.pt.tmp 6.2 GB + 1 GB)."
 created: "2026-11-12 16:47 +0530"
 by: beebot-1d manager
-updated: "2026-11-12 16:47:10 +0530"
+updated: "2026-11-13 12:43:28 +0530"
