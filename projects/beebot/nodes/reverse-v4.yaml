@@ -1,0 +1,15 @@
+title: "Reversal above 150 robots: natural starts and edits"
+summary: Natural starts for 500-800 robot goals and guided edits above 115 robots reach their start.
+why: "User 2026-11-13: 'yes fix the > 150 stuff.'"
+status: running
+kind: task
+parent: grant-push-3d
+notes: "From runs/handoff/reverse-v3.md: 501-800 natural 1/6 (start just out of band on lifted/height; plan drop cells that fill columns evenly), guided above 115 robots 0/8 (thick scaled parts, digs escalate). Floor-space limit: 256 floor cells, so 300-600 robots make a carpet start; a wider world is the user's decision."
+depends:
+- reverse-v3
+metric:
+  series: reverse_ok_large
+  direction: up
+created: "2026-11-13 15:20 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 15:20:03 +0530"
