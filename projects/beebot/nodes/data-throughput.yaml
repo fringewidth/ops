@@ -1,0 +1,17 @@
+title: Live data never starves the GPU
+summary: The live data pipeline (reversal, failure injection, rendering, tokenising) is profiled and optimised so 12 CPU cores feed an A100 80 GB training the 4B faster than it consumes, with a same-distribution fallback buffer so the GPU never waits.
+why: "User 2026-11-13: training will likely run on Vultr vcg-a100-12c-120g-80vram; 'no nanosecond of the gpu must be wasted waiting'; optimise before the training batch starts."
+status: todo
+kind: task
+parent: grant-push-3d
+notes: "Planned once domain-randomization lands (it changes per-episode cost). Levers: several training examples per generated episode (today one step per draw), profile rendering and tokenising per example, workers sized to 12 vCPUs, background refill cache, fallback = a disk replay buffer of earlier live examples (same distribution) rather than scripted data, trainer-side counter of steps that waited (must be 0). Target: generation rate >= 2x the A100's measured examples/s for the 4B config. Any Vultr launch needs the user's explicit yes at that time (machine, hourly price, cap)."
+depends:
+- reverse-loader
+- domain-randomization
+- reverse-v4
+metric:
+  series: live_examples_per_s
+  direction: up
+created: "2026-11-13 16:57 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 16:57:52 +0530"
