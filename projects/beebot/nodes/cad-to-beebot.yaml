@@ -1,0 +1,17 @@
+title: CAD designs to beebot structures
+summary: "A general algorithm or agent skill that turns engineering CAD (ABC, DeepCAD, Text2CAD, Fusion 360 Gallery) into beebot structures that keep the design's function under beebot physics: voxelise, check joints under the design's loads, repair (thicken, brace, support), verify buildable by reversal."
+why: "User 2026-11-13: CAD to beebots 'would be the biggest sell... if you can write a general algorithm or an agent skill to do this at scale, we would have commoditised engineering.' It blocks the main training data mix (user: build everything before training)."
+status: todo
+kind: task
+parent: grant-push-3d
+notes: "Blocker set by the user 2026-11-13 ('note down CAD as a blocker in ops'). Hard part is the physics transfer, not geometry. Dataset licences unchecked. Scale: 5 cm cubes, ~115 robots: about knee-high models and temporary structures."
+depends:
+- goal-library
+- reverse-v2
+- joint-strength
+metric:
+  series: cad_designs_accepted
+  direction: up
+created: "2026-11-13 08:44 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 08:44:51 +0530"
