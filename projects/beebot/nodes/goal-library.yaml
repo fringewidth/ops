@@ -4,7 +4,7 @@ why: "User 2026-11-13: variety comes from agents writing end states ('it's not h
 status: todo
 kind: task
 parent: grant-push-3d
-notes: "User 2026-11-13: 'we spawn haiku agents or opus agents or sonnet agents or whatever based on the complexity to generate a bunch of end states... we then run the reversal algorithm to attain a randomized configuration (akin to diffusion)'. Needs: the user's yes and a cost figure before any Haiku/API or agent spend; reversal made long (start as spread as a natural scene) and able to take apart overhangs (statue's raised arm) with lookahead. World is 16x16x16 with up to ~115 robots."
+notes: "User 2026-11-13: 'we spawn haiku agents or opus agents or sonnet agents or whatever based on the complexity to generate a bunch of end states... we then run the reversal algorithm to attain a randomized configuration (akin to diffusion)'. Needs: the user's yes and a cost figure before any Haiku/API or agent spend; reversal made long (start as spread as a natural scene) and able to take apart overhangs (statue's raised arm) with lookahead. World is 16x16x16 with up to ~115 robots. Structure-to-structure (user 2026-11-13: 'what if i ask it to move from statue of liberty to a tower of 5? that would be underrepresented'): yes, reversal to noise only gives random starts. Plan: guided reversal from end state B with the potential 'become A' (another library end state, or part of one) instead of 'become random', so starts include built structures; the start only needs to be legal and at rest, the end is exactly B. Robots a goal does not use need a place in the end state (parked, or left free)."
 depends:
 - reverse-demos
 metric:
@@ -12,4 +12,4 @@ metric:
   direction: up
 created: "2026-11-13 08:21 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 08:21:39 +0530"
+updated: "2026-11-13 08:24:04 +0530"
