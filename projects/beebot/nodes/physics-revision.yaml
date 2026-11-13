@@ -1,0 +1,15 @@
+title: Physics revision for machine parts
+summary: Brainstorm with the user, after inspecting the part data and the joint-strength results, what beebot physics (and cube hardware) must change to represent the parts' functions.
+why: "User 2026-11-13: 'this will likely need a physics revision. we'll have to brainstorm that as well upon inspecting the data.'"
+status: todo
+kind: decision
+parent: grant-push-3d
+depends:
+- machine-parts
+- joint-strength
+metric:
+  series: physics_revision_decided
+  direction: up
+created: "2026-11-13 09:16 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 09:16:12 +0530"
