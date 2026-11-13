@@ -1,7 +1,7 @@
 title: "Rotating cube: full CAD and MuJoCo proof of concept"
 summary: One integrated cube (edge hinge motor and latches, turning face with motor and detent, magnets, battery, board) in CadQuery, and a MuJoCo model of it doing a non-trivial task with another cube.
 why: The user wants to see whether a cube with a turning face can work in practice before adopting it. A sim POC with the hinge cube's parameters shows success and failure rates on a real task.
-status: running
+status: done
 kind: task
 parent: physics-revision
 metric:
@@ -9,4 +9,5 @@ metric:
   direction: up
 created: "2026-11-14 00:37 +0530"
 by: beebot-1d physics
-updated: "2026-11-14 00:37:00 +0530"
+updated: "2026-11-14 01:39:45 +0530"
+result: "runs/handoff/rotating-cube-poc.md, video runs/handoff/media/rotating-cube-full.mp4: crank (1-cube arm) 20/20 vs hinge cube 0/20 (4/20 rule lifted); 2-cube arm 9/20, 11 harmful vs 20/20; cart 38/40 in 12.3 s vs walking 20/20 in 27.0 s; at the N20's rated 0.2 N m crank 17/20, cart 0/20. Verdict: works in sim, does not earn its cost for current goals; edge hinge drive and latch not designed"
