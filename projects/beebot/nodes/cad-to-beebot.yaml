@@ -4,7 +4,7 @@ why: "User 2026-11-13: CAD to beebots 'would be the biggest sell... if you can w
 status: todo
 kind: task
 parent: grant-push-3d
-notes: "Blocker set by the user 2026-11-13 ('note down CAD as a blocker in ops'). Hard part is the physics transfer, not geometry. Dataset licences unchecked. Scale: 5 cm cubes, ~115 robots: about knee-high models and temporary structures."
+notes: "Blocker set by the user 2026-11-13 ('note down CAD as a blocker in ops'). Hard part is the physics transfer, not geometry. Dataset licences unchecked. Scale: 5 cm cubes, ~115 robots: about knee-high models and temporary structures. User 2026-11-13: 'CAD would sell the hardest. we can augment the cube design to account for the additional physics / degrees of freedom required. or back to the drawing board v3 if need be. this is important.' So the hardware may change to fit CAD (stronger or latching joints, extra degrees of freedom); joint-strength started first."
 depends:
 - goal-library
 - reverse-v2
@@ -14,4 +14,4 @@ metric:
   direction: up
 created: "2026-11-13 08:44 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 08:44:51 +0530"
+updated: "2026-11-13 08:48:17 +0530"
