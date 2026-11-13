@@ -1,7 +1,7 @@
 title: Reversed demos generated inside training
 summary: ThinkData draws an end state from the library, takes it apart (to random, to another structure, or an edit) in loader workers, and trains on the reversed recording; no stored episodes.
 why: "Unlimited data at training time (user 2026-11-13: 'infinite data')."
-status: todo
+status: running
 kind: task
 parent: grant-push-3d
 depends:
@@ -12,4 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 08:44 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 08:44:54 +0530"
+updated: "2026-11-13 15:19:51 +0530"
+notes: " User 2026-11-13 15:30: the basic families must come back through reversal: 'put all cubes in corner, diffuse, reverse with label \"move to corner\" but with labelled corner, variety there... then iterate with randomness in the world, and diffusion must be random that each run we get a new training example. we can generate these live during training.' And: 'the old forward generated episodes can be skipped. we can keep the haiku labels, then map each event to certain configurations, then run backwards diffusion. this is arguably better and is free data.' Opus agent started 15:35: map each Haiku-labelled instruction family (directions, corners, gather, split, regions, towers, bridges, objects) to end-state samplers, random diffusion per draw, live in loader workers."
