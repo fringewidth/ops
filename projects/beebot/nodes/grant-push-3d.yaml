@@ -1,10 +1,10 @@
 title: Two-week 3D push for grants
-summary: Make the 3D policy follow language and drive MuJoCo cubes by 2026-11-24.
+summary: Make the 3D policy follow language and drive MuJoCo cubes; deadline 2026-11-24 pushed (2026-11-13), no new date.
 why: The team is out of compute and needs grants to continue. A 3D demo with a physical counterpart is the most convincing thing we can show.
 status: todo
 kind: goal
 parent: generalist-swarm
 created: "2026-11-10 11:54 +0530"
 by: beebot-26 ops
-notes: "User 2026-11-11 ~17:35: new GPU/CPU runs may start; no more code writing today; token cap about 20% of the weekly limit per day (today started at 7%, now 23%). Running agents: integrator, cube-harm-down, camera-frame-all."
-updated: "2026-11-11 16:58 +0530"
+notes: "User 2026-11-11 ~17:35: new GPU/CPU runs may start; no more code writing today; token cap about 20% of the weekly limit per day (today started at 7%, now 23%). Running agents: integrator, cube-harm-down, camera-frame-all. User 2026-11-13: 'we will push the deadline. CAD would sell the hardest. we can augment the cube design to account for the additional physics / degrees of freedom required. or back to the drawing board v3 if need be. this is important.' Main training waits on goal data-mix (incl. cad-to-beebot)."
+updated: "2026-11-13 08:48:13 +0530"
