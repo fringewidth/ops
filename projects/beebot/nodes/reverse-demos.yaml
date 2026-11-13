@@ -1,7 +1,7 @@
 title: Demonstrations generated backwards from a goal
 summary: Script an ordered goal state (any voxel shape, object placement), take it apart with moves whose reverse is legal for n steps, and train on the reversed recording (disorder to goal).
 why: Every episode then ends exactly in the stated goal, so passes are unambiguous by construction, and variety becomes a list of goal shapes instead of a hand-written planner and judge per task (user's idea, 2026-11-13).
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: "User 2026-11-13: 'we reverse the order. the goal state is almost always something ordered (some exceptions for diversity). we start by scripting a desired goal state... then we describe a perfect process that increases the net entropy... up to n steps. the data is trained in reverse.' Eating stays out (user: it 'violates perfect causality'; the existing eat episodes are enough). Pushes: propose-and-verify predecessors (manager, 2026-11-13): each take-apart step proposes an earlier state (a push is proposed as the robot and object stepping back together) and keeps it only if the real forward world step from it gives exactly the current state; so every recorded step is forward-causal under the real rules (friction, multi-robot pushes, gravity, overhang rule), and irreversible events (falls, eating) never verify. Steps chosen to move away from the goal so the reversed demo makes progress each step. Open: failures and recoveries (not in reversed data), natural-looking start states. Prototype pending the user's go. User 2026-11-13 (later): keep the existing eat episodes; the take-apart must never take a step whose forward version eats (the forward check rejects it). Goal: a very large generator of ordered goal states, and a take-apart fast enough to run inside training (online, no stored episodes: unlimited data). Prototype started 2026-11-13 by an Opus subagent of beebot-1d (handoff runs/handoff/reverse-demos.md); CPU only."
@@ -12,4 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 07:34 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 07:44:23 +0530"
+updated: "2026-11-13 08:10:00 +0530"
+result: "Prototype on main 8eff668 (src/beebot/vla/voxel/reverse.py, scripts/reverse_demos.py, 11 tests pass, rerun by manager): 200 episodes per family replay forward exactly (1.00 tower/bridge/letter/push); natural start 0.97/0.77/1.00/1.00; 28-146 steps/s per core (enough for online use). Limits: goals tiny (3-9 robots), take-apart short (mean 5-12 steps, starts near the goal), a span over open air cannot be finished under the pivot rule (bridge = trench filler), letters are blobs. Handoff runs/handoff/reverse-demos.md; numbers runs/reverse_demos/check.json."
