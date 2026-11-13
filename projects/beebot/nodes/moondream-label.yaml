@@ -1,0 +1,18 @@
+title: Moondream check of goal shapes
+summary: Moondream 2 on the Mac GPU captions rendered goal shapes and answers whether each still looks like its text, with wrong-text controls to measure its false yes rate.
+why: "User 2026-11-13: label each goal with a small vision model and make sure it still looks how it should; 'if you can get moondream running on the mac gpu go for it'."
+status: queued
+kind: task
+parent: grant-push-3d
+needs: mac-gpu
+notes: "GPU window: the user stopped the training chain loop 11:04 2026-11-13 (kill 60363); segment 4 of think-08b-cam (pid 17814) finishes about 12:35 and saves; labelling starts after it exits, budget up to 3 h, then the chain restarts from runs/think-08b-cam/resume.pt. Sample first: speed test, then a stratified sample of library sources and generator tiers. Controls: the same question with another goal's text gives the false yes rate."
+depends:
+- goal-datasets
+links:
+- logs/moondream-label.out
+metric:
+  series: goal_looks_like_rate
+  direction: up
+created: "2026-11-13 11:04 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 11:04:58 +0530"
