@@ -1,7 +1,7 @@
 title: Grid vs MuJoCo transfer gap per checkpoint
 summary: The same checkpoint plays a fixed subset of basics episodes in the grid world and through the MuJoCo driver after every training segment; the score gap is tracked.
 why: "User 2026-11-13: sim-to-sim transfer failure would be detrimental; measure it from now on."
-status: running
+status: done
 kind: task
 parent: grant-push-3d
 notes: Sonnet agent started 2026-11-13 ~17:00; runs via the new mac_chain.sh hook runs/<name>/extra_eval.sh (commit 29d546d), budget 30-40 min per segment on the Mac GPU. Handoff runs/handoff/transfer-gap.md.
@@ -12,4 +12,5 @@ metric:
   direction: down
 created: "2026-11-13 16:42 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 16:42:38 +0530"
+updated: "2026-11-13 17:36:12 +0530"
+result: "Commit 1efee3d (5 tests pass, checked; hook syntax ok): scripts/transfer_gap.py plays 16 fixed flat no-cheese episodes (10-12 robots) on the grid and through MuJoCo (hinge cube, simultaneous, 8 processes); scripted-expert sanity run: both 1.000, gap 0, harm 0.0007 per move, 4.7% of moves complete differently (floor_peel, convex_up). Hook enabled after every segment (<= 45 min, always exits 0); logs/transfer-gap.jsonl. Policy path not yet run; the first hook run after segment 5 is the first real number."
