@@ -4,7 +4,7 @@ why: Every episode then ends exactly in the stated goal, so passes are unambiguo
 status: todo
 kind: task
 parent: grant-push-3d
-notes: "User 2026-11-13: 'we reverse the order. the goal state is almost always something ordered (some exceptions for diversity). we start by scripting a desired goal state... then we describe a perfect process that increases the net entropy... up to n steps. the data is trained in reverse.' Open design points (manager): the scramble must use predecessor moves (whose forward reverse is legal under the rule table, gravity and the overhang rule), not forward physics: falls, pushes (reverse is a pull) and eating (reverse is a cheese appearing) do not reverse; reversed random walks meander, so the scramble should move away from the goal each step; failures and recoveries (MuJoCo harm) are not in reversed data; start states must look like natural scenes. Prototype pending the user's go."
+notes: "User 2026-11-13: 'we reverse the order. the goal state is almost always something ordered (some exceptions for diversity). we start by scripting a desired goal state... then we describe a perfect process that increases the net entropy... up to n steps. the data is trained in reverse.' Eating stays out (user: it 'violates perfect causality'; the existing eat episodes are enough). Pushes: propose-and-verify predecessors (manager, 2026-11-13): each take-apart step proposes an earlier state (a push is proposed as the robot and object stepping back together) and keeps it only if the real forward world step from it gives exactly the current state; so every recorded step is forward-causal under the real rules (friction, multi-robot pushes, gravity, overhang rule), and irreversible events (falls, eating) never verify. Steps chosen to move away from the goal so the reversed demo makes progress each step. Open: failures and recoveries (not in reversed data), natural-looking start states. Prototype pending the user's go."
 depends:
 - hinge-adopt
 metric:
@@ -12,4 +12,4 @@ metric:
   direction: up
 created: "2026-11-13 07:34 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 07:34:43 +0530"
+updated: "2026-11-13 07:35:59 +0530"
