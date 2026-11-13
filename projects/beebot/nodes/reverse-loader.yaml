@@ -1,0 +1,15 @@
+title: Reversed demos generated inside training
+summary: ThinkData draws an end state from the library, takes it apart (to random, to another structure, or an edit) in loader workers, and trains on the reversed recording; no stored episodes.
+why: "Unlimited data at training time (user 2026-11-13: 'infinite data')."
+status: todo
+kind: task
+parent: grant-push-3d
+depends:
+- reverse-v2
+- goal-library
+metric:
+  series: loader_examples_per_s
+  direction: up
+created: "2026-11-13 08:44 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 08:44:54 +0530"
