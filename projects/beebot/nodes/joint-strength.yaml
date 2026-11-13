@@ -1,7 +1,7 @@
 title: Joint strength check for built shapes
 summary: A fast structural check (force at each magnet joint against its holding strength under gravity and a stated load), confirmed against MuJoCo on borderline shapes, replacing 'face-connected to the floor stands'.
 why: The grid world counts any floor-connected shape as standing; real magnets peel at the root of a long cantilever, so library and CAD shapes need a real check.
-status: todo
+status: running
 kind: task
 parent: grant-push-3d
 metric:
@@ -9,4 +9,5 @@ metric:
   direction: up
 created: "2026-11-13 08:44 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 08:44:48 +0530"
+updated: "2026-11-13 08:48:28 +0530"
+notes: "Started 2026-11-13 (Opus agent of beebot-1d, CPU only): grid-speed joint-force check validated against MuJoCo hinge cubes, plus a requirements study of what CAD-derived structures need from the cube (joint strength, latching, degrees of freedom). Handoff runs/handoff/joint-strength.md."
