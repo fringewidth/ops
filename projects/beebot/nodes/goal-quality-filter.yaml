@@ -4,7 +4,7 @@ why: "User 2026-11-13: 'quality must be pristine... if it doesn't read correctly
 status: todo
 kind: task
 parent: grant-push-3d
-notes: "Moondream (moondream-label): a yes is right 7 of 8, a no right 2 of 5, and it only separates on descriptive sources; a pristine filter needs a stronger judge on grey renders (cost to be quoted to the user), with Moondream yes as a cheap first gate. User 2026-11-13 15:50: 'moondream will be the final decision.' No Claude judge. Proposed rule: keep a goal only if Moondream says yes to its own text AND no to a wrong text (raises precision over yes alone); grey render; sources where Moondream cannot tell right from wrong text (CraftAssist houses/parts, Hack337, IGLU) are dropped as goal-with-text under the pristine rule."
+notes: "Moondream (moondream-label): a yes is right 7 of 8, a no right 2 of 5, and it only separates on descriptive sources; a pristine filter needs a stronger judge on grey renders (cost to be quoted to the user), with Moondream yes as a cheap first gate. User 2026-11-13 15:50: 'moondream will be the final decision.' No Claude judge. Proposed rule: keep a goal only if Moondream says yes to its own text AND no to a wrong text (raises precision over yes alone); grey render; sources where Moondream cannot tell right from wrong text (CraftAssist houses/parts, Hack337, IGLU) are dropped as goal-with-text under the pristine rule. Vibe check 2026-11-13 ~18:40 (scratchpad browse/vibe.html; 50 kept, 50 eliminated; colour entropy over 512 bins with threshold at the 75th percentile, outline IoU small vs large with threshold at the 25th percentile): user: 'color variation is a bad idea, and most of these look the exact same. there are some exceptions, but it's overall fine.' Decision: no colour filter (wood shading counts as many colours); the outline rule barely separates at the ~100 vs ~250 sizes; large and medium dataset versions are trusted. Remaining question: the new small sizes (8-64 robots, goal-size-recalibration) are where shapes may break; check them when they exist."
 depends:
 - moondream-label
 metric:
@@ -12,4 +12,4 @@ metric:
   direction: up
 created: "2026-11-13 15:20 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 15:29:33 +0530"
+updated: "2026-11-13 18:38:40 +0530"
