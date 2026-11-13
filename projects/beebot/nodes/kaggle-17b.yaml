@@ -9,10 +9,11 @@ est_h: 30.0
 depends:
 - frame-into-training
 - upload-demos
+- remote-control
 created: "2026-11-10 12:01 +0530"
 by: beebot-a3 3d push
 notes: "2026-11-12: Qwen3.5 has 0.8B, 2B, 4B, 9B (no 1.7B); this node was the Qwen3 1.7B. User 2026-11-12: we are still doing a size curve, scaling needs to be shown. Full weights at 2B do not fit a T4 (~32 GB fp32 Adam); needs LoRA, a Kaggle TPU v5e-8 or rented hours. Account: rvitmpolicyboot (with consent)."
-updated: "2026-11-12 11:24 +0530"
+updated: "2026-11-13 17:02:13 +0530"
 metric:
   series: scorecard3d_mean{run="kaggle-2b"}
   direction: up
