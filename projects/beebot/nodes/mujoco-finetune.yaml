@@ -1,0 +1,10 @@
+title: MuJoCo fine-tuning stage on GPU
+summary: "A second training stage on episodes executed in GPU MuJoCo (MuJoCo Warp or MJX): physical failures, recovery, tools and load-bearing tasks, after the grid-trained base."
+why: "User 2026-11-13: tabled: GPU MuJoCo is expected to be 10-1000x slower per episode than the grid world ('that's bad. we can't do that atm')."
+status: todo
+kind: task
+parent: grant-push-3d
+notes: "Tabled 2026-11-13 ~16:40. Plan if revived: port the hinge-cube scene to MuJoCo Warp on CPU, time 10/100/500 cubes and a lever scene on one Kaggle T4 (~1 h, needs the user's OK and account), then size the fine-tune set. Tools (lever, rollers, ramp, wedge) depend on this or on CPU-MuJoCo-calibrated tool objects in the grid."
+created: "2026-11-13 16:34 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 16:34:37 +0530"
