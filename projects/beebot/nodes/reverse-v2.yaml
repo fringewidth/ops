@@ -1,0 +1,15 @@
+title: Reversal that reaches random starts and takes apart overhangs
+summary: "Upgrade voxel/reverse.py: take apart until the start is as spread as a natural scene, take apart overhangs and spans with look-ahead and helper robots, and take apart toward a given structure (edits, structure to structure)."
+why: The prototype stops 5-12 steps from the goal and cannot take apart a span, and library shapes (chairs, arches, tables) are full of overhangs.
+status: running
+kind: task
+parent: grant-push-3d
+notes: Started 2026-11-13, Opus agent of beebot-1d; CPU only. Handoff runs/handoff/reverse-v2.md.
+depends:
+- reverse-demos
+metric:
+  series: reverse_natural_start_share
+  direction: up
+created: "2026-11-13 08:39 +0530"
+by: beebot-1d manager
+updated: "2026-11-13 08:39:33 +0530"
