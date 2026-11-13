@@ -4,7 +4,7 @@ why: "User 2026-11-13: CAD to beebots 'would be the biggest sell... if you can w
 status: todo
 kind: task
 parent: grant-push-3d
-notes: "Blocker set by the user 2026-11-13 ('note down CAD as a blocker in ops'). Hard part is the physics transfer, not geometry. Dataset licences unchecked. Scale: 5 cm cubes, ~115 robots: about knee-high models and temporary structures. User 2026-11-13: 'CAD would sell the hardest. we can augment the cube design to account for the additional physics / degrees of freedom required. or back to the drawing board v3 if need be. this is important.' So the hardware may change to fit CAD (stronger or latching joints, extra degrees of freedom); joint-strength started first. Scope (user 2026-11-13): 'we won't be doing full CAD. even frontier LLMs struggle with CAD at the moment. basic constituent parts is enough for now.' Method: voxelise, check joints under the part's loads, repair, verify buildable by reversal."
+notes: "Blocker set by the user 2026-11-13 ('note down CAD as a blocker in ops'). Hard part is the physics transfer, not geometry. Dataset licences unchecked. Scale: 5 cm cubes, ~115 robots: about knee-high models and temporary structures. User 2026-11-13: 'CAD would sell the hardest. we can augment the cube design to account for the additional physics / degrees of freedom required. or back to the drawing board v3 if need be. this is important.' So the hardware may change to fit CAD (stronger or latching joints, extra degrees of freedom); joint-strength started first. Scope (user 2026-11-13): 'we won't be doing full CAD. even frontier LLMs struggle with CAD at the moment. basic constituent parts is enough for now.' Method: voxelise, check joints under the part's loads, repair, verify buildable by reversal. User 2026-11-13 ~19:05 (again): parts count only if they function the same way. Scope: each part becomes a task with a functional pass test under our physics (beam carries load W at span L, bracket holds a load around a corner, cantilever reaches out holding W, hinge/swing via group pivot), checked with hardware/joint_strength (scripts/physics_rig.py) and later MuJoCo; the voxel shape is free to differ from the part's looks. Data: data/machine_parts (dims, loads unknown; joints from Fusion). See runs/handoff/physics-options.md."
 depends:
 - goal-library
 - reverse-v2
@@ -16,4 +16,4 @@ metric:
   direction: up
 created: "2026-11-13 08:44 +0530"
 by: beebot-1d manager
-updated: "2026-11-13 09:16:20 +0530"
+updated: "2026-11-13 18:45:34 +0530"
