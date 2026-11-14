@@ -12,5 +12,5 @@ metric:
   direction: up
 created: "2026-11-13 09:16 +0530"
 by: beebot-1d manager
-updated: "2026-11-14 07:05:38 +0530"
-notes: " 2026-11-14: rotating-cube-poc done (one turning face: crank 20/20 with a 1-cube arm, 9/20 with 2; cart 38/40; runs/handoff/rotating-cube-poc.md). User: one turning face is too restrictive (a cube on a fixed face can never turn); considering every face turns; asked about manufacture. Back-of-envelope: six face motors do not fit a 50 mm cube (adjacent 36 mm recesses collide past 7 mm depth); options are one central motor with a brake per face, or a ~70 mm cube."
+updated: "2026-11-14 07:05:52 +0530"
+notes: "2026-11-13 23:40: primitive memo runs/handoff/physics-primitive.md (committed in a615ab5, with scripts/physics_primitive_probe.py). Recommended primitive: a bond between two cells with open, locked and turning states, plus a face that turns about its normal and re-locks at quarter turns. Proposed first experiment F1 in MuJoCo (1-2 CPU h, 2-3 days code). 2026-11-14: rotating-cube-poc done (one turning face: crank 20/20 with a 1-cube arm, 9/20 with 2; cart 38/40; runs/handoff/rotating-cube-poc.md). User: one turning face is too restrictive (a cube on a fixed face can never turn); considering every face turns; asked about manufacture. Back-of-envelope: six face motors do not fit a 50 mm cube (adjacent 36 mm recesses collide past 7 mm depth); options are one central motor with a brake per face, or a ~70 mm cube."
